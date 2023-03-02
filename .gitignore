@@ -1,0 +1,9 @@
+x64
+Debug
+.vs
+poketechnika.sln
+poketechnika/Debug
+poketechnika/x64
+poketechnika/poketechnika.vcxproj
+poketechnika/poketechnika.vcxproj.filters
+poketechnika/poketechnika.vcxproj.user
