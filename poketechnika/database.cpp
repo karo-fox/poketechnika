@@ -1,5 +1,5 @@
 #include "database.h"
-#include "State.h"
+#include "GameManager.h"
 
 #include <iostream>
 #include <fstream>
@@ -7,14 +7,14 @@
 
 const std::string DB_PATH = "./../db.txt";
 
-State load() {
+GameManager load() {
 	std::ifstream dbFile { DB_PATH };
-	State state;
+	GameManager state;
 	dbFile >> state;
 	return state;
 }
 
-void save(State& state) {
+void save(GameManager& state) {
 	std::ofstream dbFile{ DB_PATH };
 	dbFile << state;
 }

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "State.h"
+#include "GameManager.h"
 
-State load();
-void save(State& state);
+GameManager load();
+void save(GameManager& state);

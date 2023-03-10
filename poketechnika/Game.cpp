@@ -2,7 +2,7 @@
 #include "database.h"
 #include <SFML/Graphics.hpp>
 
-Game::Game() : state_(load()) {}
+Game::Game() : gm(load()) {}
 
 void Game::ProcessInput(sf::RenderWindow& window) {
     //Handle the player input
