@@ -1,11 +1,11 @@
 #include "Scene.h"
 #include <SFML/Graphics.hpp>
 
-void Scene::DrawScene(sf::RenderWindow& window){
+void Scene::draw(sf::RenderWindow& window){
 	window.draw(background);
 }
 
-void Scene::LoadTextures(){
+void Scene::loadTextures(){
 	backgroundTexture.loadFromFile(texturesPath+"background_scene.png");
 	background.setTexture(backgroundTexture);
 }

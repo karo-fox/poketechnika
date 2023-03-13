@@ -5,7 +5,7 @@
 
 Game::Game() : gm(load()) {}
 
-void Game::ProcessInput(sf::RenderWindow& window) {
+void Game::processInput(sf::RenderWindow& window) {
     //Handle the player input
     sf::Event event;
     while (window.pollEvent(event))
@@ -20,22 +20,22 @@ void Game::ProcessInput(sf::RenderWindow& window) {
             if (sm.getCurrentScene() == state::MAINMENU)
             {
                 if (event.key.code == sf::Keyboard::A)
-                    sm.ChangeScene(state::GAME);
+                    sm.changeScene(state::GAME);
             }
             if (sm.getCurrentScene() == state::GAME)
             {
                 if (event.key.code == sf::Keyboard::D)
-                    sm.ChangeScene(state::MAINMENU);
+                    sm.changeScene(state::MAINMENU);
             }
         }
     }
 }
 
-void Game::GameUpdate() {
+void Game::update() {
     //Run through all GameObjects and update them
 }
 
-void Game::InitGameLoop(int width, int height) {
+void Game::initGameLoop(int width, int height) {
     //Create all necessary instances before game starts
     
     //Create window
@@ -44,11 +44,11 @@ void Game::InitGameLoop(int width, int height) {
     while (window.isOpen())
     {
         //Process Input
-        ProcessInput(window);
+        processInput(window);
         //Update
-        GameUpdate();
+        update();
         //Render
-        sm.RenderScene(window);
+        sm.renderScene(window);
     }
     //Destroy all the things after the window closes
 }

@@ -1,10 +1,10 @@
 #include "SceneManager.h"
-#include "SceneMenu.h"
-#include "SceneGame.h"
+#include "MenuScene.h"
+#include "GameScene.h"
 
 SceneManager::SceneManager() {
-	currScene = new SceneMenu();
-	currScene->LoadTextures();
+	currScene = new MenuScene();
+	currScene->loadTextures();
 	scene = state::MAINMENU;
 }
 
@@ -12,16 +12,16 @@ SceneManager::~SceneManager(){
 	delete currScene;
 }
 
-void SceneManager::ChangeScene(state change) {
+void SceneManager::changeScene(state change) {
 	delete currScene;
 	switch (change)
 	{
 		case state::MAINMENU:
-			currScene = new SceneMenu();
+			currScene = new MenuScene();
 			scene = state::MAINMENU;
 			break;
 		case state::GAME:
-			currScene = new SceneGame();
+			currScene = new GameScene();
 			scene = state::GAME;
 			break;
 		default:
@@ -29,12 +29,12 @@ void SceneManager::ChangeScene(state change) {
 			scene = state::ERROR;
 			break;
 	}
-	currScene->LoadTextures();
+	currScene->loadTextures();
 }
 
-void SceneManager::RenderScene(sf::RenderWindow& window) {
+void SceneManager::renderScene(sf::RenderWindow& window) {
 	window.clear();
-	currScene->DrawScene(window);
+	currScene->draw(window);
 	window.display();
 }
 
