@@ -3,6 +3,6 @@
 int main()
 {
     Game game;
-    game.InitGameLoop(1400, 800);
+    game.initGameLoop(1400, 800);
     return 0;
 }

@@ -11,7 +11,7 @@ class SceneManager
 public:
 	SceneManager();
 	virtual ~SceneManager();
-	void RenderScene(sf::RenderWindow& window);
-	void ChangeScene(state change);
+	void renderScene(sf::RenderWindow& window);
+	void changeScene(state change);
 	state getCurrentScene();
 };

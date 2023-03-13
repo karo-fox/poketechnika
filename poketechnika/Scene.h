@@ -7,6 +7,6 @@ protected:
 	sf::Texture backgroundTexture;
 	sf::Sprite background;
 public:
-	virtual void DrawScene(sf::RenderWindow& window);
-	virtual void LoadTextures();
+	virtual void draw(sf::RenderWindow& window);
+	virtual void loadTextures();
 };
