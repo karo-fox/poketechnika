@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-GameScene::GameScene()
+GameScene::GameScene(sf::RenderWindow& w) : Scene(w)
 {
 	std::cout << "Created SceneGame" << std::endl;
 }
@@ -15,5 +15,5 @@ void GameScene::loadTextures()
 }
 
 void GameScene::draw(sf::RenderWindow& window) {
-	window.draw(background);
+	renderer.draw(background);
 }

@@ -9,3 +9,5 @@ void Scene::loadTextures(){
 	backgroundTexture.loadFromFile(texturesPath+"background_scene.png");
 	background.setTexture(backgroundTexture);
 }
+
+Scene::Scene(sf::RenderWindow& w) : renderer(w) {}

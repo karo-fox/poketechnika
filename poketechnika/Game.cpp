@@ -2,10 +2,12 @@
 #include "database.h"
 #include <SFML/Graphics.hpp>
 #include "SceneManager.h"
+#include "GameObject.h"
 
-Game::Game() : gm(load()) {}
+Game::Game(int w, int h) : gm(load()), window(sf::VideoMode(w, h), "Poketechnika"), sm(window) {
+}
 
-void Game::processInput(sf::RenderWindow& window) {
+void Game::processInput() {
     //Handle the player input
     sf::Event event;
     while (window.pollEvent(event))
@@ -32,23 +34,24 @@ void Game::processInput(sf::RenderWindow& window) {
 }
 
 void Game::update() {
-    //Run through all GameObjects and update them
+    for (int i = 0; i < gameObjects.size(); i++)
+    {
+        gameObjects[i]->update();
+    }
 }
 
-void Game::initGameLoop(int width, int height) {
+void Game::initGameLoop() {
     //Create all necessary instances before game starts
     
-    //Create window
-    sf::RenderWindow window(sf::VideoMode(width, height), "Poketechnika");
     //Start the loop
     while (window.isOpen())
     {
         //Process Input
-        processInput(window);
+        processInput();
         //Update
         update();
         //Render
-        sm.renderScene(window);
+        sm.renderScene();
     }
     //Destroy all the things after the window closes
 }
