@@ -2,7 +2,7 @@
 
 int main()
 {
-    Game game;
-    game.initGameLoop(1400, 800);
+    Game game(1400,800);
+    game.initGameLoop();
     return 0;
 }

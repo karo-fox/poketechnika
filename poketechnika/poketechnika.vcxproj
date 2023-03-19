@@ -136,8 +136,10 @@
   <ItemGroup>
     <ClCompile Include="database.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
@@ -147,6 +149,8 @@
     <ClInclude Include="database.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameManager.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Renderer.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="SceneManager.h" />

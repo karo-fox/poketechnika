@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-MenuScene::MenuScene()
+MenuScene::MenuScene(sf::RenderWindow& w) : Scene(w)
 {
 	std::cout << "Created SceneMenu" << std::endl;
 }
@@ -14,6 +14,6 @@ void MenuScene::loadTextures()
 	std::cout << "Loaded mainmenu textures" << std::endl;
 }
 
-void MenuScene::draw(sf::RenderWindow& window) {
-	window.draw(background);
+void MenuScene::draw() {
+	renderer.draw(background);
 }

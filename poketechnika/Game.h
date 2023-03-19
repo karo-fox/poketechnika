@@ -2,14 +2,17 @@
 #include <SFML/Graphics.hpp>
 #include "GameManager.h"
 #include "SceneManager.h"
+#include "GameObject.h"
 class Game
 {
 public:
-	Game();
-	void initGameLoop(int width, int height);
+	Game(int w, int h);
+	void initGameLoop();
 	GameManager gm;
 	SceneManager sm;
+	sf::RenderWindow window;
+	std::vector<GameObject*> gameObjects;
 private:
-	void processInput(sf::RenderWindow& window);
+	void processInput();
 	void update();
 };
