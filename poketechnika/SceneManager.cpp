@@ -34,7 +34,7 @@ void SceneManager::changeScene(state change) {
 
 void SceneManager::renderScene() {
 	window.clear();
-	currScene->draw(window);
+	currScene->draw();
 	window.display();
 }
 

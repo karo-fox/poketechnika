@@ -14,6 +14,6 @@ void MenuScene::loadTextures()
 	std::cout << "Loaded mainmenu textures" << std::endl;
 }
 
-void MenuScene::draw(sf::RenderWindow& window) {
+void MenuScene::draw() {
 	renderer.draw(background);
 }

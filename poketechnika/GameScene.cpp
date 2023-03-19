@@ -14,6 +14,6 @@ void GameScene::loadTextures()
 	std::cout << "Loaded game textures" << std::endl;
 }
 
-void GameScene::draw(sf::RenderWindow& window) {
+void GameScene::draw() {
 	renderer.draw(background);
 }
