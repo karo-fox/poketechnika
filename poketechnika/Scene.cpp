@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 
 void Scene::draw(){
-	renderer.draw(background);
+	renderer->draw(background);
 }
 
 void Scene::loadTextures(){
@@ -10,4 +10,4 @@ void Scene::loadTextures(){
 	background.setTexture(backgroundTexture);
 }
 
-Scene::Scene(sf::RenderWindow& w) : renderer(w) {}
+Scene::Scene(Renderer* rend) : renderer(rend) {}

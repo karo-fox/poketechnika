@@ -3,7 +3,7 @@
 class GameScene : public Scene
 {
 public:
-	GameScene(sf::RenderWindow& w);
+	GameScene(Renderer* rend);
 	void loadTextures();
 	void draw();
 };

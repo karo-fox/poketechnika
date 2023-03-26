@@ -4,7 +4,7 @@
 #include "SceneManager.h"
 #include "GameObject.h"
 
-Game::Game(int w, int h) : gm(load()), window(sf::VideoMode(w, h), "Poketechnika"), sm(window) {
+Game::Game(int w, int h) : gm(load()), window(sf::VideoMode(w, h), "Poketechnika"), rend(window), sm(&rend) {
 }
 
 void Game::processInput() {

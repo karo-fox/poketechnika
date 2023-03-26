@@ -7,9 +7,9 @@ protected:
 	const std::string texturesPath = "assets/textures/";
 	sf::Texture backgroundTexture;
 	sf::Sprite background;
-	Renderer renderer;
+	Renderer* renderer;
 public:
 	virtual void draw();
 	virtual void loadTextures();
-	Scene(sf::RenderWindow& window);
+	Scene(Renderer* rend);
 };

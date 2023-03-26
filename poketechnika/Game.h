@@ -10,6 +10,7 @@ public:
 	void initGameLoop();
 	GameManager gm;
 	SceneManager sm;
+	Renderer rend;
 	sf::RenderWindow window;
 	std::vector<GameObject*> gameObjects;
 private:

@@ -4,7 +4,7 @@
 class MenuScene : public Scene
 {
 public:
-	MenuScene(sf::RenderWindow& w);
+	MenuScene(Renderer* rend);
 	void loadTextures();
 	void draw();
 };

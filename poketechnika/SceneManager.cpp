@@ -2,8 +2,8 @@
 #include "MenuScene.h"
 #include "GameScene.h"
 
-SceneManager::SceneManager(sf::RenderWindow& w) : window(w) {
-	currScene = new MenuScene(window);
+SceneManager::SceneManager(Renderer* rend_) : rend(rend_) {
+	currScene = new MenuScene(rend);
 	currScene->loadTextures();
 	scene = state::MAINMENU;
 }
@@ -17,15 +17,15 @@ void SceneManager::changeScene(state change) {
 	switch (change)
 	{
 		case state::MAINMENU:
-			currScene = new MenuScene(window);
+			currScene = new MenuScene(rend);
 			scene = state::MAINMENU;
 			break;
 		case state::GAME:
-			currScene = new GameScene(window);
+			currScene = new GameScene(rend);
 			scene = state::GAME;
 			break;
 		default:
-			currScene = new Scene(window);
+			currScene = new Scene(rend);
 			scene = state::ERROR;
 			break;
 	}
@@ -33,9 +33,9 @@ void SceneManager::changeScene(state change) {
 }
 
 void SceneManager::renderScene() {
-	window.clear();
+	rend->rendClear();
 	currScene->draw();
-	window.display();
+	rend->rendDisplay();
 }
 
 state SceneManager::getCurrentScene() {

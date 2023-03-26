@@ -8,9 +8,9 @@ class SceneManager
 {
 	Scene* currScene;
 	state scene;
-	sf::RenderWindow& window;
+	Renderer* rend;
 public:
-	SceneManager(sf::RenderWindow& w);
+	SceneManager(Renderer* rend_);
 	virtual ~SceneManager();
 	void renderScene();
 	void changeScene(state change);
