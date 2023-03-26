@@ -3,7 +3,9 @@
 class Renderer
 {
 	sf::RenderWindow& window;
+	float scale;
 public:
+	void setScale();
 	void rendClear();
 	void rendDisplay();
 	void draw(sf::Sprite s);

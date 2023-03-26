@@ -1,7 +1,13 @@
 #include "Renderer.h"
 #include <SFML/Graphics.hpp>
 
-Renderer::Renderer(sf::RenderWindow& w) : window(w) {}
+Renderer::Renderer(sf::RenderWindow& w) : window(w), scale(1.0) {
+}
+
+void Renderer::setScale() 
+{
+	scale = window.getSize().x / 1280.0;
+}
 
 void Renderer::rendClear() 
 {
@@ -15,5 +21,6 @@ void Renderer::rendDisplay()
 
 void Renderer::draw(sf::Sprite s)
 {
+	s.setScale(scale, scale);
 	window.draw(s);
 }

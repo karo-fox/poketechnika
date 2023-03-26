@@ -6,7 +6,7 @@
 class Game
 {
 public:
-	Game(int w, int h);
+	Game(int w, int h, bool fullscreen);
 	void initGameLoop();
 	GameManager gm;
 	SceneManager sm;

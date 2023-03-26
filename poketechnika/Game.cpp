@@ -4,7 +4,10 @@
 #include "SceneManager.h"
 #include "GameObject.h"
 
-Game::Game(int w, int h) : gm(load()), window(sf::VideoMode(w, h), "Poketechnika"), rend(window), sm(&rend) {
+Game::Game(int w, int h, bool fullscreen) : gm(load()), window(sf::VideoMode(w, h), "Poketechnika"), rend(window), sm(&rend) {
+    if (fullscreen)
+        window.create(sf::VideoMode(sf::VideoMode::getDesktopMode().width, sf::VideoMode::getDesktopMode().height), "Poketechnika", sf::Style::Fullscreen);
+    rend.setScale();
 }
 
 void Game::processInput() {
