@@ -3,13 +3,18 @@
 #include "GameScene.h"
 
 SceneManager::SceneManager(Renderer* rend_) : rend(rend_) {
-	currScene = new MenuScene(rend);
-	currScene->loadTextures();
-	scene = state::MAINMENU;
+	currScene = nullptr;
+	scene = state::ERROR;
 }
 
 SceneManager::~SceneManager(){
 	delete currScene;
+}
+
+void SceneManager::createFirstScene() {
+	currScene = new MenuScene(rend);
+	currScene->loadTextures();
+	scene = state::MAINMENU;
 }
 
 void SceneManager::changeScene(state change) {

@@ -3,6 +3,7 @@
 #include "GameManager.h"
 #include "SceneManager.h"
 #include "GameObject.h"
+#include <vector>
 class Game
 {
 public:

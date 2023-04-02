@@ -3,6 +3,10 @@
 #include <SFML/Graphics.hpp>
 #include "SceneManager.h"
 #include "GameObject.h"
+#include <vector>
+
+#include <iostream>
+using namespace std;
 
 Game::Game(int w, int h, bool fullscreen) : gm(load()), window(sf::VideoMode(w, h), "Poketechnika"), rend(window), sm(&rend) {
     if (fullscreen)
@@ -45,7 +49,8 @@ void Game::update() {
 
 void Game::initGameLoop() {
     //Create all necessary instances before game starts
-    
+    GameObject::setGameObjectsPtr(&gameObjects);
+    sm.createFirstScene();
     //Start the loop
     while (window.isOpen())
     {

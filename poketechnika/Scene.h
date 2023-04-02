@@ -1,6 +1,8 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Renderer.h"
+#include "Camera.h"
+
 class Scene
 {
 protected:
@@ -8,8 +10,10 @@ protected:
 	sf::Texture backgroundTexture;
 	sf::Sprite background;
 	Renderer* renderer;
+	Camera* cam;
 public:
 	virtual void draw();
 	virtual void loadTextures();
 	Scene(Renderer* rend);
+	virtual ~Scene();
 };

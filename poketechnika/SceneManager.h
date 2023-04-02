@@ -12,6 +12,7 @@ class SceneManager
 public:
 	SceneManager(Renderer* rend_);
 	virtual ~SceneManager();
+	void createFirstScene();
 	void renderScene();
 	void changeScene(state change);
 	state getCurrentScene();
