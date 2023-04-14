@@ -2,9 +2,22 @@
 #include "database.h"
 #include <SFML/Graphics.hpp>
 #include "SceneManager.h"
+#include "GameScene.h"
 #include "GameObject.h"
+#include "Camera.h"
+#include <vector>
 
-Game::Game(int w, int h) : gm(load()), window(sf::VideoMode(w, h), "Poketechnika"), sm(window) {
+#include <iostream>
+using namespace std;
+
+Game::Game(int w, int h, bool fullscreen) : gm(load()), window(sf::VideoMode(w, h), "Poketechnika"), rend(window), sm(&rend) {
+    if (fullscreen)
+    {
+        window.create(sf::VideoMode(sf::VideoMode::getDesktopMode().width, sf::VideoMode::getDesktopMode().height), "Poketechnika", sf::Style::Fullscreen);
+        Camera::setCameraSize(sf::VideoMode::getDesktopMode().width, sf::VideoMode::getDesktopMode().height);
+    }
+    else Camera::setCameraSize(w, h);
+    rend.setScale();
 }
 
 void Game::processInput() {
@@ -13,21 +26,34 @@ void Game::processInput() {
     while (window.pollEvent(event))
     {
         if (event.type == sf::Event::Closed)
+        {
+            gm.unloadMap();
             window.close();
+        }
         if (event.type == sf::Event::KeyPressed)
         {
             if (event.key.code == sf::Keyboard::Escape)
+            {
+                gm.unloadMap();
                 window.close();
+            }
             //placeholder for tests
             if (sm.getCurrentScene() == state::MAINMENU)
             {
                 if (event.key.code == sf::Keyboard::A)
+                {
                     sm.changeScene(state::GAME);
+                    gm.loadMap();
+                }
+                    
             }
             if (sm.getCurrentScene() == state::GAME)
             {
                 if (event.key.code == sf::Keyboard::D)
+                {
                     sm.changeScene(state::MAINMENU);
+                    gm.unloadMap();
+                }
             }
         }
     }
@@ -42,7 +68,9 @@ void Game::update() {
 
 void Game::initGameLoop() {
     //Create all necessary instances before game starts
-    
+    GameObject::setGameObjectsPtr(&gameObjects);
+    GameScene::setGMPtr(&gm);
+    sm.createFirstScene();
     //Start the loop
     while (window.isOpen())
     {
