@@ -4,7 +4,7 @@
 
 SceneManager::SceneManager(Renderer* rend_) : rend(rend_) {
 	currScene = nullptr;
-	scene = state::ERROR;
+	scene = State::ERROR;
 }
 
 SceneManager::~SceneManager(){
@@ -14,24 +14,24 @@ SceneManager::~SceneManager(){
 void SceneManager::createFirstScene() {
 	currScene = new MenuScene(rend);
 	currScene->loadTextures();
-	scene = state::MAINMENU;
+	scene = State::MAINMENU;
 }
 
-void SceneManager::changeScene(state change) {
+void SceneManager::changeScene(State change) {
 	delete currScene;
 	switch (change)
 	{
-		case state::MAINMENU:
+		case State::MAINMENU:
 			currScene = new MenuScene(rend);
-			scene = state::MAINMENU;
+			scene = State::MAINMENU;
 			break;
-		case state::GAME:
+		case State::GAME:
 			currScene = new GameScene(rend);
-			scene = state::GAME;
+			scene = State::GAME;
 			break;
 		default:
 			currScene = new Scene(rend);
-			scene = state::ERROR;
+			scene = State::ERROR;
 			break;
 	}
 	currScene->loadTextures();
@@ -43,6 +43,6 @@ void SceneManager::renderScene() {
 	rend->rendDisplay();
 }
 
-state SceneManager::getCurrentScene() {
+State SceneManager::getCurrentScene() const {
 	return scene;
 }
