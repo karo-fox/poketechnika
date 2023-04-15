@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "GameManager.h"
 #include "SceneManager.h"
-#include "GameObject.h"
+#include "GameObjectsManager.h"
 #include <vector>
 class Game
 {
@@ -12,8 +12,8 @@ public:
 	GameManager gm;
 	SceneManager sm;
 	Renderer rend;
+	GameObjectsManager gom;
 	sf::RenderWindow window;
-	std::vector<GameObject*> gameObjects;
 private:
 	void processInput();
 	void update();

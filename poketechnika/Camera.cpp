@@ -17,13 +17,12 @@ bool Camera::isWithinCamera(sf::Vector2i pos)
 
 Camera::Camera(int x, int y) {
 	position = sf::Vector2i(x, y);
-	gameObjectsPtr->push_back(this);
 }
 
 Camera::~Camera()
 {
-	for (int i = 0; i < gameObjectsPtr->size(); i++)
-		if (gameObjectsPtr->at(i) == this) gameObjectsPtr->erase(gameObjectsPtr->begin()+i);
+	//for (int i = 0; i < gameObjectsPtr->size(); i++)
+	//	if (gameObjectsPtr->at(i) == this) gameObjectsPtr->erase(gameObjectsPtr->begin()+i);
 }
 
 void Camera::setCameraSize(int x, int y) {

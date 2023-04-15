@@ -59,17 +59,17 @@ void Game::processInput() {
     }
 }
 
-void Game::update() {
-    for (int i = 0; i < gameObjects.size(); i++)
-    {
-        gameObjects[i]->update();
-    }
-}
+//void Game::update() {
+//    for (int i = 0; i < gom.gameObjectsNumber(); i++)
+//    {
+//        gameObjects[i]->update();
+//    }
+//}
 
 void Game::initGameLoop() {
     //Create all necessary instances before game starts
-    GameObject::setGameObjectsPtr(&gameObjects);
-    GameScene::setGMPtr(&gm);
+    //GameObject::setGameObjectsPtr(&gameObjects);
+    //GameScene::setGMPtr(&gm);
     sm.createFirstScene();
     //Start the loop
     while (window.isOpen())
@@ -77,9 +77,10 @@ void Game::initGameLoop() {
         //Process Input
         processInput();
         //Update
-        update();
+        gom.update();
         //Render
         sm.renderScene();
     }
     //Destroy all the things after the window closes
 }
+
