@@ -6,6 +6,7 @@
 #include "GameObject.h"
 #include "Camera.h"
 #include <vector>
+#include <map>
 
 #include <iostream>
 using namespace std;
@@ -60,13 +61,34 @@ void Game::processInput() {
     //        }
     //    }
     //}
-    im.processInput(window, sm);
+
+    const auto state = sm.getCurrentScene();
+    im.processInput(window, state);
+
+    static std::map<Action, State> changeStateActions{
+        {Action::ChangeSceneToGame, State::GAME},
+        {Action::ChangeSceneToMenu, State::MAINMENU},
+    };
+    for (const auto& elem : changeStateActions) {
+        if (im.getAction(elem.first)) {
+            gm.unloadMap();
+            sm.changeScene(elem.second);
+            gm.loadMap();
+        }
+    }
+    if (im.getAction(Action::Close)) {
+        gm.unloadMap();
+        window.close();
+    }
+
+    im.reset_actions();
 }
 
 void Game::update() {
-    for (int i = 0; i < gameObjects.size(); i++)
-    {
-        gameObjects[i]->update();
+    for (auto gameObject : gameObjects) {
+        if (gameObject->isActive()) {
+            gameObject->update();
+        }
     }
 }
 

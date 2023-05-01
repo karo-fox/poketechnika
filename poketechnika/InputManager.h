@@ -4,7 +4,7 @@
 #include "SceneManager.h"
 
 enum class Action {
-	MoveRight, MoveLeft, MoveUp, MoveDown
+	MoveRight, MoveLeft, MoveUp, MoveDown, ChangeSceneToGame, ChangeSceneToMenu, Close
 };
 
 using StateActions = std::map<const sf::Keyboard::Key, Action>;
@@ -17,6 +17,7 @@ private:
 public:
 	InputManager();
 	bool getAction(Action action) const;
-	void processInput(sf::RenderWindow& window, const SceneManager& sm);
+	void processInput(sf::RenderWindow& window, const State& state);
+	void reset_actions();
 };
 
