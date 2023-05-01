@@ -25,43 +25,6 @@ Game::Game(int w, int h, bool fullscreen) :
 }
 
 void Game::processInput() {
-    //Handle the player input
-    //sf::Event event;
-    //while (window.pollEvent(event))
-    //{
-    //    if (event.type == sf::Event::Closed)
-    //    {
-    //        gm.unloadMap();
-    //        window.close();
-    //    }
-    //    if (event.type == sf::Event::KeyPressed)
-    //    {
-    //        if (event.key.code == sf::Keyboard::Escape)
-    //        {
-    //            gm.unloadMap();
-    //            window.close();
-    //        }
-    //        //placeholder for tests
-    //        if (sm.getCurrentScene() == State::MAINMENU)
-    //        {
-    //            if (event.key.code == sf::Keyboard::A)
-    //            {
-    //                sm.changeScene(State::GAME);
-    //                gm.loadMap();
-    //            }
-    //                
-    //        }
-    //        if (sm.getCurrentScene() == State::GAME)
-    //        {
-    //            if (event.key.code == sf::Keyboard::D)
-    //            {
-    //                sm.changeScene(State::MAINMENU);
-    //                gm.unloadMap();
-    //            }
-    //        }
-    //    }
-    //}
-
     const auto state = sm.getCurrentScene();
     im.processInput(window, state);
 
