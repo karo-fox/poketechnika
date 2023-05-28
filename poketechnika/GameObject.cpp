@@ -17,3 +17,7 @@ void GameObject::setGameObjectsPtr(std::vector<GameObject*>* ptr) {
 sf::Vector2i GameObject::getPosition() {
 	return position;
 }
+
+bool GameObject::isActive() {
+	return active;
+}

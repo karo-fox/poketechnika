@@ -3,6 +3,7 @@
 #include "GameManager.h"
 #include "SceneManager.h"
 #include "GameObject.h"
+#include "InputManager.h"
 #include <vector>
 class Game
 {
@@ -12,6 +13,7 @@ public:
 	GameManager gm;
 	SceneManager sm;
 	Renderer rend;
+	InputManager im;
 	sf::RenderWindow window;
 	std::vector<GameObject*> gameObjects;
 private:
