@@ -1,14 +1,18 @@
 #include "Tile.h"
 #include <iostream>
+#include <pugixml.hpp>
+#include <map>
+#include <string>
 
-Tile::Tile(tileTypes type, sf::Vector2i pos, bool passable_) {
+std::map<tileTypes, std::string> textures{
+	{tileTypes::GRASS, std::string{"assets/textures/grass.png"}},
+};
+
+Tile::Tile(tileTypes type_, sf::Vector2i pos, bool passable_) {
 	this->position = pos;
 	this->passable = passable_;
-	switch (type)
-	{
-	case tileTypes::GRASS:
-		tileTexture.loadFromFile("assets/textures/grass.png");
-	}
+	this->type = type_;
+	tileTexture.loadFromFile(textures.at(type));
 	tileSprite.setTexture(tileTexture);
 }
 
@@ -18,4 +22,31 @@ Tile::~Tile() {
 sf::Sprite Tile::getSprite()
 {
 	return tileSprite;
+}
+
+Tile from_xml(pugi::xml_node tile_node)
+{
+	int x = std::stoi(tile_node.child("position").child("x").child_value());
+	int y = std::stoi(tile_node.child("position").child("y").child_value());
+	bool passable = std::stoi(tile_node.child("passable").child_value());
+	tileTypes type = static_cast<tileTypes>(std::stoi(tile_node.child("type").child_value()));
+	Tile tile{ type, sf::Vector2i{x ,y}, passable };
+	return tile;
+}
+
+void to_xml(Tile tile, pugi::xml_node parent)
+{
+	pugi::xml_node tile_node = parent.append_child("tile");
+
+	pugi::xml_node position = tile_node.append_child("position");
+	pugi::xml_node x = position.append_child("x");
+	x.append_child(pugi::node_pcdata).set_value(std::to_string(tile.position.x).c_str());
+	pugi::xml_node y = position.append_child("y");
+	y.append_child(pugi::node_pcdata).set_value(std::to_string(tile.position.y).c_str());
+
+	pugi::xml_node passable = tile_node.append_child("passable");
+	passable.append_child(pugi::node_pcdata).set_value(std::to_string(tile.passable).c_str());
+
+	pugi::xml_node type = tile_node.append_child("type");
+	type.append_child(pugi::node_pcdata).set_value(std::to_string(static_cast<int>(tile.type)).c_str());
 }

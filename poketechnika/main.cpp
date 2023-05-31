@@ -1,15 +1,10 @@
 ﻿#include "Game.h"
 #include <iostream>
-//#include <pugixml.hpp>
 
 using namespace std;
 
 int main()
 {
-    //pugi::xml_document doc;
-    //pugi::xml_parse_result result = doc.load_file("data/tree.xml");
-    //std::cout << "Load result: " << result.description() << '\n';
-    //std::cout << doc.child("mesh").attribute("name").value() << '\n';
 
     // Default resolution: 1280x720
 
