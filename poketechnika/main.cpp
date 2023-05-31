@@ -1,11 +1,11 @@
 ﻿#include "Game.h"
 #include <iostream>
+#include "Tile.h"
 
 using namespace std;
 
 int main()
 {
-
     // Default resolution: 1280x720
 
     cout << "Wybierz rozdzielczosc: " << endl;

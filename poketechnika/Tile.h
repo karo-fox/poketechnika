@@ -18,6 +18,9 @@ public:
 	Tile(tileTypes type_, sf::Vector2i pos, bool passable_);
 	~Tile();
 	sf::Sprite getSprite();
-	friend Tile from_xml(pugi::xml_node tile_node);
-	friend void to_xml(Tile tile, pugi::xml_node parent);
+	friend Tile tile_from_xml(pugi::xml_node& tile_node);
+	friend void tile_to_xml(Tile& tile, pugi::xml_node& parent);
 };
+
+Tile tile_from_xml(pugi::xml_node& tile_node);
+void tile_to_xml(Tile& tile, pugi::xml_node& parent);

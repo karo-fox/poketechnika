@@ -24,7 +24,7 @@ sf::Sprite Tile::getSprite()
 	return tileSprite;
 }
 
-Tile from_xml(pugi::xml_node tile_node)
+Tile tile_from_xml(pugi::xml_node& tile_node)
 {
 	int x = std::stoi(tile_node.child("position").child("x").child_value());
 	int y = std::stoi(tile_node.child("position").child("y").child_value());
@@ -34,7 +34,7 @@ Tile from_xml(pugi::xml_node tile_node)
 	return tile;
 }
 
-void to_xml(Tile tile, pugi::xml_node parent)
+void tile_to_xml(Tile& tile, pugi::xml_node& parent)
 {
 	pugi::xml_node tile_node = parent.append_child("tile");
 
