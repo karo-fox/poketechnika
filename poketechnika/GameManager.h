@@ -3,6 +3,10 @@
 #include <fstream>
 #include "Map.h"
 
+enum class MapId {
+	TEST
+};
+
 struct Position {
 	int x;
 	int y;
@@ -16,7 +20,7 @@ public:
 	Map* map;
 	GameManager();
 	~GameManager();
-	void loadMap();
+	void loadMap(MapId map_id);
 	void unloadMap();
 
 	friend std::ifstream& operator>> (std::ifstream& in, GameManager& state);

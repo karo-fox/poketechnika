@@ -1,30 +1,45 @@
 #include "GameManager.h"
 #include "database.h"
 #include <iostream>
+#include <string>
+#include <map>
+#include <pugixml.hpp>
 
-GameManager::GameManager() : player( Position{ 0, 0 }) {
+std::map<MapId, std::string> map_files{
+	{MapId::TEST, "data/test_map.xml"}
+};
+
+GameManager::GameManager() : player(Position{ 0, 0 }) {
 	map = nullptr;
 }
 
 GameManager::~GameManager() {
-	save(*this);
+	//save(*this);
 }
 
-void GameManager::loadMap() {
-	map = new Map();
-	map->id = 0;
-	map->name = "DEVZONE";
-	std::vector<std::vector<Tile*>> temp2d;
-	for (int i = 0; i < 20; i++)
-	{
-		std::vector<Tile*> temp;
-		for (int j = 0; j < 20; j++)
-		{
-			temp.push_back(new Tile(tileTypes::GRASS, sf::Vector2i(i*64, j*64), true));
-		}
-		temp2d.push_back(temp);
+void GameManager::loadMap(MapId map_id) {
+	try {
+		pugi::xml_node map_file = load_xml_file(map_files.at(map_id));
+		auto temp = map_from_xml(map_file);
+		map = &temp;
 	}
-	map->layers.push_back(temp2d);
+	catch (char* e) {
+		std::cout << e << '\n';
+	}
+
+	//map->id = 0;
+	//map->name = "DEVZONE";
+	//std::vector<std::vector<Tile*>> temp2d;
+	//for (int i = 0; i < 20; i++)
+	//{
+	//	std::vector<Tile*> temp;
+	//	for (int j = 0; j < 20; j++)
+	//	{
+	//		temp.push_back(new Tile(tileTypes::GRASS, sf::Vector2i(i*64, j*64), true));
+	//	}
+	//	temp2d.push_back(temp);
+	//}
+	//map->layers.push_back(temp2d);
 }
 
 void GameManager::unloadMap()

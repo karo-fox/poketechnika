@@ -36,7 +36,7 @@ void Game::processInput() {
         if (im.getAction(elem.first)) {
             gm.unloadMap();
             sm.changeScene(elem.second);
-            gm.loadMap();
+            gm.loadMap(MapId::TEST);
         }
     }
     if (im.getAction(Action::Close)) {
