@@ -6,8 +6,8 @@ Map::Map(int id_, std::string name_, LayerArray layers_) : id{ id_ }, name{ name
 
 Map map_from_xml(pugi::xml_node& map_node)
 {
-	int id = std::stoi(map_node.child("id").value());
-	std::string name = map_node.child("name").value();
+	int id = std::stoi(map_node.child("id").child_value());
+	std::string name = map_node.child("name").child_value();
 	LayerArray layers{};
 	pugi::xml_node layers_node = map_node.child("layers");
 	for (auto& x_axis_nodes : layers_node.children("x_axis")) {

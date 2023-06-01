@@ -1,11 +1,12 @@
 #include "GameManager.h"
 #include "database.h"
+#include "Exception.h"
 #include <iostream>
 #include <string>
 #include <map>
 #include <pugixml.hpp>
 
-std::map<MapId, std::string> map_files{
+std::map<MapId, const char*> map_files{
 	{MapId::TEST, "data/test_map.xml"}
 };
 
@@ -19,12 +20,13 @@ GameManager::~GameManager() {
 
 void GameManager::loadMap(MapId map_id) {
 	try {
-		pugi::xml_node map_file = load_xml_file(map_files.at(map_id));
-		auto temp = map_from_xml(map_file);
+		pugi::xml_document map_file = load_xml_file(map_files.at(map_id));
+		pugi::xml_node map_node = map_file.child("map");
+		auto temp = map_from_xml(map_node);
 		map = &temp;
 	}
-	catch (char* e) {
-		std::cout << e << '\n';
+	catch (const Exception& e) {
+		std::cout << e.what() << '\n';
 	}
 
 	//map->id = 0;

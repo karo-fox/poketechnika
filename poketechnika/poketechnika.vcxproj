@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="database.cpp" />
+    <ClCompile Include="Exception.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="InputManager.cpp" />
@@ -158,6 +159,7 @@
   <ItemGroup>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="database.h" />
+    <ClInclude Include="Exception.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameObject.h" />

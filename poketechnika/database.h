@@ -3,7 +3,7 @@
 #include <pugixml.hpp>
 #include <string>
 
-pugi::xml_document load_xml_file(const std::string& filename);
+pugi::xml_document load_xml_file(const char* filename);
 
 GameManager load();
 void save(GameManager& state);
