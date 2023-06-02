@@ -16,4 +16,5 @@ void MenuScene::loadTextures()
 
 void MenuScene::draw() {
 	renderer->draw(background);
+	is_rendered = true;
 }

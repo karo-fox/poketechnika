@@ -1,4 +1,5 @@
 #include "Tile.h"
+#include "Exception.h"
 #include <iostream>
 #include <pugixml.hpp>
 #include <map>
@@ -8,15 +9,49 @@ std::map<tileTypes, std::string> textures{
 	{tileTypes::GRASS, std::string{"assets/textures/grass.png"}},
 };
 
-Tile::Tile(tileTypes type_, sf::Vector2i pos, bool passable_) {
-	this->position = pos;
-	this->passable = passable_;
-	this->type = type_;
-	tileTexture.loadFromFile(textures.at(type));
-	tileSprite.setTexture(tileTexture);
+Tile::Tile(const Tile& other) : tileTexture{ sf::Texture{} }, tileSprite{ sf::Sprite{} }
+{
+	position = other.position;
+	passable = other.passable;
+	type = other.type;
+
+	if (tileTexture.loadFromFile(textures.at(type))) {
+		tileSprite.setTexture(tileTexture);
+	}
+	else {
+		throw Exception("Unable to load a texture from " + textures.at(type));
+	}
 }
 
-Tile::~Tile() {
+Tile::Tile(tileTypes type_, sf::Vector2i pos, bool passable_) : tileTexture{ sf::Texture{} }, tileSprite { sf::Sprite{} } {
+	position = pos;
+	passable = passable_;
+	type = type_;
+
+	if (tileTexture.loadFromFile(textures.at(type))) {
+		tileSprite.setTexture(tileTexture);
+	}
+	else {
+		throw Exception("Unable to load a texture from " + textures.at(type));
+	}
+}
+
+Tile::~Tile() {}
+
+Tile& Tile::operator=(const Tile& other)
+{
+	position = other.position;
+	passable = other.passable;
+	type = other.type;
+
+	if (tileTexture.loadFromFile(textures.at(type))) {
+		tileSprite.setTexture(tileTexture);
+	}
+	else {
+		throw Exception("Unable to load a texture from " + textures.at(type));
+	}
+
+	return *this;
 }
 
 sf::Sprite Tile::getSprite()
@@ -26,8 +61,8 @@ sf::Sprite Tile::getSprite()
 
 Tile tile_from_xml(pugi::xml_node& tile_node)
 {
-	int x = std::stoi(tile_node.child("position").child("x").child_value());
-	int y = std::stoi(tile_node.child("position").child("y").child_value());
+	int x = std::stoi(tile_node.child("position").child("x").child_value()) * 64;
+	int y = std::stoi(tile_node.child("position").child("y").child_value()) * 64;
 	bool passable = std::stoi(tile_node.child("passable").child_value());
 	tileTypes type = static_cast<tileTypes>(std::stoi(tile_node.child("type").child_value()));
 	Tile tile{ type, sf::Vector2i{x ,y}, passable };

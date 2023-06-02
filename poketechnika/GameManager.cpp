@@ -7,23 +7,23 @@
 #include <pugixml.hpp>
 
 std::map<MapId, const char*> map_files{
-	{MapId::TEST, "data/test_map.xml"}
+	{MapId::TEST, "data/test_map.xml"},
+	{MapId::TEST1, "data/test_map1.xml"},
 };
 
-GameManager::GameManager() : player(Position{ 0, 0 }) {
-	map = nullptr;
+GameManager::GameManager() {
+	map = loadMap(MapId::TEST);
 }
 
 GameManager::~GameManager() {
-	//save(*this);
 }
 
-void GameManager::loadMap(MapId map_id) {
+Map GameManager::loadMap(MapId map_id) {
 	try {
 		pugi::xml_document map_file = load_xml_file(map_files.at(map_id));
 		pugi::xml_node map_node = map_file.child("map");
-		auto temp = map_from_xml(map_node);
-		map = &temp;
+		Map map =  map_from_xml(map_node);
+		return map;
 	}
 	catch (const Exception& e) {
 		std::cout << e.what() << '\n';
@@ -46,35 +46,18 @@ void GameManager::loadMap(MapId map_id) {
 
 void GameManager::unloadMap()
 {
-	if (map != nullptr)
-	{
-		for (int i = 0; i < map->layers.size(); i++)
-		{
-			for (int j = 0; j < map->layers[i].size(); j++)
-			{
-				for (int k = 0; k < map->layers[i][j].size(); k++)
-				{
-					delete map->layers[i][j][k];
-					map->layers[i][j].erase(map->layers[i][j].begin() + k);
-				}
-				map->layers[i][j].clear();
-			}
-			map->layers[i].clear();
-		}
-		delete map;
-		map->layers.clear();
-	}
-}
-
-std::ifstream& operator>> (std::ifstream& in, GameManager& state) {
-	in >> state.player.x;
-	in >> state.player.y;
-	return in;
-};
-
-
-std::ofstream& operator<< (std::ofstream& out, GameManager& state) {
-	out << state.player.x << ' ';
-	out << state.player.y << ' ';
-	return out;
+	//for (int i = 0; i < map.layers.size(); i++)
+	//{
+	//	for (int j = 0; j < map.layers[i].size(); j++)
+	//	{
+	//		for (int k = 0; k < map.layers[i][j].size(); k++)
+	//		{
+	//			//delete map.layers[i][j][k];
+	//			map.layers[i][j].erase(map.layers[i][j].begin() + k);
+	//		}
+	//		map.layers[i][j].clear();
+	//	}
+	//	map.layers[i].clear();
+	//}
+	map.layers.clear();	
 }

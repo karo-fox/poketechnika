@@ -4,25 +4,15 @@
 #include "Map.h"
 
 enum class MapId {
-	TEST
-};
-
-struct Position {
-	int x;
-	int y;
+	TEST, TEST1
 };
 
 class GameManager
 {
-private:
-	Position player;
 public:
-	Map* map;
+	Map map;
 	GameManager();
 	~GameManager();
-	void loadMap(MapId map_id);
+	Map loadMap(MapId map_id);
 	void unloadMap();
-
-	friend std::ifstream& operator>> (std::ifstream& in, GameManager& state);
-	friend std::ofstream& operator<< (std::ofstream& out, GameManager& state);
 };

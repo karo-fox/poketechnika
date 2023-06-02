@@ -10,9 +10,9 @@ void Camera::update()
 
 bool Camera::isWithinCamera(sf::Vector2i pos)
 {
-	if (pos.x < position.x || pos.y < position.y || pos.x > position.x + size.x + 63 || pos.y > position.y + size.y + 63)
-		return false;
-	return true;
+	return !(
+		pos.x < position.x || pos.y < position.y || 
+		pos.x > position.x + size.x + 63 || pos.y > position.y + size.y + 63);
 }
 
 Camera::Camera(int x, int y) {

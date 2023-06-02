@@ -25,7 +25,7 @@ void Renderer::draw(sf::Sprite s)
 	window.draw(s);
 }
 
-void Renderer::draw(Tile tile, sf::Vector2i offset)
+void Renderer::draw(Tile& tile, sf::Vector2i offset)
 {
 	sf::Sprite s = tile.getSprite();
 	s.setPosition(sf::Vector2f(tile.getPosition() - offset));

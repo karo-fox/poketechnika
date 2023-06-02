@@ -6,7 +6,7 @@ class GameObject
 public:
 	GameObject();
 	virtual void update();
-	sf::Vector2i getPosition();
+	sf::Vector2i getPosition() const;
 	bool isActive();
 	static void setGameObjectsPtr(std::vector<GameObject*>* ptr);
 	static std::vector<GameObject*>* gameObjectsPtr;

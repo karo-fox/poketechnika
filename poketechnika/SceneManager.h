@@ -15,5 +15,6 @@ public:
 	void createFirstScene();
 	void renderScene();
 	void changeScene(State change);
-	State getCurrentScene() const;
+	Scene getCurrentScene() const;
+	State getSceneType() const;
 };

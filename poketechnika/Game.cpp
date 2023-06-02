@@ -12,7 +12,7 @@
 using namespace std;
 
 Game::Game(int w, int h, bool fullscreen) : 
-    gm(load()), window(sf::VideoMode(w, h), "Poketechnika"), 
+    gm(), window(sf::VideoMode(w, h), "Poketechnika"), 
     rend(window), sm(&rend), im() 
 {
     if (fullscreen)
@@ -25,7 +25,7 @@ Game::Game(int w, int h, bool fullscreen) :
 }
 
 void Game::processInput() {
-    const auto state = sm.getCurrentScene();
+    const auto state = sm.getSceneType();
     im.processInput(window, state);
 
     static std::map<Action, State> changeStateActions{
@@ -35,12 +35,16 @@ void Game::processInput() {
     for (const auto& elem : changeStateActions) {
         if (im.getAction(elem.first)) {
             gm.unloadMap();
+            sm.getCurrentScene().setRendered(false);
             sm.changeScene(elem.second);
-            gm.loadMap(MapId::TEST);
+            if (elem.second == State::GAME) {
+                gm.map = gm.loadMap(MapId::TEST);
+            }
         }
     }
     if (im.getAction(Action::Close)) {
         gm.unloadMap();
+        sm.getCurrentScene().setRendered(false);
         window.close();
     }
 
@@ -68,7 +72,9 @@ void Game::initGameLoop() {
         //Update
         update();
         //Render
-        sm.renderScene();
+        if (!sm.getCurrentScene().isRendered()) {
+            sm.renderScene();
+        }
     }
     //Destroy all the things after the window closes
 }
