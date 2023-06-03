@@ -10,6 +10,6 @@ public:
 	void rendClear();
 	void rendDisplay();
 	void draw(sf::Sprite s);
-	void draw(Tile tile, sf::Vector2i offset);
+	void draw(Tile& tile, sf::Vector2i offset);
 	Renderer(sf::RenderWindow& w);
 };

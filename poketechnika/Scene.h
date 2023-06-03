@@ -10,7 +10,7 @@ protected:
 	sf::Texture backgroundTexture;
 	sf::Sprite background;
 	Renderer* renderer;
-	Camera* cam;
+	Camera cam;
 public:
 	virtual void draw();
 	virtual void loadTextures();

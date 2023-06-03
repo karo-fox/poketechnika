@@ -43,6 +43,11 @@ void SceneManager::renderScene() {
 	rend->rendDisplay();
 }
 
-State SceneManager::getCurrentScene() const {
+Scene SceneManager::getCurrentScene() const {
+	return *currScene;
+}
+
+State SceneManager::getSceneType() const
+{
 	return scene;
 }

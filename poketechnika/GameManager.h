@@ -3,22 +3,16 @@
 #include <fstream>
 #include "Map.h"
 
-struct Position {
-	int x;
-	int y;
+enum class MapId {
+	TEST, TEST1
 };
 
 class GameManager
 {
-private:
-	Position player;
 public:
-	Map* map;
+	Map map;
 	GameManager();
 	~GameManager();
-	void loadMap();
+	Map loadMap(MapId map_id);
 	void unloadMap();
-
-	friend std::ifstream& operator>> (std::ifstream& in, GameManager& state);
-	friend std::ofstream& operator<< (std::ofstream& out, GameManager& state);
 };

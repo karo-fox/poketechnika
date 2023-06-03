@@ -14,7 +14,7 @@ void GameObject::setGameObjectsPtr(std::vector<GameObject*>* ptr) {
 	gameObjectsPtr = ptr;
 }
 
-sf::Vector2i GameObject::getPosition() {
+sf::Vector2i GameObject::getPosition() const {
 	return position;
 }
 

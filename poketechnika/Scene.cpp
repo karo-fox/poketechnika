@@ -10,10 +10,6 @@ void Scene::loadTextures(){
 	background.setTexture(backgroundTexture);
 }
 
-Scene::Scene(Renderer* rend) : renderer(rend) {
-	cam = new Camera(0, 0);
-}
+Scene::Scene(Renderer* rend) : renderer(rend), cam{ 0, 0 } {}
 
-Scene::~Scene() {
-	delete cam;
-}
+Scene::~Scene() {}
