@@ -35,6 +35,4 @@ void GameScene::draw() {
 			}
 		}
 	}
-
-	is_rendered = true;
 }

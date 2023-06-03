@@ -11,12 +11,9 @@ protected:
 	sf::Sprite background;
 	Renderer* renderer;
 	Camera cam;
-	bool is_rendered = false;
 public:
 	virtual void draw();
 	virtual void loadTextures();
 	Scene(Renderer* rend);
 	virtual ~Scene();
-	bool isRendered();
-	void setRendered(bool rendered);
 };

@@ -10,18 +10,6 @@ void Scene::loadTextures(){
 	background.setTexture(backgroundTexture);
 }
 
-
-bool Scene::isRendered()
-{
-	return is_rendered;
-}
-
-void Scene::setRendered(bool rendered)
-{
-	is_rendered = rendered;
-}
-
-
 Scene::Scene(Renderer* rend) : renderer(rend), cam{ 0, 0 } {}
 
 Scene::~Scene() {}

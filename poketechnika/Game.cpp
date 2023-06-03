@@ -35,7 +35,6 @@ void Game::processInput() {
     for (const auto& elem : changeStateActions) {
         if (im.getAction(elem.first)) {
             gm.unloadMap();
-            sm.getCurrentScene().setRendered(false);
             sm.changeScene(elem.second);
             if (elem.second == State::GAME) {
                 gm.map = gm.loadMap(MapId::TEST);
@@ -44,7 +43,6 @@ void Game::processInput() {
     }
     if (im.getAction(Action::Close)) {
         gm.unloadMap();
-        sm.getCurrentScene().setRendered(false);
         window.close();
     }
 
@@ -72,9 +70,7 @@ void Game::initGameLoop() {
         //Update
         update();
         //Render
-        if (!sm.getCurrentScene().isRendered()) {
-            sm.renderScene();
-        }
+        sm.renderScene();
     }
     //Destroy all the things after the window closes
 }
