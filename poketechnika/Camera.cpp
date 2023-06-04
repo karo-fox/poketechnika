@@ -1,14 +1,14 @@
 #include "Camera.h"
 #include <iostream>
 
-sf::Vector2i Camera::size = sf::Vector2i(0, 0);
+sf::Vector2f Camera::size = sf::Vector2f(0, 0);
 
-void Camera::update()
+void Camera::update(float elapsedTime)
 {
 	// TODO: moving camera when the player is not in center of the map
 }
 
-bool Camera::isWithinCamera(sf::Vector2i pos)
+bool Camera::isWithinCamera(sf::Vector2f pos)
 {
 	return !(
 		pos.x < position.x || pos.y < position.y || 
@@ -16,16 +16,15 @@ bool Camera::isWithinCamera(sf::Vector2i pos)
 }
 
 Camera::Camera(int x, int y) {
-	position = sf::Vector2i(x, y);
-	gameObjectsPtr->push_back(this);
+	position = sf::Vector2f(x, y);
+	this->add();
 }
 
 Camera::~Camera()
 {
-	for (int i = 0; i < gameObjectsPtr->size(); i++)
-		if (gameObjectsPtr->at(i) == this) gameObjectsPtr->erase(gameObjectsPtr->begin()+i);
+	this->remove();
 }
 
 void Camera::setCameraSize(int x, int y) {
-	size = sf::Vector2i(x, y);
+	size = sf::Vector2f(x, y);
 }

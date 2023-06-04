@@ -7,6 +7,7 @@ private:
 	static GameManager* gm;
 public:
 	GameScene(Renderer* rend);
+	~GameScene();
 	void loadTextures();
 	void draw();
 	static void setGMPtr(GameManager* ptr);

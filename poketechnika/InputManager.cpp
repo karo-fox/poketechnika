@@ -1,11 +1,12 @@
 #include "InputManager.h"
 #include <SFML/Graphics.hpp>
+#include <iostream>
 
 StateActions GameActions{ // as an example
 	{ sf::Keyboard::W, Action::MoveUp },
 	{ sf::Keyboard::S, Action::MoveDown },
-	{ sf::Keyboard::A, Action::MoveRight },
-	{ sf::Keyboard::D, Action::MoveDown },
+	{ sf::Keyboard::D, Action::MoveRight },
+	{ sf::Keyboard::A, Action::MoveLeft },
 	{ sf::Keyboard::L, Action::ChangeSceneToMenu },
 	{ sf::Keyboard::Escape, Action::Close },
 };
@@ -28,6 +29,12 @@ bool InputManager::getAction(Action action) const {
 }
 
 void InputManager::processInput(sf::RenderWindow& window, const State& state) {
+	// Check for real-time actions
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) _active_actions.insert(Action::MoveLeft);
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) _active_actions.insert(Action::MoveRight);
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) _active_actions.insert(Action::MoveUp);
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) _active_actions.insert(Action::MoveDown);
+	// Check for event-type actions
 	sf::Event e{};
 	while (window.pollEvent(e)) {
 		if (e.type == sf::Event::Closed) {

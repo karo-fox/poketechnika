@@ -7,6 +7,9 @@
 
 std::map<tileTypes, std::string> textures{
 	{tileTypes::GRASS, std::string{"assets/textures/grass.png"}},
+	{tileTypes::DIRT, std::string{"assets/textures/dirt.png"}},
+	{tileTypes::FLOOR, std::string{"assets/textures/floor.png"}},
+	{tileTypes::WALL, std::string{"assets/textures/wall.png"}},
 };
 
 Tile::Tile(const Tile& other) : tileTexture{ sf::Texture{} }, tileSprite{ sf::Sprite{} }
@@ -23,7 +26,7 @@ Tile::Tile(const Tile& other) : tileTexture{ sf::Texture{} }, tileSprite{ sf::Sp
 	}
 }
 
-Tile::Tile(tileTypes type_, sf::Vector2i pos, bool passable_) : tileTexture{ sf::Texture{} }, tileSprite { sf::Sprite{} } {
+Tile::Tile(tileTypes type_, sf::Vector2f pos, bool passable_) : tileTexture{ sf::Texture{} }, tileSprite { sf::Sprite{} } {
 	position = pos;
 	passable = passable_;
 	type = type_;
@@ -37,6 +40,11 @@ Tile::Tile(tileTypes type_, sf::Vector2i pos, bool passable_) : tileTexture{ sf:
 }
 
 Tile::~Tile() {}
+
+bool Tile::isPassable()
+{
+	return passable;
+}
 
 Tile& Tile::operator=(const Tile& other)
 {
@@ -61,11 +69,11 @@ sf::Sprite Tile::getSprite()
 
 Tile tile_from_xml(pugi::xml_node& tile_node)
 {
-	int x = std::stoi(tile_node.child("position").child("x").child_value()) * 64;
-	int y = std::stoi(tile_node.child("position").child("y").child_value()) * 64;
+	float x = std::stoi(tile_node.child("position").child("x").child_value()) * 64;
+	float y = std::stoi(tile_node.child("position").child("y").child_value()) * 64;
 	bool passable = std::stoi(tile_node.child("passable").child_value());
 	tileTypes type = static_cast<tileTypes>(std::stoi(tile_node.child("type").child_value()));
-	Tile tile{ type, sf::Vector2i{x ,y}, passable };
+	Tile tile{ type, sf::Vector2f{x ,y}, passable };
 	return tile;
 }
 

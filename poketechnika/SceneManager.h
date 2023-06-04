@@ -1,8 +1,7 @@
 #pragma once
 #include "Scene.h"
+#include "State.h"
 #include <SFML/Graphics.hpp>
-
-enum class State { MAINMENU, GAME, BATTLE, INTRO, ERROR };
 
 class SceneManager
 {

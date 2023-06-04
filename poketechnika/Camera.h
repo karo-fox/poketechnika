@@ -4,11 +4,11 @@
 
 class Camera : public GameObject
 {
-	static sf::Vector2i size;
+	static sf::Vector2f size;
 public:
 	static void setCameraSize(int x, int y);
-	void update();
-	bool isWithinCamera(sf::Vector2i pos);
+	void update(float elapsedTime);
+	bool isWithinCamera(sf::Vector2f pos);
 	Camera(int x, int y);
 	~Camera();
 };

@@ -5,6 +5,7 @@
 #include "GameScene.h"
 #include "GameObject.h"
 #include "Camera.h"
+#include "Player.h"
 #include <vector>
 #include <map>
 
@@ -25,6 +26,7 @@ Game::Game(int w, int h, bool fullscreen) :
 }
 
 void Game::processInput() {
+    im.reset_actions();
     const auto state = sm.getSceneType();
     im.processInput(window, state);
 
@@ -45,14 +47,13 @@ void Game::processInput() {
         gm.unloadMap();
         window.close();
     }
-
-    im.reset_actions();
 }
 
 void Game::update() {
+    float time = clock.restart().asMilliseconds();
     for (auto gameObject : gameObjects) {
         if (gameObject->isActive()) {
-            gameObject->update();
+            gameObject->update(time);
         }
     }
 }
@@ -60,9 +61,13 @@ void Game::update() {
 void Game::initGameLoop() {
     //Create all necessary instances before game starts
     GameObject::setGameObjectsPtr(&gameObjects);
+    GameObject::setInputManagerPtr(&im);
     GameScene::setGMPtr(&gm);
+    gm.start();
     sm.createFirstScene();
     //Start the loop
+    window.setFramerateLimit(60);
+
     while (window.isOpen())
     {
         //Process Input

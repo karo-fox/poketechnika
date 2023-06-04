@@ -3,9 +3,27 @@
 #include <vector>
 #include <iostream>
 
-
 Map::Map(int id_, std::string name_, LayerArray layers_) : 
 	id{ id_ }, name{ name_ }, layers{ layers_ } {}
+
+bool Map::isPassable(sf::Vector2f pos)
+{
+	if (pos.x < 0 || pos.y < 0) return false;
+	for (int i = 0; i < layers[0].size(); i++)
+	{
+		if ((i+1) * 64 >= pos.x)
+		{
+			for (int j = 0; j < layers[0][i].size(); j++)
+			{
+				if ((j+1) * 64 >= pos.y)
+				{
+					return layers[0][i][j].isPassable();
+				}
+			}
+		}
+	}
+	return false;
+}
 
 Map::Map(const Map& other) : id{ other.id }, name{ other.name }, layers{ LayerArray{} } {
 	for (auto& vec1 : other.layers) {
