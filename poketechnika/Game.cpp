@@ -39,7 +39,7 @@ void Game::processInput() {
             gm.unloadMap();
             sm.changeScene(elem.second);
             if (elem.second == State::GAME) {
-                gm.map = gm.loadMap(MapId::TEST);
+                gm.loadMap();
             }
         }
     }

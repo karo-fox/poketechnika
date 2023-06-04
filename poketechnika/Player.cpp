@@ -6,7 +6,7 @@ Player::Player()
 	mapPtr = nullptr;
 
 	size = sf::Vector2f(32, 32);
-	position = sf::Vector2f(72, 72);
+	position = sf::Vector2f(12*64, 8*64);
 	
 	speed = 0.10f;
 

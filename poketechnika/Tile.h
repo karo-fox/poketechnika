@@ -3,7 +3,7 @@
 #include <pugixml.hpp>
 
 enum class tileTypes {
-	GRASS, DIRT, FLOOR, WALL
+	GRASS, PAVEMENT, STREET, PATH, BUILDING
 };
 
 class Tile : public GameObject
@@ -21,9 +21,9 @@ public:
 	sf::Sprite getSprite();
 	bool isPassable();
 	Tile& operator= (const Tile& other);
-	friend Tile tile_from_xml(pugi::xml_node& tile_node);
-	friend void tile_to_xml(Tile& tile, pugi::xml_node& parent);
+	friend Tile tile_from_xml(pugi::xml_node& tile_node, int x, int y);
+	friend void tile_to_xml(Tile& tile, pugi::xml_node& parent, bool save_position);
 };
 
-Tile tile_from_xml(pugi::xml_node& tile_node);
-void tile_to_xml(Tile& tile, pugi::xml_node& parent);
+Tile tile_from_xml(pugi::xml_node& tile_node, int x, int y);
+void tile_to_xml(Tile& tile, pugi::xml_node& parent, bool save_position = false);
