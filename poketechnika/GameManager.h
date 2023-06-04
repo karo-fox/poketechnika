@@ -5,17 +5,19 @@
 #include "Player.h"
 
 enum class MapId {
-	TEST, TEST1
+	FACULTY_ENTRANCE, FACULTY_INTERIOR, PARK
 };
 
 class GameManager
 {
 public:
+	MapId map_type;
 	Map map;
 	Player player;
 	GameManager();
 	~GameManager();
-	Map loadMap(MapId map_id);
+	void loadMap();
 	void unloadMap();
 	void start();
+	void changeMap(MapId new_map);
 };
