@@ -97,7 +97,7 @@ Tile tile_from_xml(pugi::xml_node& tile_node, int x, int y)
 		break;
 	}
 
-	Tile tile{ type, sf::Vector2i{x * 64 ,y * 64}, passable };
+	Tile tile{ type, sf::Vector2f{static_cast<float>(x * 64) ,static_cast<float>(y * 64)}, passable };
 	return tile;
 }
 
