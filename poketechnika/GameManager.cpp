@@ -12,10 +12,11 @@ std::map<MapId, const char*> map_files{
 };
 
 GameManager::GameManager() {
-	map = loadMap(MapId::TEST);
+	
 }
 
 GameManager::~GameManager() {
+	player.remove();
 }
 
 Map GameManager::loadMap(MapId map_id) {
@@ -33,4 +34,11 @@ Map GameManager::loadMap(MapId map_id) {
 void GameManager::unloadMap()
 {
 	map.layers.clear();	
+}
+
+void GameManager::start()
+{
+	map = loadMap(MapId::TEST);
+	player.setMapPtr(&map);
+	player.add();
 }

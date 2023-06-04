@@ -15,6 +15,7 @@ public:
 	Renderer rend;
 	InputManager im;
 	sf::RenderWindow window;
+	sf::Clock clock;
 	std::vector<GameObject*> gameObjects;
 private:
 	void processInput();

@@ -6,7 +6,7 @@ Renderer::Renderer(sf::RenderWindow& w) : window(w), scale(1.0) {
 
 void Renderer::setScale() 
 {
-	scale = window.getSize().x / 1280.0;
+	scale = window.getSize().x / 1280.0f;
 }
 
 void Renderer::rendClear() 
@@ -25,9 +25,15 @@ void Renderer::draw(sf::Sprite s)
 	window.draw(s);
 }
 
-void Renderer::draw(Tile& tile, sf::Vector2i offset)
+void Renderer::draw(Tile& tile, sf::Vector2f offset)
 {
 	sf::Sprite s = tile.getSprite();
 	s.setPosition(sf::Vector2f(tile.getPosition() - offset));
 	window.draw(s);
+}
+
+void Renderer::draw(Player& player)
+{
+	player.s.setPosition(sf::Vector2f(player.getPosition()));
+	window.draw(player.s);
 }

@@ -1,7 +1,7 @@
 #pragma once
 #include <set>
 #include <SFML/Graphics.hpp>
-#include "SceneManager.h"
+#include "State.h"
 
 enum class Action {
 	MoveRight, MoveLeft, MoveUp, MoveDown, ChangeSceneToGame, ChangeSceneToMenu, Close

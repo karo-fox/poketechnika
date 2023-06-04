@@ -6,7 +6,13 @@ GameManager* GameScene::gm = nullptr;
 
 GameScene::GameScene(Renderer* rend) : Scene(rend)
 {
+	gm->player.setActive(true);
 	std::cout << "Created SceneGame" << std::endl;
+}
+
+GameScene::~GameScene()
+{
+	gm->player.setActive(false);
 }
 
 void GameScene::setGMPtr(GameManager* ptr) {
@@ -30,9 +36,13 @@ void GameScene::draw() {
 		{
 			for (int k = 0; k < gm->map.layers[i][j].size(); k++)
 			{
-				if(cam.isWithinCamera(gm->map.layers[i][j][k].getPosition() + sf::Vector2i(63, 63)))
+				if (cam.isWithinCamera(gm->map.layers[i][j][k].getPosition() + sf::Vector2f(63, 63)))
 					renderer->draw(gm->map.layers[i][j][k], cam.getPosition());
 			}
 		}
 	}
+
+	//draw player
+
+	renderer->draw(gm->player);
 }
