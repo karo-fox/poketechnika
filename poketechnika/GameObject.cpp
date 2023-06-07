@@ -1,37 +1,38 @@
 #include "GameObject.h"
-#include <iostream>
-#include <vector>
+#include "InputHandler.h"
+//#include <iostream>
+//#include <vector>
 
-std::vector<GameObject*>* GameObject::gameObjectsPtr = nullptr;
-InputManager* GameObject::inputManagerPtr = nullptr;
+//std::vector<GameObject*>* GameObject::gameObjectsPtr = nullptr;
+//InputManager* GameObject::inputManagerPtr = nullptr;
 
-GameObject::GameObject() : position(0,0), active(false) {}
+GameObject::GameObject() : active(false) {}
 
-void GameObject::update(float elapsedTime) {
+//void GameObject::update(float elapsedTime, const InputHandler& ih) {
+//
+//}
 
-}
+//void GameObject::add() {
+//	gameObjectsPtr->push_back(this);
+//}
 
-void GameObject::add() {
-	gameObjectsPtr->push_back(this);
-}
+//void GameObject::remove()
+//{
+//	for (int i = 0; i < gameObjectsPtr->size(); i++)
+//		if (gameObjectsPtr->at(i) == this) gameObjectsPtr->erase(gameObjectsPtr->begin() + i);
+//}
 
-void GameObject::remove()
-{
-	for (int i = 0; i < gameObjectsPtr->size(); i++)
-		if (gameObjectsPtr->at(i) == this) gameObjectsPtr->erase(gameObjectsPtr->begin() + i);
-}
+//void GameObject::setGameObjectsPtr(std::vector<GameObject*>* ptr) {
+//	gameObjectsPtr = ptr;
+//}
 
-void GameObject::setGameObjectsPtr(std::vector<GameObject*>* ptr) {
-	gameObjectsPtr = ptr;
-}
+//void GameObject::setInputManagerPtr(InputManager* ptr) {
+//	inputManagerPtr = ptr;
+//}
 
-void GameObject::setInputManagerPtr(InputManager* ptr) {
-	inputManagerPtr = ptr;
-}
-
-sf::Vector2f GameObject::getPosition() const {
-	return position;
-}
+//sf::Vector2f GameObject::getPosition() const {
+//	return position;
+//}
 
 bool GameObject::isActive() {
 	return active;

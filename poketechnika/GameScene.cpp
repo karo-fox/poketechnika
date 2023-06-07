@@ -1,48 +1,51 @@
-#include "GameScene.h"
-#include <SFML/Graphics.hpp>
 #include <iostream>
+#include <memory>
 
-GameManager* GameScene::gm = nullptr;
+#include "GameScene.h"
+#include "Map.h"
+#include "Exception.h"
+#include "database.h"
+#include "Player.h"
 
-GameScene::GameScene(Renderer* rend) : Scene(rend)
-{
-	gm->player.setActive(true);
-	std::cout << "Created SceneGame" << std::endl;
+enum class MapId {
+	FACULTY_ENTRANCE, FACULTY_INTERIOR, PARK
+};
+
+std::map<MapId, const char*> map_files{
+	{MapId::FACULTY_ENTRANCE, "data/faculty_entrance.xml"},
+};
+
+GameScene::GameScene() : Scene{}, ih {}, game_objects{}, map{} {
+	load_map();
+	Player player{map};
+	game_objects.push_back(std::make_shared<Player>(player));
+	Camera camera{0, 0};
+	game_objects.push_back(std::make_shared<Camera>(camera));
 }
 
-GameScene::~GameScene()
-{
-	gm->player.setActive(false);
+void GameScene::load_map() {
+	try {
+		pugi::xml_document map_file = load_xml_file(map_files.at(MapId::FACULTY_ENTRANCE));
+		pugi::xml_node map_node = map_file.child("map");
+		map = map_from_xml(map_node);
+	}
+	catch (const Exception& e) {
+		std::cout << e.what() << '\n';
+	}
 }
 
-void GameScene::setGMPtr(GameManager* ptr) {
-	gm = ptr;
-}
-
-void GameScene::loadTextures()
-{
-	backgroundTexture.loadFromFile(texturesPath+"background_game.png");
-	background.setTexture(backgroundTexture);
-	std::cout << "Loaded game textures" << std::endl;
-}
-
-void GameScene::draw() {
-	renderer->draw(background);
-
-	//draw map
-	for (int i = 0; i < gm->map.layers.size(); i++)
-	{
-		for (int j = 0; j < gm->map.layers[i].size(); j++)
-		{
-			for (int k = 0; k < gm->map.layers[i][j].size(); k++)
-			{
-				if (cam.isWithinCamera(gm->map.layers[i][j][k].getPosition() + sf::Vector2f(63, 63)))
-					renderer->draw(gm->map.layers[i][j][k], cam.getPosition());
-			}
+void GameScene::update(float time_elapsed) {
+	for (auto& go : game_objects) {
+		if (go->isActive()) {
+			go->update(time_elapsed, ih);
 		}
 	}
+}
 
-	//draw player
+void GameScene::render(Renderer& renderer) {
 
-	renderer->draw(gm->player);
+}
+
+void GameScene::process_input(sf::RenderWindow& window) {
+	ih.process_input(window);
 }

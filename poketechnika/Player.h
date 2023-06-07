@@ -1,17 +1,16 @@
 #pragma once
 #include "GameObject.h"
+#include "Drawable.h"
+#include "InputHandler.h"
 #include "Map.h"
-class Player : public GameObject
+
+class Player : public GameObject, public Drawable
 {
 private:
 	float speed;
-	Map* mapPtr;
 	sf::Vector2f size;
+	const Map& map;
 public:
-	Player();
-	~Player();
-	void update(float elapsedTime);
-	sf::Texture t;
-	sf::Sprite s;
-	void setMapPtr(Map* ptr);
+	Player(const Map& m);
+	void update(float elapsedTime, const InputHandler& ih) override;
 };

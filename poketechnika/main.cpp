@@ -36,6 +36,6 @@ int main()
         break;
     }
     Game game(w, h, fs);
-    game.initGameLoop();
+    game.run();
     return 0;
 }
