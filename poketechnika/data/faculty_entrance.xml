@@ -6,19 +6,102 @@
         <y_axis>
             <x_axis>
                 <tile>
-                    <type>4</type>
+                    <type>5</type>
                 </tile>
                 <tile>
-                    <type>4</type>
+                    <type>5</type>
                 </tile>
                 <tile>
-                    <type>4</type>
+                    <type>5</type>
                 </tile>
                 <tile>
-                    <type>4</type>
+                    <type>5</type>
                 </tile>
                 <tile>
-                    <type>4</type>
+                    <type>5</type>
+                </tile>
+                <tile>
+                    <type>5</type>
+                </tile>
+                <tile>
+                    <type>5</type>
+                </tile>
+                <tile>
+                    <type>5</type>
+                </tile>
+                <tile>
+                    <type>5</type>
+                </tile>
+                <tile>
+                    <type>5</type>
+                </tile>
+                <tile>
+                    <type>0</type>
+                </tile>
+                <tile>
+                    <type>0</type>
+                </tile>
+                <tile>
+                    <type>0</type>
+                </tile>
+                <tile>
+                    <type>1</type>
+                </tile>
+                <tile>
+                    <type>2</type>
+                </tile>
+                <tile>
+                    <type>2</type>
+                </tile>
+                <tile>
+                    <type>2</type>
+                </tile>
+                <tile>
+                    <type>2</type>
+                </tile>
+                <tile>
+                    <type>2</type>
+                </tile>
+                <tile>
+                    <type>0</type>
+                </tile>
+                <tile>
+                    <type>0</type>
+                </tile>
+                <tile>
+                    <type>2</type>
+                </tile>
+                <tile>
+                    <type>2</type>
+                </tile>
+                <tile>
+                    <type>2</type>
+                </tile>
+                <tile>
+                    <type>2</type>
+                </tile>
+                <tile>
+                    <type>2</type>
+                </tile>
+                <tile>
+                    <type>2</type>
+                </tile>
+            </x_axis>
+            <x_axis>
+                <tile>
+                    <type>5</type>
+                </tile>
+                <tile>
+                    <type>5</type>
+                </tile>
+                <tile>
+                    <type>5</type>
+                </tile>
+                <tile>
+                    <type>5</type>
+                </tile>
+                <tile>
+                    <type>5</type>
                 </tile>
                 <tile>
                     <type>4</type>
@@ -89,102 +172,19 @@
             </x_axis>
             <x_axis>
                 <tile>
-                    <type>4</type>
+                    <type>5</type>
                 </tile>
                 <tile>
-                    <type>4</type>
+                    <type>5</type>
                 </tile>
                 <tile>
-                    <type>4</type>
+                    <type>5</type>
                 </tile>
                 <tile>
-                    <type>4</type>
+                    <type>5</type>
                 </tile>
                 <tile>
-                    <type>4</type>
-                </tile>
-                <tile>
-                    <type>4</type>
-                </tile>
-                <tile>
-                    <type>4</type>
-                </tile>
-                <tile>
-                    <type>4</type>
-                </tile>
-                <tile>
-                    <type>4</type>
-                </tile>
-                <tile>
-                    <type>4</type>
-                </tile>
-                <tile>
-                    <type>0</type>
-                </tile>
-                <tile>
-                    <type>0</type>
-                </tile>
-                <tile>
-                    <type>0</type>
-                </tile>
-                <tile>
-                    <type>1</type>
-                </tile>
-                <tile>
-                    <type>2</type>
-                </tile>
-                <tile>
-                    <type>2</type>
-                </tile>
-                <tile>
-                    <type>2</type>
-                </tile>
-                <tile>
-                    <type>2</type>
-                </tile>
-                <tile>
-                    <type>2</type>
-                </tile>
-                <tile>
-                    <type>0</type>
-                </tile>
-                <tile>
-                    <type>0</type>
-                </tile>
-                <tile>
-                    <type>2</type>
-                </tile>
-                <tile>
-                    <type>2</type>
-                </tile>
-                <tile>
-                    <type>2</type>
-                </tile>
-                <tile>
-                    <type>2</type>
-                </tile>
-                <tile>
-                    <type>2</type>
-                </tile>
-                <tile>
-                    <type>2</type>
-                </tile>
-            </x_axis>
-            <x_axis>
-                <tile>
-                    <type>4</type>
-                </tile>
-                <tile>
-                    <type>4</type>
-                </tile>
-                <tile>
-                    <type>4</type>
-                </tile>
-                <tile>
-                    <type>4</type>
-                </tile>
-                <tile>
-                    <type>4</type>
+                    <type>5</type>
                 </tile>
                 <tile>
                     <type>4</type>
@@ -255,102 +255,19 @@
             </x_axis>
             <x_axis>
                 <tile>
-                    <type>4</type>
+                    <type>5</type>
                 </tile>
                 <tile>
-                    <type>4</type>
+                    <type>5</type>
                 </tile>
                 <tile>
-                    <type>4</type>
+                    <type>5</type>
                 </tile>
                 <tile>
-                    <type>4</type>
+                    <type>5</type>
                 </tile>
                 <tile>
-                    <type>4</type>
-                </tile>
-                <tile>
-                    <type>0</type>
-                </tile>
-                <tile>
-                    <type>0</type>
-                </tile>
-                <tile>
-                    <type>0</type>
-                </tile>
-                <tile>
-                    <type>0</type>
-                </tile>
-                <tile>
-                    <type>0</type>
-                </tile>
-                <tile>
-                    <type>0</type>
-                </tile>
-                <tile>
-                    <type>0</type>
-                </tile>
-                <tile>
-                    <type>0</type>
-                </tile>
-                <tile>
-                    <type>1</type>
-                </tile>
-                <tile>
-                    <type>2</type>
-                </tile>
-                <tile>
-                    <type>2</type>
-                </tile>
-                <tile>
-                    <type>2</type>
-                </tile>
-                <tile>
-                    <type>2</type>
-                </tile>
-                <tile>
-                    <type>2</type>
-                </tile>
-                <tile>
-                    <type>0</type>
-                </tile>
-                <tile>
-                    <type>0</type>
-                </tile>
-                <tile>
-                    <type>0</type>
-                </tile>
-                <tile>
-                    <type>2</type>
-                </tile>
-                <tile>
-                    <type>2</type>
-                </tile>
-                <tile>
-                    <type>2</type>
-                </tile>
-                <tile>
-                    <type>2</type>
-                </tile>
-                <tile>
-                    <type>2</type>
-                </tile>
-            </x_axis>
-            <x_axis>
-                <tile>
-                    <type>4</type>
-                </tile>
-                <tile>
-                    <type>4</type>
-                </tile>
-                <tile>
-                    <type>4</type>
-                </tile>
-                <tile>
-                    <type>4</type>
-                </tile>
-                <tile>
-                    <type>4</type>
+                    <type>5</type>
                 </tile>
                 <tile>
                     <type>0</type>
@@ -436,10 +353,93 @@
                     <type>4</type>
                 </tile>
                 <tile>
+                    <type>0</type>
+                </tile>
+                <tile>
+                    <type>0</type>
+                </tile>
+                <tile>
+                    <type>0</type>
+                </tile>
+                <tile>
+                    <type>0</type>
+                </tile>
+                <tile>
+                    <type>0</type>
+                </tile>
+                <tile>
+                    <type>0</type>
+                </tile>
+                <tile>
+                    <type>0</type>
+                </tile>
+                <tile>
+                    <type>0</type>
+                </tile>
+                <tile>
+                    <type>1</type>
+                </tile>
+                <tile>
+                    <type>2</type>
+                </tile>
+                <tile>
+                    <type>2</type>
+                </tile>
+                <tile>
+                    <type>2</type>
+                </tile>
+                <tile>
+                    <type>2</type>
+                </tile>
+                <tile>
+                    <type>2</type>
+                </tile>
+                <tile>
+                    <type>0</type>
+                </tile>
+                <tile>
+                    <type>0</type>
+                </tile>
+                <tile>
+                    <type>0</type>
+                </tile>
+                <tile>
+                    <type>2</type>
+                </tile>
+                <tile>
+                    <type>2</type>
+                </tile>
+                <tile>
+                    <type>2</type>
+                </tile>
+                <tile>
+                    <type>2</type>
+                </tile>
+                <tile>
+                    <type>2</type>
+                </tile>
+            </x_axis>
+            <x_axis>
+                <tile>
                     <type>4</type>
                 </tile>
                 <tile>
                     <type>4</type>
+                </tile>
+                <tile>
+                    <type>4</type>
+                </tile>
+                <tile>
+                    <type>4</type>
+                </tile>
+                <tile>
+                    <type>4</type>
+                </tile>
+                <tile>
+                    <type>5</type>
+                </tile>
+                <tile>
+                    <type>5</type>
                 </tile>
                 <tile>
                     <type>1</type>
@@ -519,10 +519,10 @@
                     <type>4</type>
                 </tile>
                 <tile>
-                    <type>4</type>
+                    <type>5</type>
                 </tile>
                 <tile>
-                    <type>4</type>
+                    <type>5</type>
                 </tile>
                 <tile>
                     <type>1</type>
