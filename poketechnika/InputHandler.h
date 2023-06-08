@@ -2,17 +2,20 @@
 #include <set>
 #include <map>
 #include <SFML/Graphics.hpp>
+#include <memory>
 #include "actions.h"
+#include "State.h"
 
 using ActionsMap = std::map<const sf::Keyboard::Key, Action>;
 
 class InputHandler {
 protected:
+	State& active_state;
 	std::set<Action> active_actions;
-	ActionsMap event_actions;
-	ActionsMap real_time_actions;
+	std::map<State, ActionsMap> event_actions;
+	std::map<State, ActionsMap> real_time_actions;
 public:
-	InputHandler(ActionsMap event, ActionsMap real_time);
+	InputHandler(State& state);
 	void process_input(sf::RenderWindow& window);
 	void reset_actions();
 	bool get_action(const Action& action) const;

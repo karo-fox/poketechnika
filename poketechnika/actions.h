@@ -4,7 +4,10 @@
 
 // Action is a result of user input
 enum class Action {
-	MoveRight, MoveLeft, MoveUp, MoveDown, ChangeSceneToGame, ChangeSceneToMenu, Close
+	MoveRight, MoveLeft, MoveUp, MoveDown, 
+	ChangeSceneToGame, ChangeSceneToMenu, 
+	Close, 
+	NextItem, PreviousItem, ClickButton
 };
 
 // Actions that change scenes

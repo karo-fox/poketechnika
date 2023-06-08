@@ -15,12 +15,13 @@ std::map<MapId, const char*> map_files{
 
 GameScene::GameScene() 
 	: Scene{}, 
-	ih{ {}, {
-		{ sf::Keyboard::W, Action::MoveUp },
-		{ sf::Keyboard::S, Action::MoveDown },
-		{ sf::Keyboard::D, Action::MoveRight },
-		{ sf::Keyboard::A, Action::MoveLeft },
-	} }, game_objects{
+	//ih{ {}, {
+		//{ sf::Keyboard::W, Action::MoveUp },
+		//{ sf::Keyboard::S, Action::MoveDown },
+		//{ sf::Keyboard::D, Action::MoveRight },
+		//{ sf::Keyboard::A, Action::MoveLeft },
+	//} },
+	game_objects{
 		{ GO::PLAYER, {} }, { GO::CAMERA, {} }, { GO::POKEMON, {} }
 	}, map{}
 {
@@ -47,11 +48,11 @@ void GameScene::load_map() {
 	}
 }
 
-void GameScene::update(float time_elapsed) {
+void GameScene::update(float time_elapsed, const InputHandler& ih) {
 	for (auto& go_vec : game_objects) {
 		for (auto& go : go_vec.second) {
 			if (go->isActive()) {
-				go->update(time_elapsed, ih, map);
+				go->update(time_elapsed, ih);
 			}
 		}
 	}
@@ -62,7 +63,7 @@ void GameScene::render(Renderer& renderer) {
 	renderer.draw(dynamic_cast<Drawable&>(*game_objects.at(GO::PLAYER).at(0)));
 }
 
-void GameScene::process_input(sf::RenderWindow& window) {
-	ih.reset_actions();
-	ih.process_input(window);
-}
+//void GameScene::process_input(sf::RenderWindow& window) {
+//	ih.reset_actions();
+//	ih.process_input(window);
+//}
