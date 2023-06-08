@@ -4,6 +4,7 @@
 #include "Renderer.h"
 #include "MenuScene.h"
 
+// SceneManager has one scene which is active at the time and uses Scene API to perform main game tasks
 class SceneManager
 {
 private:

@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "Renderer.h"
 
+// Every Scene processes input, updates it's elements and renders them appropriately
 class Scene {
 public:
 	virtual ~Scene() = default;

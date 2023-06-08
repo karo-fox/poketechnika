@@ -16,7 +16,6 @@ public:
 	void rendDisplay();
 	sf::RenderWindow& getWindow();
 
-	void draw(sf::Sprite s);
 	void draw(Drawable& drawable);
 	void draw(Map& map, const Camera& cam);
 };

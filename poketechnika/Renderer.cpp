@@ -22,12 +22,6 @@ sf::RenderWindow& Renderer::getWindow() {
 	return window;
 }
 
-void Renderer::draw(sf::Sprite s)
-{
-	s.setScale(scale, scale);
-	window.draw(s);
-}
-
 void Renderer::draw(Drawable& drawable) {
 	drawable.sprite.setPosition(drawable.position);
 	window.draw(drawable.sprite);

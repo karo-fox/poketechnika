@@ -3,6 +3,7 @@
 #include "InputHandler.h"
 #include "Map.h"
 
+// Every GameObject is updated (if it's active) in game loop
 class GameObject
 {
 protected:

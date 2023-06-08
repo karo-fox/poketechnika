@@ -2,6 +2,7 @@
 #include <string>
 #include <SFML/Graphics.hpp>
 
+// Every Drawable object can be rendered by Renderer
 class Drawable {
 protected:
 	sf::Texture texture;
