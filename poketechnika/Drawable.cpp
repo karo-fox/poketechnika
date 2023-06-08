@@ -13,23 +13,15 @@ Drawable::Drawable(const std::string& texture_file, sf::Vector2f pos)
 }
 
 Drawable::Drawable(const Drawable& other) 
-	: position{ other.position }, texture {}, sprite{}, file{ other.file } 
+	: position{ other.position }, texture {other.texture}, sprite{}, file{ other.file } 
 {
-	if (texture.loadFromFile(file)) {
-		sprite.setTexture(texture);
-	}
-	else {
-		throw Exception{ "Unable to load texture from " + file };
-	}
+	sprite.setTexture(texture);
 }
 
 Drawable& Drawable::operator= (const Drawable& other) {
 	position = other.position;
 	file = other.file;
-	if (texture.loadFromFile(file)) {
-		sprite.setTexture(texture);
-	}
-	else {
-		throw Exception{ "Unable to load texture from " + file };
-	}
+	texture = other.texture;
+	sprite.setTexture(texture);
+	return *this;
 }
