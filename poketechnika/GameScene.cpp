@@ -25,6 +25,8 @@ GameScene::GameScene()
 	}, map{}
 {
 	load_map();
+	
+	// Initialize all Game Objects and add them to container
 	Player player{map};
 	player.setActive(true);
 	game_objects.at(GO::PLAYER).push_back(std::make_shared<Player>(player));
@@ -56,7 +58,7 @@ void GameScene::update(float time_elapsed) {
 }
 
 void GameScene::render(Renderer& renderer) {
-	renderer.draw(map, dynamic_cast<Camera&>(*game_objects.at(GO::CAMERA).at(0)));
+	renderer.draw(map, dynamic_cast<Camera&>(*game_objects.at(GO::CAMERA).at(0))); // draw map
 	renderer.draw(dynamic_cast<Drawable&>(*game_objects.at(GO::PLAYER).at(0)));
 }
 
