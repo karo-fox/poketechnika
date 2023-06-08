@@ -1,7 +1,6 @@
+#include <iostream>
 #include "Map.h"
 #include "Exception.h"
-#include <vector>
-#include <iostream>
 
 Map::Map(int id_, std::string name_, LayerArray layers_) : 
 	id{ id_ }, name{ name_ }, layers{ layers_ } {}

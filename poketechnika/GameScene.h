@@ -7,8 +7,6 @@
 #include "GameObject.h"
 #include "Map.h"
 #include "InputHandler.h"
-#include "Camera.h"
-#include "Drawable.h"
 
 class GameScene : public Scene
 {
@@ -16,7 +14,6 @@ private:
 	std::vector<std::shared_ptr<GameObject>> game_objects;
 	Map map;
 	InputHandler ih;
-	Drawable background;
 
 	void load_map();
 public:

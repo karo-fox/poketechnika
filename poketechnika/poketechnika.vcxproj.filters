@@ -104,9 +104,6 @@
     <ClInclude Include="SceneManager.h">
       <Filter>Pliki nagłówkowe\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>Pliki nagłówkowe\Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="Tile.h">
       <Filter>Pliki nagłówkowe\Graphics</Filter>
     </ClInclude>
@@ -118,12 +115,6 @@
     </ClInclude>
     <ClInclude Include="GameObject.h">
       <Filter>Pliki nagłówkowe\GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuUI.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="UI.h">
-      <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
     <ClInclude Include="actions.h">
       <Filter>Pliki nagłówkowe</Filter>
@@ -139,6 +130,9 @@
     </ClInclude>
     <ClInclude Include="Drawable.h">
       <Filter>Pliki nagłówkowe\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Pliki nagłówkowe\GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

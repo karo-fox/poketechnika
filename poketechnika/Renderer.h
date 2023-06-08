@@ -9,6 +9,8 @@ class Renderer
 	sf::RenderWindow& window;
 	float scale;
 public:
+	Renderer(sf::RenderWindow& w);
+
 	void setScale();
 	void rendClear();
 	void rendDisplay();
@@ -17,7 +19,4 @@ public:
 	void draw(sf::Sprite s);
 	void draw(Drawable& drawable);
 	void draw(Map& map, const Camera& cam);
-	//void draw(Tile& tile, sf::Vector2f offset);
-	//void draw(Player& player);
-	Renderer(sf::RenderWindow& w);
 };

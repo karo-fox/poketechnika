@@ -6,17 +6,6 @@
 
 class SceneManager
 {
-//	Scene* currScene;
-//	State scene;
-//	Renderer* rend;
-//public:
-//	SceneManager(Renderer* rend_);
-//	virtual ~SceneManager();
-//	void createFirstScene();
-//	void renderScene();
-//	void changeScene(State change);
-//	Scene getCurrentScene() const;
-//	State getSceneType() const;
 private:
 	std::shared_ptr<Scene> active_scene;
 	Renderer renderer;

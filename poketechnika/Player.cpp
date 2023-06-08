@@ -1,18 +1,5 @@
 #include "Player.h"
-#include <SFML/Graphics.hpp>
-
-//Player::Player()
-//{
-//	//mapPtr = nullptr;
-//
-//	size = sf::Vector2f(32, 32);
-//	position = sf::Vector2f(12*64, 8*64);
-//	
-//	speed = 0.10f;
-//
-//	t.loadFromFile("assets/textures/player.png");
-//	s.setTexture(t);
-//}
+#include "actions.h"
 
 Player::Player(const Map& m) 
 	: GameObject{}, Drawable{ "assets/textures/player.png", sf::Vector2f{12*64, 8*64} }
@@ -52,8 +39,3 @@ void Player::update(float elapsedTime, const InputHandler& ih, const Map& map)
 	}
 	position += move;
 }
-
-//void Player::setMapPtr(Map* ptr)
-//{
-//	mapPtr = ptr;
-//}

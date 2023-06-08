@@ -1,11 +1,9 @@
 #include <iostream>
-#include <memory>
-
 #include "GameScene.h"
-#include "Map.h"
+#include "Player.h"
+#include "Camera.h"
 #include "Exception.h"
 #include "database.h"
-#include "Player.h"
 
 enum class MapId {
 	FACULTY_ENTRANCE, FACULTY_INTERIOR, PARK
@@ -22,8 +20,7 @@ GameScene::GameScene()
 		{ sf::Keyboard::S, Action::MoveDown },
 		{ sf::Keyboard::D, Action::MoveRight },
 		{ sf::Keyboard::A, Action::MoveLeft },
-	} }, game_objects{}, map{}, 
-	background{ "assets/textures/background_game.png", sf::Vector2f{0, 0} } 
+	} }, game_objects{}, map{}
 {
 	load_map();
 	Player player{map};
@@ -55,7 +52,6 @@ void GameScene::update(float time_elapsed) {
 }
 
 void GameScene::render(Renderer& renderer) {
-	renderer.draw(background);
 	renderer.draw(map, dynamic_cast<Camera&>(*game_objects.at(1))); // TODO: Some better container for this
 	renderer.draw(dynamic_cast<Drawable&>(*game_objects.at(0)));
 }

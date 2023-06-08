@@ -1,6 +1,6 @@
 #pragma once
-#include "state.h"
 #include <map>
+#include "state.h"
 
 enum class Action {
 	MoveRight, MoveLeft, MoveUp, MoveDown, ChangeSceneToGame, ChangeSceneToMenu, Close

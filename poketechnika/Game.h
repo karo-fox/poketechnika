@@ -5,7 +5,6 @@
 #include "SceneManager.h"
 #include "Scene.h"
 #include "InputHandler.h"
-#include "state.h"
 
 class Game
 {

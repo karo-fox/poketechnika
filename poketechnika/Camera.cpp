@@ -1,5 +1,4 @@
 #include "Camera.h"
-#include <iostream>
 
 sf::Vector2f Camera::size = sf::Vector2f(0, 0);
 
@@ -17,13 +16,7 @@ bool Camera::isWithinCamera(sf::Vector2f pos) const
 
 Camera::Camera(int x, int y) {
 	position = sf::Vector2f(x, y);
-	//this->add();
 }
-
-//Camera::~Camera()
-//{
-//	this->remove();
-//}
 
 void Camera::setCameraSize(int x, int y) {
 	size = sf::Vector2f(x, y);
