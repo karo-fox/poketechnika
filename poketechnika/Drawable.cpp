@@ -1,7 +1,7 @@
 #include "Drawable.h"
 #include "Exception.h"
 
-Drawable::Drawable(const std::string& texture_file, sf::Vector2f pos) 
+Drawable::Drawable(const std::string& texture_file, const sf::Vector2f& pos) 
 	: position{ pos }, texture {}, sprite{}, file{ texture_file } 
 {
 	if (texture.loadFromFile(file)) {

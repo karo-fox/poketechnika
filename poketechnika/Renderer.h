@@ -3,6 +3,7 @@
 #include "Drawable.h"
 #include "Map.h"
 #include "Camera.h"
+#include "Button.h"
 
 class Renderer
 {
@@ -18,4 +19,5 @@ public:
 
 	void draw(Drawable& drawable);
 	void draw(Map& map, const Camera& cam);
+	void draw(Button& button);
 };

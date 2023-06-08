@@ -2,6 +2,7 @@
 #include "Game.h"
 #include "MenuScene.h"
 #include "GameScene.h"
+#include "Button.h"
 
 Game::Game(int width, int height, bool fullscreen) 
     : window{ sf::VideoMode(width, height), "Poketechnika" }, sm{ window }, clock{}, 
@@ -20,6 +21,7 @@ Game::Game(int width, int height, bool fullscreen)
     }
     Camera::setCameraSize(width, height);
     sm.set_renderer_scale();
+    Button::load_font();
 
     // Create all scenes used in game
     MenuScene menu_scene{};

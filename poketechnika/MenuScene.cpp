@@ -1,5 +1,6 @@
 #include <iostream>
 #include "MenuScene.h"
+#include "Button.h"
 
 MenuScene::MenuScene() 
 	: Scene{}, ih{ {}, {} }, 
