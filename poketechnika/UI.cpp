@@ -18,16 +18,26 @@ Action UI::click() const {
 
 void UI::next() {
 	if (_active_idx < _buttons.size()) {
-		_buttons.at(_active_idx).sprite.setColor(sf::Color(255, 255, 255));
+		unselect();
 		_active_idx++;
-		_buttons.at(_active_idx).sprite.setColor(sf::Color(255, 0, 0));
+		select();
 	}
 }
 
 void UI::previous() {
 	if (_active_idx > 0) {
-		_buttons.at(_active_idx).sprite.setColor(sf::Color(255, 255, 255));
+		unselect();
 		_active_idx--;
-		_buttons.at(_active_idx).sprite.setColor(sf::Color(255, 0, 0));
+		select();
 	}
+}
+
+void UI::select() {
+	_buttons.at(_active_idx).sprite.setColor(sf::Color(255, 0, 0));
+	_buttons.at(_active_idx).text.setFillColor(sf::Color(255, 255, 255));
+}
+
+void UI::unselect() {
+	_buttons.at(_active_idx).sprite.setColor(sf::Color(255, 255, 255));
+	_buttons.at(_active_idx).text.setFillColor(sf::Color(0, 0, 0));
 }

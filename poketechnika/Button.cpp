@@ -11,6 +11,7 @@ Button::Button(
 	text.setFont(_font);
 	text.setString(txt);
 	text.setCharacterSize(24);
+	text.setFillColor(sf::Color{ 0, 0, 0 });
 }
 
 Action Button::click() const {

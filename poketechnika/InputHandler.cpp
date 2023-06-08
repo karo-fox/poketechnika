@@ -4,8 +4,8 @@ const std::map<State, ActionsMap> events{
 { State::MAINMENU, {
 	{ sf::Keyboard::Escape, Action::Close },
 	{ sf::Keyboard::L, Action::ChangeSceneToGame },
-	{ sf::Keyboard::Up, Action::NextItem },
-	{ sf::Keyboard::Down, Action::PreviousItem },
+	{ sf::Keyboard::Down, Action::NextItem },
+	{ sf::Keyboard::Up, Action::PreviousItem },
 	{ sf::Keyboard::Enter, Action::ClickButton },
 }},
 { State::GAME, {

@@ -5,12 +5,15 @@
 #include "GameObject.h"
 
 class UI : GameObject {
-	std::vector<Button> _buttons;
 	int _active_idx;
 
 	void next();
 	void previous();
+	void select();
+	void unselect();
 public:
+	std::vector<Button> _buttons;
+
 	UI(const std::vector<Button>& buttons = {});
 	Action click() const;
 	void update(float elapsedTime, const InputHandler& ih);

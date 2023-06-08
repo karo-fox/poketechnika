@@ -56,6 +56,7 @@ void GameScene::update(float time_elapsed, const InputHandler& ih) {
 			}
 		}
 	}
+	ui.update(time_elapsed, ih);
 }
 
 void GameScene::render(Renderer& renderer) {
