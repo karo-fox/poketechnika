@@ -1,10 +1,17 @@
 #pragma once
-#include "Scene.h"
 #include <SFML/Graphics.hpp>
+#include "Scene.h"
+#include "InputHandler.h"
+#include "Drawable.h"
+
 class MenuScene : public Scene
 {
+private:
+	InputHandler ih;
+	Drawable background;
 public:
-	MenuScene(Renderer* rend);
-	void loadTextures();
-	void draw();
+	MenuScene();
+	void update(float time_elapsed);
+	void process_input(sf::RenderWindow& window);
+	void render(Renderer& renderer);
 };

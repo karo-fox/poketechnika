@@ -1,19 +1,18 @@
 #pragma once
+#include <memory>
 #include "Scene.h"
-#include "State.h"
-#include <SFML/Graphics.hpp>
+#include "Renderer.h"
+#include "MenuScene.h"
 
+// SceneManager has one scene which is active at the time and uses Scene API to perform main game tasks
 class SceneManager
 {
-	Scene* currScene;
-	State scene;
-	Renderer* rend;
+private:
+	std::shared_ptr<Scene> active_scene;
+	Renderer renderer;
 public:
-	SceneManager(Renderer* rend_);
-	virtual ~SceneManager();
-	void createFirstScene();
-	void renderScene();
-	void changeScene(State change);
-	Scene getCurrentScene() const;
-	State getSceneType() const;
+	SceneManager(sf::RenderWindow& window, std::shared_ptr<Scene>&& scene = {});
+	void set_scene(std::shared_ptr<Scene> &&scene);
+	void run_scene(float time_elapsed);
+	void set_renderer_scale();
 };

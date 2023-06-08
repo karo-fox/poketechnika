@@ -1,15 +1,14 @@
+#include <iostream>
 #include "Map.h"
 #include "Exception.h"
-#include <vector>
-#include <iostream>
 
 Map::Map(int id_, std::string name_, LayerArray layers_) : 
 	id{ id_ }, name{ name_ }, layers{ layers_ } {}
 
-bool Map::isPassable(sf::Vector2f pos)
+bool Map::isPassable(sf::Vector2f pos) const
 {
 	if (pos.x < 0 || pos.y < 0) return false;
-	for (int i = 0; i < layers[0].size(); i++)
+	for (int i = 0; i < layers.at(0).size(); i++)
 	{
 		if ((i+1) * 64 >= pos.y)
 		{

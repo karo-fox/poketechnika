@@ -22,14 +22,14 @@
     <Filter Include="Pliki nagłówkowe\Graphics">
       <UniqueIdentifier>{017b1f75-4671-4dbb-8699-747b530d17d8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Pliki źródłowe\Grpahics">
-      <UniqueIdentifier>{ec9d1083-28f2-481c-909d-dac9820dcfde}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Pliki nagłówkowe\GameObjects">
       <UniqueIdentifier>{4c9599bc-a63b-446a-b646-41e9503f7330}</UniqueIdentifier>
     </Filter>
     <Filter Include="Pliki źródłowe\GameObjects">
       <UniqueIdentifier>{d285f351-6f9c-4966-a276-5114692377fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\Graphics">
+      <UniqueIdentifier>{ec9d1083-28f2-481c-909d-dac9820dcfde}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -39,13 +39,7 @@
     <ClCompile Include="Game.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
-    <ClCompile Include="GameManager.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
     <ClCompile Include="database.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
-    <ClCompile Include="InputManager.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
     <ClCompile Include="pugixml.cpp">
@@ -53,9 +47,6 @@
     </ClCompile>
     <ClCompile Include="Exception.cpp">
       <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Pliki źródłowe\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="GameScene.cpp">
       <Filter>Pliki źródłowe\Scenes</Filter>
@@ -67,16 +58,16 @@
       <Filter>Pliki źródłowe\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
-      <Filter>Pliki źródłowe\Grpahics</Filter>
+      <Filter>Pliki źródłowe\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="Map.cpp">
-      <Filter>Pliki źródłowe\Grpahics</Filter>
+      <Filter>Pliki źródłowe\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="Renderer.cpp">
-      <Filter>Pliki źródłowe\Grpahics</Filter>
+      <Filter>Pliki źródłowe\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="Tile.cpp">
-      <Filter>Pliki źródłowe\Grpahics</Filter>
+      <Filter>Pliki źródłowe\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="GameObject.cpp">
       <Filter>Pliki źródłowe\GameObjects</Filter>
@@ -84,24 +75,21 @@
     <ClCompile Include="Player.cpp">
       <Filter>Pliki źródłowe\GameObjects</Filter>
     </ClCompile>
+    <ClCompile Include="Drawable.cpp">
+      <Filter>Pliki źródłowe\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandler.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
-    <ClInclude Include="GameManager.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
     <ClInclude Include="database.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
-    <ClInclude Include="InputManager.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
     <ClInclude Include="Exception.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
     <ClInclude Include="GameScene.h">
@@ -116,13 +104,7 @@
     <ClInclude Include="SceneManager.h">
       <Filter>Pliki nagłówkowe\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>Pliki nagłówkowe\Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="Tile.h">
-      <Filter>Pliki nagłówkowe\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="State.h">
       <Filter>Pliki nagłówkowe\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Map.h">
@@ -132,6 +114,24 @@
       <Filter>Pliki nagłówkowe\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="GameObject.h">
+      <Filter>Pliki nagłówkowe\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="actions.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="state.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandler.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Pliki nagłówkowe\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Drawable.h">
+      <Filter>Pliki nagłówkowe\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
       <Filter>Pliki nagłówkowe\GameObjects</Filter>
     </ClInclude>
   </ItemGroup>

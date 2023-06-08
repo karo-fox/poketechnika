@@ -1,17 +1,21 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "Tile.h"
-#include "Player.h"
+#include "Drawable.h"
+#include "Map.h"
+#include "Camera.h"
+
 class Renderer
 {
 	sf::RenderWindow& window;
 	float scale;
 public:
+	Renderer(sf::RenderWindow& w);
+
 	void setScale();
 	void rendClear();
 	void rendDisplay();
-	void draw(sf::Sprite s);
-	void draw(Tile& tile, sf::Vector2f offset);
-	void draw(Player& player);
-	Renderer(sf::RenderWindow& w);
+	sf::RenderWindow& getWindow();
+
+	void draw(Drawable& drawable);
+	void draw(Map& map, const Camera& cam);
 };

@@ -1,9 +1,4 @@
 #include "Tile.h"
-#include "Exception.h"
-#include <iostream>
-#include <pugixml.hpp>
-#include <map>
-#include <string>
 
 const std::string TEXTURES_DIR = "assets/textures";
 const sf::Vector2f SCALE{ 2, 2 };
@@ -16,38 +11,24 @@ std::map<tileTypes, std::string> textures{
 	{tileTypes::BUILDING, std::string{TEXTURES_DIR + "/building_tile.png"}},
 };
 
-Tile::Tile(const Tile& other) : tileTexture{ sf::Texture{} }, tileSprite{ sf::Sprite{} }
+Tile::Tile(const Tile& other) : Drawable{ other }
 {
 	position = other.position;
 	passable = other.passable;
 	type = other.type;
 
-	if (tileTexture.loadFromFile(textures.at(type))) {
-		tileSprite.setTexture(tileTexture);
-		tileSprite.setScale(SCALE);
-	}
-	else {
-		throw Exception("Unable to load a texture from " + textures.at(type));
-	}
+	sprite.setScale(SCALE);
 }
 
-Tile::Tile(tileTypes type_, sf::Vector2f pos, bool passable_) : tileTexture{ sf::Texture{} }, tileSprite { sf::Sprite{} } {
+Tile::Tile(tileTypes type_, sf::Vector2f pos, bool passable_) : Drawable{textures.at(type_), pos} {
 	position = pos;
 	passable = passable_;
 	type = type_;
 
-	if (tileTexture.loadFromFile(textures.at(type))) {
-		tileSprite.setTexture(tileTexture);
-		tileSprite.setScale(SCALE);
-	}
-	else {
-		throw Exception("Unable to load a texture from " + textures.at(type));
-	}
+	sprite.setScale(SCALE);
 }
 
-Tile::~Tile() {}
-
-bool Tile::isPassable()
+bool Tile::isPassable() const
 {
 	return passable;
 }
@@ -58,20 +39,9 @@ Tile& Tile::operator=(const Tile& other)
 	passable = other.passable;
 	type = other.type;
 
-	if (tileTexture.loadFromFile(textures.at(type))) {
-		tileSprite.setTexture(tileTexture);
-		tileSprite.setScale(SCALE);
-	}
-	else {
-		throw Exception("Unable to load a texture from " + textures.at(type));
-	}
+	Drawable::operator=(other);
 
 	return *this;
-}
-
-sf::Sprite Tile::getSprite()
-{
-	return tileSprite;
 }
 
 Tile tile_from_xml(pugi::xml_node& tile_node, int x, int y)
