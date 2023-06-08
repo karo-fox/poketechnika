@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <map>
 #include <memory>
 #include <SFML/Graphics.hpp>
 
@@ -8,10 +9,17 @@
 #include "Map.h"
 #include "InputHandler.h"
 
+
+enum class GO {
+	PLAYER, CAMERA, POKEMON
+};
+
+using GOContainer = std::map<GO, std::vector<std::shared_ptr<GameObject>>>;
+
 class GameScene : public Scene
 {
 private:
-	std::vector<std::shared_ptr<GameObject>> game_objects;
+	GOContainer game_objects;
 	Map map;
 	InputHandler ih;
 

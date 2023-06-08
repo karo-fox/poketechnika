@@ -20,14 +20,16 @@ GameScene::GameScene()
 		{ sf::Keyboard::S, Action::MoveDown },
 		{ sf::Keyboard::D, Action::MoveRight },
 		{ sf::Keyboard::A, Action::MoveLeft },
-	} }, game_objects{}, map{}
+	} }, game_objects{
+		{ GO::PLAYER, {} }, { GO::CAMERA, {} }, { GO::POKEMON, {} }
+	}, map{}
 {
 	load_map();
 	Player player{map};
 	player.setActive(true);
-	game_objects.push_back(std::make_shared<Player>(player));
+	game_objects.at(GO::PLAYER).push_back(std::make_shared<Player>(player));
 	Camera camera{0, 0};
-	game_objects.push_back(std::make_shared<Camera>(camera));
+	game_objects.at(GO::CAMERA).push_back(std::make_shared<Camera>(camera));
 
 	std::cout << "Created Game Scene" << '\n';
 }
@@ -44,16 +46,18 @@ void GameScene::load_map() {
 }
 
 void GameScene::update(float time_elapsed) {
-	for (auto& go : game_objects) {
-		if (go->isActive()) {
-			go->update(time_elapsed, ih, map);
+	for (auto& go_vec : game_objects) {
+		for (auto& go : go_vec.second) {
+			if (go->isActive()) {
+				go->update(time_elapsed, ih, map);
+			}
 		}
 	}
 }
 
 void GameScene::render(Renderer& renderer) {
-	renderer.draw(map, dynamic_cast<Camera&>(*game_objects.at(1))); // TODO: Some better container for this
-	renderer.draw(dynamic_cast<Drawable&>(*game_objects.at(0)));
+	renderer.draw(map, dynamic_cast<Camera&>(*game_objects.at(GO::CAMERA).at(0)));
+	renderer.draw(dynamic_cast<Drawable&>(*game_objects.at(GO::PLAYER).at(0)));
 }
 
 void GameScene::process_input(sf::RenderWindow& window) {

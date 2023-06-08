@@ -11,6 +11,7 @@ Game::Game(int width, int height, bool fullscreen)
         {sf::Keyboard::K, Action::ChangeSceneToMenu},
        }, {} }, scenes{}
 {
+    // Create all scenes used in game
     MenuScene menu_scene{};
     GameScene game_scene{};
     scenes = {
@@ -18,6 +19,10 @@ Game::Game(int width, int height, bool fullscreen)
         {State::GAME, std::make_shared<GameScene>(game_scene)},
     };
     // TODO: Create all scenes (battle, error)
+
+    // Set first scene to menu
+    auto first_scene{ scenes.at(State::MAINMENU) };
+    sm.set_scene(std::move(first_scene));
 
     if (fullscreen) {
         width = sf::VideoMode::getDesktopMode().width;
@@ -46,6 +51,8 @@ void Game::process_input() {
 
 void Game::run() {
     window.setFramerateLimit(60);
+
+    // Game loop
     while (window.isOpen()) {
         process_input();
         float time = clock.restart().asMilliseconds();
