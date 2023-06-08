@@ -1,13 +1,15 @@
 #pragma once
 #include "Scene.h"
-#include "MenuInputHandler.h"
+#include "InputHandler.h"
 #include "MenuUI.h"
+#include "Drawable.h"
 
 class MenuScene : public Scene
 {
 private:
-	MenuInputHandler ih;
+	InputHandler ih;
 	MenuUI ui;
+	Drawable background;
 public:
 	MenuScene();
 	//void loadTextures();

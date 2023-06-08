@@ -3,7 +3,7 @@
 
 sf::Vector2f Camera::size = sf::Vector2f(0, 0);
 
-void Camera::update(float elapsedTime, const InputHandler& ih)
+void Camera::update(float elapsedTime, const InputHandler& ih, const Map& map)
 {
 	// TODO: moving camera when the player is not in center of the map
 }

@@ -17,7 +17,14 @@
 //    rend.setScale();
 //}
 
-Game::Game(int width, int height, bool fullscreen) : window{ sf::VideoMode(width, height), "Poketechnika" }, sm{window}, clock {}, gih{}, scenes{} {
+Game::Game(int width, int height, bool fullscreen) 
+    : window{ sf::VideoMode(width, height), "Poketechnika" }, sm{ window }, clock{}, 
+    ih{ {
+        {sf::Keyboard::Escape, Action::Close}, 
+        {sf::Keyboard::L, Action::ChangeSceneToGame},
+        {sf::Keyboard::K, Action::ChangeSceneToMenu},
+       }, {} }, scenes{}
+{
     MenuScene menu_scene{};
     GameScene game_scene{};
     scenes = {
@@ -93,17 +100,16 @@ Game::Game(int width, int height, bool fullscreen) : window{ sf::VideoMode(width
 //}
 
 void Game::process_input() {
-    gih.reset_actions();
-    gih.process_input(window);
+    ih.reset_actions();
+    ih.process_input(window);
     for (auto& elem : change_scene) {
-        if (gih.get_action(elem.first)) {
-            // TODO:: Unload map
-            sm.set_scene(std::move(scenes.at(elem.second)));
-            // TODO: load map
+        if (ih.get_action(elem.first)) {
+            auto next_scene{ scenes.at(elem.second) };
+            sm.set_scene(std::move(next_scene));
         }
     }
-    if (gih.get_action(Action::Close)) {
-        // TODO: Unload map
+    if (ih.get_action(Action::Close)) {
+        // TODO: Save data
         window.close();
     }
 }
@@ -111,6 +117,7 @@ void Game::process_input() {
 void Game::run() {
     window.setFramerateLimit(60);
     while (window.isOpen()) {
+        process_input();
         float time = clock.restart().asMilliseconds();
         sm.run_scene(time);
     }

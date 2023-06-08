@@ -12,7 +12,7 @@ protected:
 	ActionsMap event_actions;
 	ActionsMap real_time_actions;
 public:
-	InputHandler();
+	InputHandler(ActionsMap event, ActionsMap real_time);
 	void process_input(sf::RenderWindow& window);
 	void reset_actions();
 	bool get_action(const Action& action) const;

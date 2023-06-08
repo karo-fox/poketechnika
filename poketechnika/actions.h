@@ -6,7 +6,7 @@ enum class Action {
 	MoveRight, MoveLeft, MoveUp, MoveDown, ChangeSceneToGame, ChangeSceneToMenu, Close
 };
 
-static std::map<const Action, const State&> change_scene{
+static std::map<Action, State> change_scene{
 	{ Action::ChangeSceneToMenu, State::MAINMENU },
 	{ Action::ChangeSceneToGame, State::GAME },
 };

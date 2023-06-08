@@ -15,12 +15,24 @@ std::map<MapId, const char*> map_files{
 	{MapId::FACULTY_ENTRANCE, "data/faculty_entrance.xml"},
 };
 
-GameScene::GameScene() : Scene{}, ih {}, game_objects{}, map{} {
+GameScene::GameScene() 
+	: Scene{}, 
+	ih{ {}, {
+		{ sf::Keyboard::W, Action::MoveUp },
+		{ sf::Keyboard::S, Action::MoveDown },
+		{ sf::Keyboard::D, Action::MoveRight },
+		{ sf::Keyboard::A, Action::MoveLeft },
+	} }, game_objects{}, map{}, 
+	background{ "assets/textures/background_game.png", sf::Vector2f{0, 0} } 
+{
 	load_map();
 	Player player{map};
+	player.setActive(true);
 	game_objects.push_back(std::make_shared<Player>(player));
 	Camera camera{0, 0};
 	game_objects.push_back(std::make_shared<Camera>(camera));
+
+	std::cout << "Created Game Scene" << '\n';
 }
 
 void GameScene::load_map() {
@@ -37,15 +49,18 @@ void GameScene::load_map() {
 void GameScene::update(float time_elapsed) {
 	for (auto& go : game_objects) {
 		if (go->isActive()) {
-			go->update(time_elapsed, ih);
+			go->update(time_elapsed, ih, map);
 		}
 	}
 }
 
 void GameScene::render(Renderer& renderer) {
-
+	renderer.draw(background);
+	renderer.draw(map, dynamic_cast<Camera&>(*game_objects.at(1))); // TODO: Some better container for this
+	renderer.draw(dynamic_cast<Drawable&>(*game_objects.at(0)));
 }
 
 void GameScene::process_input(sf::RenderWindow& window) {
+	ih.reset_actions();
 	ih.process_input(window);
 }

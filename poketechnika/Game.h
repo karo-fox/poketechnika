@@ -4,7 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include "SceneManager.h"
 #include "Scene.h"
-#include "GeneralInputHandler.h"
+#include "InputHandler.h"
 #include "state.h"
 
 class Game
@@ -14,7 +14,7 @@ private:
 	sf::RenderWindow window;
 	SceneManager sm;
 	std::map<const State, std::shared_ptr<Scene>> scenes;
-	GeneralInputHandler gih;
+	InputHandler ih;
 
 	void process_input();
 public:

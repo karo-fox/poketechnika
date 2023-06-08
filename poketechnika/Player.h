@@ -9,8 +9,7 @@ class Player : public GameObject, public Drawable
 private:
 	float speed;
 	sf::Vector2f size;
-	const Map& map;
 public:
 	Player(const Map& m);
-	void update(float elapsedTime, const InputHandler& ih) override;
+	void update(float elapsedTime, const InputHandler& ih, const Map& map) override;
 };

@@ -2,11 +2,13 @@
 #include <SFML/Graphics.hpp>
 //#include <vector>
 #include "InputHandler.h"
+#include "Map.h"
+
 class GameObject
 {
 public:
 	GameObject();
-	virtual void update(float elapsedTime, const InputHandler& ih) = 0;
+	virtual void update(float elapsedTime, const InputHandler& ih, const Map& map) = 0;
 	//void add();
 	//void remove();
 	//sf::Vector2f getPosition() const;

@@ -144,12 +144,9 @@
     <ClCompile Include="Drawable.cpp" />
     <ClCompile Include="Exception.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="GameInputHandler.cpp" />
     <ClCompile Include="GameObject.cpp" />
-    <ClCompile Include="GeneralInputHandler.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
-    <ClCompile Include="MenuInputaHandler.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="pugixml.cpp" />
     <ClCompile Include="Renderer.cpp" />
@@ -166,12 +163,9 @@
     <ClInclude Include="Drawable.h" />
     <ClInclude Include="Exception.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="GameInputHandler.h" />
     <ClInclude Include="GameObject.h" />
-    <ClInclude Include="GeneralInputHandler.h" />
     <ClInclude Include="MenuUI.h" />
     <ClInclude Include="Map.h" />
-    <ClInclude Include="MenuInputHandler.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Scene.h" />

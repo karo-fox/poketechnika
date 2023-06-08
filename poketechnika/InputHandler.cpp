@@ -1,6 +1,7 @@
 #include "InputHandler.h"
 
-InputHandler::InputHandler() : event_actions{}, real_time_actions{}, active_actions {} {}
+InputHandler::InputHandler(ActionsMap events, ActionsMap real_time) 
+	: event_actions{events}, real_time_actions{real_time}, active_actions {} {}
 
 void InputHandler::process_input(sf::RenderWindow& window) {
 	for (auto& elem : real_time_actions) {
