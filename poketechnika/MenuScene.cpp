@@ -1,12 +1,17 @@
 #include <iostream>
+#include <vector>
 #include "MenuScene.h"
 #include "Button.h"
 
+std::vector<Button> buttons{
+	Button{"test", Action::ChangeSceneToGame, sf::Vector2f{64, 64} }
+};
+
 MenuScene::MenuScene() 
 	: Scene{},
-	//ih{ {}, {} }, 
 	background{ "assets/textures/background_menu.png", sf::Vector2f{0, 0} }
 {
+	ui = UI{ buttons };
 	std::cout << "Created menu scene" << '\n';
 }
 

@@ -1,7 +1,20 @@
 #include "UI.h"
 
 UI::UI(const std::vector<Button>& buttons) 
-	: _buttons{ buttons }, _active_idx{} {}
+	: GameObject{}, _buttons {buttons}, _active_idx{} {}
+
+void UI::update(float elapsedTime, const InputHandler& ih) {
+	if (ih.get_action(Action::NextItem)) {
+		next();
+	}
+	if (ih.get_action(Action::PreviousItem)) {
+		previous();
+	}
+}
+
+Action UI::click() const {
+	return _buttons.at(_active_idx).click();
+}
 
 void UI::next() {
 	if (_active_idx < _buttons.size()) {

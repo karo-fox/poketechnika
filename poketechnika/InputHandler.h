@@ -18,5 +18,6 @@ public:
 	InputHandler(State& state);
 	void process_input(sf::RenderWindow& window);
 	void reset_actions();
+	void add_action(const Action& action);
 	bool get_action(const Action& action) const;
 };

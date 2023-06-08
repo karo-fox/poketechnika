@@ -36,6 +36,10 @@ Game::Game(int width, int height, bool fullscreen)
 void Game::process_input() {
     ih.reset_actions();
     ih.process_input(window);
+    if (ih.get_action(Action::ClickButton)) {
+        const auto action = scenes.at(state)->ui.click();
+        ih.add_action(action);
+    }
     for (auto& elem : change_scene) {
         if (ih.get_action(elem.first)) {
             state = elem.second;

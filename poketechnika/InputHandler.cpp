@@ -1,30 +1,27 @@
 #include "InputHandler.h"
 
 const std::map<State, ActionsMap> events{
-	{ State::MAINMENU, 
-		{
-			{ sf::Keyboard::Escape, Action::Close },
-			{ sf::Keyboard::L, Action::ChangeSceneToGame }
-		}
-	},
-	{ State::GAME, 
-		{
-			{ sf::Keyboard::Escape, Action::Close },
-			{ sf::Keyboard::L, Action::ChangeSceneToMenu }
-		}
-	}
+{ State::MAINMENU, {
+	{ sf::Keyboard::Escape, Action::Close },
+	{ sf::Keyboard::L, Action::ChangeSceneToGame },
+	{ sf::Keyboard::Up, Action::NextItem },
+	{ sf::Keyboard::Down, Action::PreviousItem },
+	{ sf::Keyboard::Enter, Action::ClickButton },
+}},
+{ State::GAME, {
+	{ sf::Keyboard::Escape, Action::Close },
+	{ sf::Keyboard::L, Action::ChangeSceneToMenu }
+}},
 };
 
 const std::map<State, ActionsMap> real_time{
-	{ State::MAINMENU, {} },
-	{ State::GAME, 
-		{
-			{ sf::Keyboard::W, Action::MoveUp },
-			{ sf::Keyboard::S, Action::MoveDown },
-			{ sf::Keyboard::D, Action::MoveRight },
-			{ sf::Keyboard::A, Action::MoveLeft },
-		} 
-	},
+{ State::MAINMENU, {} },
+{ State::GAME, {
+	{ sf::Keyboard::W, Action::MoveUp },
+	{ sf::Keyboard::S, Action::MoveDown },
+	{ sf::Keyboard::D, Action::MoveRight },
+	{ sf::Keyboard::A, Action::MoveLeft }
+}},
 };
 
 InputHandler::InputHandler(State& state)
@@ -59,4 +56,8 @@ void InputHandler::reset_actions() {
 bool InputHandler::get_action(const Action& action) const {
 	auto search = active_actions.find(action);
 	return search != active_actions.end();
+}
+
+void InputHandler::add_action(const Action& action) {
+	active_actions.insert(action);
 }
