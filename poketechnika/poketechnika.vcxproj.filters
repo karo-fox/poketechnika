@@ -87,6 +87,15 @@
     <ClCompile Include="Camera.cpp">
       <Filter>Pliki źródłowe\GameObjects</Filter>
     </ClCompile>
+    <ClCompile Include="Pokemon.cpp">
+      <Filter>Pliki źródłowe\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Move.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="BattleScene.cpp">
+      <Filter>Pliki źródłowe\Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -145,6 +154,18 @@
     </ClInclude>
     <ClInclude Include="UI.h">
       <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="Pokemon.h">
+      <Filter>Pliki nagłówkowe\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="PokemonTypes.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="Move.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="BattleScene.h">
+      <Filter>Pliki nagłówkowe\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

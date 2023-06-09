@@ -2,6 +2,7 @@
 #include "Game.h"
 #include "MenuScene.h"
 #include "GameScene.h"
+#include "BattleScene.h"
 #include "Button.h"
 
 Game::Game(int width, int height, bool fullscreen) 
@@ -22,9 +23,11 @@ Game::Game(int width, int height, bool fullscreen)
     // Create all scenes used in game
     MenuScene menu_scene{};
     GameScene game_scene{};
+    BattleScene battle_scene{};
     scenes = {
         {State::MAINMENU, std::make_shared<MenuScene>(menu_scene)},
         {State::GAME, std::make_shared<GameScene>(game_scene)},
+        {State::BATTLE, std::make_shared<BattleScene>(battle_scene)},
     };
     // TODO: Create all scenes (battle, error)
 
