@@ -4,7 +4,7 @@
 #include "Drawable.h"
 
 enum class tileTypes {
-	GRASS, PAVEMENT, STREET, PATH, BUILDING
+	GRASS, PAVEMENT, STREET, PATH, BUILDING, ROOF, BUSH
 };
 
 class Tile : public Drawable
@@ -13,8 +13,9 @@ private:
 	bool passable;
 	static int tileSize;
 	tileTypes type;
+	sf::Vector2f scale;
 public:
-	Tile(tileTypes type_, sf::Vector2f pos, bool passable_);
+	Tile(tileTypes type_, sf::Vector2f pos, bool passable_, sf::Vector2f s = sf::Vector2f{ 2, 2 });
 	Tile(const Tile& other);
 	bool isPassable() const;
 
