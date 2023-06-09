@@ -22,7 +22,6 @@ private:
 	GOContainer game_objects;
 	Map map;
 	//InputHandler ih;
-
 	void load_map();
 public:
 	GameScene();

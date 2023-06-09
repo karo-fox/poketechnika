@@ -18,6 +18,7 @@ public:
 	sf::RenderWindow& getWindow();
 
 	void draw(Drawable& drawable);
+	void draw(Drawable& drawable, sf::Vector2f offset);
 	void draw(Map& map, const Camera& cam);
 	void draw(Button& button);
 };

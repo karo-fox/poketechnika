@@ -30,8 +30,12 @@ GameScene::GameScene()
 	// Initialize all Game Objects and add them to container
 	Player player{map};
 	player.setActive(true);
-	game_objects.at(GO::PLAYER).push_back(std::make_shared<Player>(player));
-	Camera camera{0, 0};
+	auto player_ptr{ std::make_shared<Player>(player)};
+	game_objects.at(GO::PLAYER).push_back(player_ptr);
+	auto player_ptr2{ player_ptr };
+	Camera camera{22, 44, player_ptr2};
+	camera.setActive(true);
+	camera.setBoundaries(map.getMapSize());
 	game_objects.at(GO::CAMERA).push_back(std::make_shared<Camera>(camera));
 
 	std::cout << "Created Game Scene" << '\n';
@@ -61,7 +65,7 @@ void GameScene::update(float time_elapsed, const InputHandler& ih) {
 
 void GameScene::render(Renderer& renderer) {
 	renderer.draw(map, dynamic_cast<Camera&>(*game_objects.at(GO::CAMERA).at(0))); // draw map
-	renderer.draw(dynamic_cast<Drawable&>(*game_objects.at(GO::PLAYER).at(0)));
+	renderer.draw(dynamic_cast<Drawable&>(*game_objects.at(GO::PLAYER).at(0)), dynamic_cast<Camera&>(*game_objects.at(GO::CAMERA).at(0)).getPosition());
 }
 
 //void GameScene::process_input(sf::RenderWindow& window) {

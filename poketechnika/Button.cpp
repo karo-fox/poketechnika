@@ -6,7 +6,7 @@ sf::Font Button::_font{};
 Button::Button(
 	const std::string& txt, const Action& action, const sf::Vector2f& position,
 	const std::string& texture_file
-) : Drawable{ texture_file, position }, _action{ action }, text{}
+) : Drawable{ texture_file, position, true }, _action{ action }, text{}
 {
 	text.setFont(_font);
 	text.setString(txt);
