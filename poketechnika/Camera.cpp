@@ -4,7 +4,11 @@ sf::Vector2f Camera::size = sf::Vector2f(0, 0);
 
 void Camera::update(float elapsedTime, const InputHandler& ih)
 {
-	// TODO: moving camera when the player is not in center of the map
+	sf::Vector2f player_position = player->getPosition();
+	if (player_position.x - (size.x / 2) + 16 > 0 && player_position.x - (size.x / 2) + 16 < boundaries.y - size.x)
+		position.x = player_position.x - (size.x / 2) + 16;
+	if (player_position.y - (size.y / 2) + 16 > 0 && player_position.y - (size.y / 2) + 16 < boundaries.x - size.y)
+		position.y = player_position.y - (size.y / 2) + 16;
 }
 
 bool Camera::isWithinCamera(sf::Vector2f pos) const
@@ -20,4 +24,14 @@ Camera::Camera(int x, int y, std::shared_ptr<Player> p) : player{ p } {
 
 void Camera::setCameraSize(int x, int y) {
 	size = sf::Vector2f(x, y);
+}
+
+sf::Vector2f Camera::getPosition() const
+{
+	return position;
+}
+
+void Camera::setBoundaries(sf::Vector2f bound)
+{
+	boundaries = bound;
 }

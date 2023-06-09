@@ -27,6 +27,11 @@ void Renderer::draw(Drawable& drawable) {
 	window.draw(drawable.sprite);
 }
 
+void Renderer::draw(Drawable& drawable, sf::Vector2f offset) {
+	drawable.sprite.setPosition(drawable.position - offset);
+	window.draw(drawable.sprite);
+}
+
 void Renderer::draw(Map& map, const Camera& cam) {
 	for (int i = 0; i < map.layers.size(); i++)
 	{
@@ -35,7 +40,7 @@ void Renderer::draw(Map& map, const Camera& cam) {
 			for (int k = 0; k < map.layers[i][j].size(); k++)
 			{
 				if (cam.isWithinCamera(map.layers[i][j][k].position + sf::Vector2f(63, 63)))
-					draw(map.layers[i][j][k]);
+					draw(map.layers[i][j][k], cam.getPosition());
 			}
 		}
 	}

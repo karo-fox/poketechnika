@@ -114,3 +114,8 @@ void map_to_xml(Map& map, pugi::xml_node& parent)
 		layer_idx++;
 	}
 }
+
+sf::Vector2f Map::getMapSize()
+{
+	return sf::Vector2f(layers[0].size() * 64, layers[0][0].size() * 64);
+}

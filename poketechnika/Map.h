@@ -18,6 +18,7 @@ public:
 	Map& operator= (const Map& other);
 
 	bool isPassable(sf::Vector2f pos) const;
+	sf::Vector2f getMapSize();
 	
 	friend Map map_from_xml(pugi::xml_node& map_node);
 	friend void map_to_xml(Map& map, pugi::xml_node& parent);

@@ -39,3 +39,8 @@ void Player::update(float elapsedTime, const InputHandler& ih)
 	}
 	position += move;
 }
+
+sf::Vector2f Player::getPosition()
+{
+	return position;
+}
