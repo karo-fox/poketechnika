@@ -2,15 +2,12 @@
 
 const std::map<State, ActionsMap> events{
 { State::MAINMENU, {
-	{ sf::Keyboard::Escape, Action::Close },
-	{ sf::Keyboard::L, Action::ChangeSceneToGame },
 	{ sf::Keyboard::Down, Action::NextItem },
 	{ sf::Keyboard::Up, Action::PreviousItem },
 	{ sf::Keyboard::Enter, Action::ClickButton },
 }},
 { State::GAME, {
-	{ sf::Keyboard::Escape, Action::Close },
-	{ sf::Keyboard::L, Action::ChangeSceneToMenu }
+	{ sf::Keyboard::Escape, Action::ChangeSceneToMenu },
 }},
 };
 
