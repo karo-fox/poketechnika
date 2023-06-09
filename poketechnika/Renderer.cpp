@@ -23,11 +23,13 @@ sf::RenderWindow& Renderer::getWindow() {
 }
 
 void Renderer::draw(Drawable& drawable) {
+	if (drawable.isScalable()) drawable.sprite.setScale(scale, scale);
 	drawable.sprite.setPosition(drawable.position);
 	window.draw(drawable.sprite);
 }
 
 void Renderer::draw(Drawable& drawable, sf::Vector2f offset) {
+	if (drawable.isScalable()) drawable.sprite.setScale(scale, scale);
 	drawable.sprite.setPosition(drawable.position - offset);
 	window.draw(drawable.sprite);
 }
@@ -47,8 +49,10 @@ void Renderer::draw(Map& map, const Camera& cam) {
 }
 
 void Renderer::draw(Button& button) {
+	if(button.isScalable()) button.sprite.setScale(scale, scale);
 	button.sprite.setPosition(button.position);
 	window.draw(button.sprite);
+	if (button.isScalable()) button.text.setScale(scale, scale);
 	button.text.setPosition(button.position.x + 3, button.position.y + 3);
 	window.draw(button.text);
 }
