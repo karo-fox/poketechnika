@@ -9,6 +9,7 @@ std::map<tileTypes, std::string> textures{
 	{tileTypes::PATH, std::string{TEXTURES_DIR + "/path_tile.png"}},
 	{tileTypes::BUILDING, std::string{TEXTURES_DIR + "/building_tile.png"}},
 	{tileTypes::ROOF, std::string{TEXTURES_DIR + "/roof_tile.png"}},
+	{tileTypes::BUSH, std::string{TEXTURES_DIR + "/bush-1.png"}},
 };
 
 Tile::Tile(tileTypes type_, sf::Vector2f pos, bool passable_, sf::Vector2f s)
