@@ -17,7 +17,7 @@ Action UI::click() const {
 }
 
 void UI::next() {
-	if (_active_idx < _buttons.size()) {
+	if (_active_idx < _buttons.size() - 1) {
 		unselect();
 		_active_idx++;
 		select();

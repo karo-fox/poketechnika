@@ -31,7 +31,7 @@ GameScene::GameScene()
 	Player player{map};
 	player.setActive(true);
 	game_objects.at(GO::PLAYER).push_back(std::make_shared<Player>(player));
-	Camera camera{0, 0};
+	Camera camera{0, 0, player};
 	game_objects.at(GO::CAMERA).push_back(std::make_shared<Camera>(camera));
 
 	std::cout << "Created Game Scene" << '\n';

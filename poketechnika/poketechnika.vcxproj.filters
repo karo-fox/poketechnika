@@ -57,9 +57,6 @@
     <ClCompile Include="MenuScene.cpp">
       <Filter>Pliki źródłowe\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Pliki źródłowe\Graphics</Filter>
-    </ClCompile>
     <ClCompile Include="Map.cpp">
       <Filter>Pliki źródłowe\Graphics</Filter>
     </ClCompile>
@@ -80,6 +77,15 @@
     </ClCompile>
     <ClCompile Include="InputHandler.cpp">
       <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="UI.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Pliki źródłowe\GameObjects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -133,6 +139,12 @@
     </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>Pliki nagłówkowe\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="UI.h">
+      <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
