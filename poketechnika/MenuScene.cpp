@@ -8,8 +8,8 @@ MenuScene::MenuScene()
 	background{ "assets/textures/background_menu.png", sf::Vector2f{0, 0}, true }
 {
 	std::vector<Button> buttons{
-		Button{"Start", Action::ChangeSceneToGame, sf::Vector2f{64, 64} },
-		Button{"Close", Action::Close, sf::Vector2f{64, 128} },
+		Button{"Start", Action::ChangeSceneToGame, sf::Vector2f{592, 360} },
+		Button{"Close", Action::Close, sf::Vector2f{592, 424} },
 	};
 	ui = UI{ buttons };
 	std::cout << "Created menu scene" << '\n';
