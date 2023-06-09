@@ -14,7 +14,7 @@ bool Camera::isWithinCamera(sf::Vector2f pos) const
 		pos.x > position.x + size.x + 63 || pos.y > position.y + size.y + 63);
 }
 
-Camera::Camera(int x, int y, const Player& p) : player{ std::make_shared<Player>(p) } {
+Camera::Camera(int x, int y, std::shared_ptr<Player> p) : player{ p } {
 	position = sf::Vector2f(x, y);
 }
 

@@ -30,8 +30,10 @@ GameScene::GameScene()
 	// Initialize all Game Objects and add them to container
 	Player player{map};
 	player.setActive(true);
-	game_objects.at(GO::PLAYER).push_back(std::make_shared<Player>(player));
-	Camera camera{0, 0, player};
+	auto player_ptr{ std::make_shared<Player>(player)};
+	game_objects.at(GO::PLAYER).push_back(player_ptr);
+	auto player_ptr2{ player_ptr };
+	Camera camera{0, 0, player_ptr2};
 	game_objects.at(GO::CAMERA).push_back(std::make_shared<Camera>(camera));
 
 	std::cout << "Created Game Scene" << '\n';
