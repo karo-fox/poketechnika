@@ -8,9 +8,9 @@ void SceneManager::set_scene(std::shared_ptr<Scene>&& scene) {
 	active_scene = std::move(scene);
 }
 
-void SceneManager::run_scene(float time_elapsed) {
-	active_scene->process_input(renderer.getWindow());
-	active_scene->update(time_elapsed);
+void SceneManager::run_scene(float time_elapsed, const InputHandler& ih) {
+	//active_scene->process_input(renderer.getWindow());
+	active_scene->update(time_elapsed, ih);
 
 	renderer.rendClear();
 	active_scene->render(renderer);

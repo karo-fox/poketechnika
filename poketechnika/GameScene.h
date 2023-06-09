@@ -7,7 +7,7 @@
 #include "Scene.h"
 #include "GameObject.h"
 #include "Map.h"
-#include "InputHandler.h"
+//#include "InputHandler.h"
 
 
 enum class GO {
@@ -21,12 +21,12 @@ class GameScene : public Scene
 private:
 	GOContainer game_objects;
 	Map map;
-	InputHandler ih;
+	//InputHandler ih;
 
 	void load_map();
 public:
 	GameScene();
-	void update(float time_elapsed);
-	void process_input(sf::RenderWindow& window);
+	void update(float time_elapsed, const InputHandler& ih);
+	//void process_input(sf::RenderWindow& window);
 	void render(Renderer& render);
 };

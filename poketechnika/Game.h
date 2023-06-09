@@ -5,6 +5,7 @@
 #include "SceneManager.h"
 #include "Scene.h"
 #include "InputHandler.h"
+#include "State.h"
 
 class Game
 {
@@ -14,6 +15,7 @@ private:
 	SceneManager sm;
 	std::map<const State, std::shared_ptr<Scene>> scenes;
 	InputHandler ih;
+	State state;
 
 	void process_input();
 public:

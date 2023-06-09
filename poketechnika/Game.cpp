@@ -2,14 +2,11 @@
 #include "Game.h"
 #include "MenuScene.h"
 #include "GameScene.h"
+#include "Button.h"
 
 Game::Game(int width, int height, bool fullscreen) 
-    : window{ sf::VideoMode(width, height), "Poketechnika" }, sm{ window }, clock{}, 
-    ih{ {
-        {sf::Keyboard::Escape, Action::Close}, 
-        {sf::Keyboard::L, Action::ChangeSceneToGame},
-        {sf::Keyboard::K, Action::ChangeSceneToMenu},
-       }, {} }, scenes{}
+    : window{ sf::VideoMode(width, height), "Poketechnika" }, sm{ window }, 
+    clock{}, state{ State::MAINMENU }, ih{state}, scenes{}
 {
     if (fullscreen) {
         width = sf::VideoMode::getDesktopMode().width;
@@ -20,6 +17,7 @@ Game::Game(int width, int height, bool fullscreen)
     }
     Camera::setCameraSize(width, height);
     sm.set_renderer_scale();
+    Button::load_font();
 
     // Create all scenes used in game
     MenuScene menu_scene{};
@@ -38,9 +36,14 @@ Game::Game(int width, int height, bool fullscreen)
 void Game::process_input() {
     ih.reset_actions();
     ih.process_input(window);
+    if (ih.get_action(Action::ClickButton)) {
+        const auto action = scenes.at(state)->ui.click();
+        ih.add_action(action);
+    }
     for (auto& elem : change_scene) {
         if (ih.get_action(elem.first)) {
-            auto next_scene{ scenes.at(elem.second) };
+            state = elem.second;
+            auto next_scene{ scenes.at(state) };
             sm.set_scene(std::move(next_scene));
         }
     }
@@ -56,7 +59,7 @@ void Game::run() {
     while (window.isOpen()) {
         process_input();
         float time = clock.restart().asMilliseconds();
-        sm.run_scene(time);
+        sm.run_scene(time, ih);
     }
     // TODO: Save all data after window closes
 }

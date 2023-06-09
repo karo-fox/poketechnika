@@ -40,3 +40,10 @@ void Renderer::draw(Map& map, const Camera& cam) {
 		}
 	}
 }
+
+void Renderer::draw(Button& button) {
+	button.sprite.setPosition(button.position);
+	window.draw(button.sprite);
+	button.text.setPosition(button.position.x + 3, button.position.y + 3);
+	window.draw(button.text);
+}
