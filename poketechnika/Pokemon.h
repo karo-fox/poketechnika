@@ -1,4 +1,5 @@
 #pragma once
+#include <pugixml.hpp>
 #include "GameObject.h"
 #include "Drawable.h"
 #include "PokemonTypes.h"
@@ -23,4 +24,6 @@ public:
     Pokemon();
     void update(float elapsedTime, InputHandler& ih);
     void setOwner(bool isPlayer);
+    void save(pugi::xml_node& node);
+    void load(pugi::xml_node& node);
 };
