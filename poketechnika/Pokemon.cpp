@@ -41,6 +41,9 @@ void Pokemon::save(pugi::xml_node& node) {
 	move1.save(move3_node);
 	pugi::xml_node move4_node = node.child("move4");
 	move1.save(move4_node);
+
+	pugi::xml_node active_node = node.child("active");
+	active_node.first_child().text().set(active);
 }
 
 void Pokemon::load(pugi::xml_node& node) {
@@ -55,12 +58,15 @@ void Pokemon::load(pugi::xml_node& node) {
 	pugi::xml_node move1_node = node.child("move1");
 	move1 = load_move(move1_node);
 	pugi::xml_node move2_node = node.child("move2");
-	move1 = load_move(move2_node);
+	move2 = load_move(move2_node);
 	pugi::xml_node move3_node = node.child("move3");
-	move1 = load_move(move3_node);
+	move3 = load_move(move3_node);
 	pugi::xml_node move4_node = node.child("move4");
-	move1 = load_move(move4_node);
+	move4 = load_move(move4_node);
 
 	front = Drawable{ node.child("front").first_child().text().as_string(), front.position, front.isScalable() };
 	back = Drawable{ node.child("back").first_child().text().as_string(), back.position, back.isScalable() };
+
+	pugi::xml_node active_node = node.child("active");
+	active = active_node.first_child().text().as_bool();
 }

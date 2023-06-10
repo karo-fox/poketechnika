@@ -6,6 +6,7 @@
 #include <pugixml.hpp>
 
 const char* POKEMON_FILE_PATH = "data/pokemon.xml";
+const char* PLAYER_TEAM_FILE_PATH = "data/player_team.xml";
 
 BattleScene::BattleScene()
 	: Scene{},
@@ -34,16 +35,11 @@ BattleScene::BattleScene()
 	};
 	ui = UI{ buttons };
 
+	// Pokemon
 	load_pokemon();
 
-	// Pokemon
-	playerTeam[0] = pokemonTemplate[1];
+	load_player_team();
 	playerTeam[0].setActive(true);
-	playerTeam[1] = pokemonTemplate[0];
-	playerTeam[2] = pokemonTemplate[0];
-	playerTeam[3] = pokemonTemplate[0];
-	playerTeam[4] = pokemonTemplate[0];
-	playerTeam[5] = pokemonTemplate[0];
 
 	enemyTeam[0] = pokemonTemplate[1];
 	enemyTeam[0].setActive(true);
@@ -71,6 +67,43 @@ void BattleScene::load_pokemon()
 			{1, charmander}
 		};
 
+	}
+	catch (const Exception& e) {
+		std::cout << e.what() << '\n';
+	}
+}
+
+void BattleScene::load_player_team() {
+	try {
+		pugi::xml_document player_team_file = load_xml_file(PLAYER_TEAM_FILE_PATH);
+		pugi::xml_node player_team_node = player_team_file.child("player_team");
+
+		int idx{};
+		for (auto& pokemon_node : player_team_node.children()) {
+			Pokemon pokemon{};
+			pokemon.load(pokemon_node);
+			playerTeam[idx] = pokemon;
+			idx++;
+		}
+
+	}
+	catch (const Exception& e) {
+		std::cout << e.what() << '\n';
+	}
+}
+
+void BattleScene::save_player_team() {
+	try {
+		pugi::xml_document player_team_file = load_xml_file(PLAYER_TEAM_FILE_PATH);
+		pugi::xml_node player_team_node = player_team_file.child("player_team");
+
+		int idx{};
+		for (auto& pokemon_node : player_team_node.children()) {
+			playerTeam[idx].save(pokemon_node);
+			idx++;
+		}
+
+		player_team_file.save_file(PLAYER_TEAM_FILE_PATH);
 	}
 	catch (const Exception& e) {
 		std::cout << e.what() << '\n';
@@ -107,6 +140,7 @@ void BattleScene::update(float time_elapsed, InputHandler& ih) {
 	if (ih.get_action(Action::Run)) {
 		//TODO: percent chance with visibility in battlelog
 		ih.add_action(Action::ChangeSceneToGame);
+		save_player_team();
 	}
 }
 
