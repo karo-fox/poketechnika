@@ -13,6 +13,9 @@ private:
 	std::shared_ptr<Map> _map;
 public:
 	Player(const Map& m);
-	void update(float elapsedTime, const InputHandler& ih) override;
+
 	sf::Vector2f getPosition();
+
+	void update(float elapsedTime, const InputHandler& ih) override;
+	void movementLogic(float elapsedTime, const InputHandler& ih);
 };

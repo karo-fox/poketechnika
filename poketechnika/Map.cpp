@@ -5,25 +5,6 @@
 Map::Map(int id_, std::string name_, LayerArray layers_) : 
 	id{ id_ }, name{ name_ }, layers{ layers_ } {}
 
-bool Map::isPassable(sf::Vector2f pos) const
-{
-	if (pos.x < 0 || pos.y < 0) return false;
-	for (int i = 0; i < layers.at(0).size(); i++)
-	{
-		if ((i+1) * 64 >= pos.y)
-		{
-			for (int j = 0; j < layers[0][i].size(); j++)
-			{
-				if ((j+1) * 64 >= pos.x)
-				{
-					return layers[0][i][j].isPassable();
-				}
-			}
-		}
-	}
-	return false;
-}
-
 Map::Map(const Map& other) : id{ other.id }, name{ other.name }, layers{ LayerArray{} } {
 	for (auto& vec1 : other.layers) {
 		std::vector<std::vector<Tile>> y_axis{};
@@ -120,9 +101,28 @@ sf::Vector2f Map::getMapSize()
 	return sf::Vector2f(layers[0].size() * 64, layers[0][0].size() * 64);
 }
 
+bool Map::isPassable(sf::Vector2f pos) const
+{
+	if (pos.x < 0 || pos.y < 0) return false;
+	for (int i = 0; i < layers.at(0).size(); i++)
+	{
+		if ((i + 1) * 64 >= pos.y)
+		{
+			for (int j = 0; j < layers[0][i].size(); j++)
+			{
+				if ((j + 1) * 64 >= pos.x)
+				{
+					return layers[0][i][j].isPassable();
+				}
+			}
+		}
+	}
+	return false;
+}
+
 bool Map::isBush(sf::Vector2f pos) const
 {
-	sf::Vector2f chk = sf::Vector2f(((int)pos.x-(int)pos.x % 64), ((int)pos.y-(int)pos.y % 64));
+	sf::Vector2f chk = sf::Vector2f(((int)pos.x - (int)pos.x % 64), ((int)pos.y - (int)pos.y % 64));
 	for (int i = 0; i < layers.at(1).size(); i++)
 	{
 		for (int j = 0; j < layers[1][i].size(); j++)

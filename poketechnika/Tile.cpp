@@ -32,17 +32,6 @@ Tile::Tile(const Tile& other) : Drawable{ other }
 	sprite.setScale(scale);
 }
 
-bool Tile::isPassable() const
-{
-	return passable;
-}
-
-bool Tile::isType(tileTypes type_) const
-{
-	if (type_ == type) return true;
-	else return false;
-}
-
 Tile& Tile::operator=(const Tile& other)
 {
 	position = other.position;
@@ -110,4 +99,15 @@ void tile_to_xml(Tile& tile, pugi::xml_node& parent, bool save_position)
 		pugi::xml_node scale = tile_node.append_child("scale");
 		scale.append_child(pugi::node_pcdata).set_value(std::to_string(tile.scale.x).c_str());
 	}
+}
+
+bool Tile::isPassable() const
+{
+	return passable;
+}
+
+bool Tile::isType(tileTypes type_) const
+{
+	if (type_ == type) return true;
+	else return false;
 }

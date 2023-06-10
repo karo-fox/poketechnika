@@ -4,7 +4,7 @@
 BattleScene::BattleScene()
 	: Scene{},
 	background{ "assets/textures/background_battle.png", sf::Vector2f{0, 0}, true },
-	menu(BattleMenu::MAIN)
+	menu(BattleMenu::MAIN), buttonRange{0,4}
 {
 	std::vector<Button> buttons{
 		// Main menu
@@ -30,33 +30,31 @@ BattleScene::BattleScene()
 }
 
 void BattleScene::update(float time_elapsed, const InputHandler& ih) {
-	// Update ui (button switching, click)
-	int max = -1, min = -1;
-	if (menu == BattleMenu::MAIN) {
-		max = 3;
-		min = 0;
-	}
-	else if (menu == BattleMenu::MOVES) {
-		max = 7;
-		min = 4;
-	}
-	else if (menu == BattleMenu::POKEMON) {
-		max = 13;
-		min = 8;
-	}
-	ui.update(time_elapsed, ih, min, max);
 	// Change menu type
 	if (menu == BattleMenu::MAIN)
 	{
-		if (ih.get_action(Action::PokemonMenu)) menu = BattleMenu::POKEMON;
-		else if (ih.get_action(Action::AttackMenu)) menu = BattleMenu::MOVES;
+		if (ih.get_action(Action::PokemonMenu)) {
+			menu = BattleMenu::POKEMON;
+			buttonRange[0] = 8;
+			buttonRange[1] = 14;
+		}
+		else if (ih.get_action(Action::AttackMenu)) {
+			menu = BattleMenu::MOVES;
+			buttonRange[0] = 4;
+			buttonRange[1] = 8;
+		}
 	}
 	else
 	{
 		if (ih.get_action(Action::Exit)) {
 			menu = BattleMenu::MAIN;
+			buttonRange[0] = 0;
+			buttonRange[1] = 4;
+			ui.resetSelectButton();
 		}
 	}
+	// Update ui (button switching, click)
+	ui.update(time_elapsed, ih, buttonRange[0], buttonRange[1] - 1);
 	// Running from battle
 	if (ih.get_action(Action::Run)) {
 		//TODO: percent chance with visibility in battlelog
@@ -69,23 +67,9 @@ void BattleScene::render(Renderer& renderer) {
 	renderer.draw(background);
 	
 	// Buttons
-	int max = -1, min = -1;
-	if (menu == BattleMenu::MAIN){
-		max = 4;
-		min = 0;
-	}
-	else if (menu == BattleMenu::MOVES) {
-		max = 8;
-		min = 4;
-	}
-	else if (menu == BattleMenu::POKEMON) {
-		max = 14;
-		min = 8;
-	}
-
 	int i = 0;
 	for (auto& button : ui._buttons) {
-		if(i < max && i >= min) renderer.draw(button);
+		if(i < buttonRange[1] && i >= buttonRange[0]) renderer.draw(button);
 		i++;
 	}
 

@@ -11,6 +11,11 @@ Player::Player(const Map& map)
 void Player::update(float elapsedTime, const InputHandler& ih)
 {
 	// Movement logic
+	movementLogic(elapsedTime, ih);
+}
+
+void Player::movementLogic(float elapsedTime, const InputHandler& ih)
+{
 	// Each if checks for one direction, for both start and end of player graphics (size)
 	sf::Vector2f move(0, 0);
 	if (ih.get_action(Action::MoveUp) &&
@@ -21,7 +26,7 @@ void Player::update(float elapsedTime, const InputHandler& ih)
 	}
 	if (ih.get_action(Action::MoveDown) &&
 		_map->isPassable(sf::Vector2f(position.x, position.y + size.y + speed * elapsedTime)) &&
-		_map->isPassable(sf::Vector2f(position.x + size.x, position.y + size.y + speed * elapsedTime))) 
+		_map->isPassable(sf::Vector2f(position.x + size.x, position.y + size.y + speed * elapsedTime)))
 	{
 		move += sf::Vector2f(0, speed * elapsedTime);
 	}
@@ -38,9 +43,8 @@ void Player::update(float elapsedTime, const InputHandler& ih)
 		move += sf::Vector2f(speed * elapsedTime, 0);
 	}
 	position += move;
-	// Checking for bushes
-	// To iniciate battle
-	if (move != sf::Vector2f(0, 0) 
+	// Checking for encounter
+	if (move != sf::Vector2f(0, 0)
 		&& _map->isBush(position + sf::Vector2f(size.x / 2, size.y / 2))
 		&& ih.randomizer(1))
 	{

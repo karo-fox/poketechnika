@@ -16,6 +16,7 @@ MenuScene::MenuScene()
 }
 
 void MenuScene::update(float time_elapsed, const InputHandler& ih) {
+	ui.select();
 	ui.update(time_elapsed, ih);
 }
 

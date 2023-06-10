@@ -3,12 +3,7 @@
 Renderer::Renderer(sf::RenderWindow& w) : window(w), scale(1.0) {
 }
 
-void Renderer::setScale() 
-{
-	scale = window.getSize().x / 1280.0f;
-}
-
-void Renderer::rendClear() 
+void Renderer::rendClear()
 {
 	window.clear();
 }
@@ -16,10 +11,6 @@ void Renderer::rendClear()
 void Renderer::rendDisplay()
 {
 	window.display();
-}
-
-sf::RenderWindow& Renderer::getWindow() {
-	return window;
 }
 
 void Renderer::draw(Drawable& drawable) {
@@ -67,4 +58,13 @@ void Renderer::draw(Button& button) {
 		button.text.setPosition(button.position.x + 3, button.position.y + 3);
 	}
 	window.draw(button.text);
+}
+
+void Renderer::setScale()
+{
+	scale = window.getSize().x / 1280.0f;
+}
+
+sf::RenderWindow& Renderer::getWindow() {
+	return window;
 }

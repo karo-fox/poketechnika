@@ -11,6 +11,7 @@ class BattleScene :
 private:
 	Drawable background;
 	BattleMenu menu;
+	int buttonRange[2];
 public:
 	BattleScene();
 	void update(float time_elapsed, const InputHandler& ih);
