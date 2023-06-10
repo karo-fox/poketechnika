@@ -167,5 +167,8 @@
     <ClInclude Include="BattleScene.h">
       <Filter>Pliki nagłówkowe\Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="PokemonTable.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

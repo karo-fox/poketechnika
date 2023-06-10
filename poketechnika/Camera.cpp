@@ -1,5 +1,4 @@
 #include "Camera.h"
-#include <iostream>
 
 sf::Vector2f Camera::size = sf::Vector2f(0, 0);
 
@@ -13,9 +12,7 @@ void Camera::update(float elapsedTime, InputHandler& ih)
 	}
 	else
 	{
-		//std::cout << size.x << boundaries.x << std::endl;
 		position.x = -((size.x - boundaries.y) / 2);
-		std::cout << position.x << std::endl;
 	}
 	if (size.y < boundaries.y)
 	{

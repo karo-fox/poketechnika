@@ -42,3 +42,14 @@ bool Drawable::isScalable()
 {
 	return scalable;
 }
+
+void Drawable::setDrawable()
+{
+	if (texture.loadFromFile(file)) {
+		sprite.setTexture(texture);
+	}
+	else {
+		throw Exception{ "Unable to load texture from " + file };
+	}
+	sprite.setTexture(texture);
+}

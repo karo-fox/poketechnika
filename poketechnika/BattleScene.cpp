@@ -1,4 +1,5 @@
 #include "BattleScene.h"
+#include "PokemonTable.h"
 #include <iostream>
 
 BattleScene::BattleScene()
@@ -6,6 +7,7 @@ BattleScene::BattleScene()
 	background{ "assets/textures/background_battle.png", sf::Vector2f{0, 0}, true },
 	menu(BattleMenu::MAIN), buttonRange{0,4}
 {
+	// UI
 	std::vector<Button> buttons{
 		// Main menu
 		Button{"Attack", Action::AttackMenu, sf::Vector2f{500, 625} },
@@ -26,6 +28,23 @@ BattleScene::BattleScene()
 		Button{"Pokemon6", Action::Close, sf::Vector2f{1100, 625 } },
 	};
 	ui = UI{ buttons };
+	// Pokemon
+	playerTeam[0] = pokemonTemplate[1];
+	playerTeam[0].setActive(true);
+	playerTeam[1] = pokemonTemplate[0];
+	playerTeam[2] = pokemonTemplate[0];
+	playerTeam[3] = pokemonTemplate[0];
+	playerTeam[4] = pokemonTemplate[0];
+	playerTeam[5] = pokemonTemplate[0];
+	for (int i = 0; i < 5; i++) playerTeam[i].setOwner(true);
+	enemyTeam[0] = pokemonTemplate[1];
+	enemyTeam[0].setActive(true);
+	enemyTeam[1] = pokemonTemplate[0];
+	enemyTeam[2] = pokemonTemplate[0];
+	enemyTeam[3] = pokemonTemplate[0];
+	enemyTeam[4] = pokemonTemplate[0];
+	enemyTeam[5] = pokemonTemplate[0];
+	for (int i = 0; i < 5; i++) enemyTeam[i].setOwner(false);
 	std::cout << "Created battle scene" << '\n';
 }
 
@@ -74,4 +93,9 @@ void BattleScene::render(Renderer& renderer) {
 	}
 
 	// TODO: Pokemons, healthbars, Pokemon names, BattleLog (or animations xD)
+	for (int i = 0; i < 6; i++)
+	{
+		if (playerTeam[i].isActive()) renderer.draw(playerTeam[i]);
+		if (enemyTeam[i].isActive()) renderer.draw(enemyTeam[i]);
+	}
 }
