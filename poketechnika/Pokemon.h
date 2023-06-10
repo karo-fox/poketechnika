@@ -33,4 +33,6 @@ public:
     void update(float elapsedTime, InputHandler& ih);
     void save(pugi::xml_node& node);
     void load(pugi::xml_node& node);
+
+    std::string getName();
 };

@@ -48,6 +48,7 @@ void Player::movementLogic(float elapsedTime, InputHandler& ih)
 		&& _map->isBush(position + sf::Vector2f(size.x / 2, size.y / 2))
 		&& ih.randomizer(1))
 	{
+		ih.add_action(Action::RandomPokemon);
 		ih.add_action(Action::ChangeSceneToBattle);
 	}
 }

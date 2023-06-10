@@ -52,21 +52,30 @@ BattleScene::BattleScene()
 	std::cout << "Created battle scene" << '\n';
 }
 
+void BattleScene::setRandomEnemy(InputHandler& ih)
+{
+	enemyTeam[0] = pokemonTemplate[ih.randomizer(1, pokemonTemplate.size()-1)];
+	enemyTeam[0].setActive(true);
+}
 
 void BattleScene::load_pokemon()
 {
 	try {
 		pugi::xml_document pokemon_file = load_xml_file(POKEMON_FILE_PATH);
 		pugi::xml_node pokemon_node = pokemon_file.child("pokemon");
-		pugi::xml_node charmander_node = pokemon_node.child("charmander");
-		Pokemon charmander{};
-		charmander.load(charmander_node);
 
 		pokemonTemplate = {
 			{0, Pokemon()},
-			{1, charmander}
 		};
 
+		int i = 1;
+		for (auto& nodes : pokemon_node.children())
+		{
+			Pokemon poke{};
+			poke.load(nodes);
+			pokemonTemplate.insert({i, poke });
+			i++;
+		}
 	}
 	catch (const Exception& e) {
 		std::cout << e.what() << '\n';

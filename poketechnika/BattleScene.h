@@ -23,4 +23,5 @@ public:
 	void update(float time_elapsed, InputHandler& ih);
 	void render(Renderer& renderer);
 	void save_player_team();
+	void setRandomEnemy(InputHandler& ih);
 };
