@@ -54,7 +54,7 @@ void Player::movementLogic(float elapsedTime, InputHandler& ih)
 	if (move != sf::Vector2f(0, 0) 
 		&& _map->isTileType(position + sf::Vector2f(size.x / 2, size.y / 2), tileTypes::BOSS)) 
 	{
-		ih.add_action(Action::ChangeSceneToBattle);
+		ih.add_action(Action::ChangeSceneToBoss);
 	}
 }
 
