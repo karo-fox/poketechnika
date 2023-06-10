@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <pugixml.hpp>
 #include <memory>
 #include "GameObject.h"
 #include "Map.h"
@@ -19,4 +20,6 @@ public:
 	bool isWithinCamera(sf::Vector2f pos) const;
 	void setBoundaries(sf::Vector2f bound);
 	sf::Vector2f getPosition() const;
+	void save(pugi::xml_node& node);
+	void load(pugi::xml_node& node);
 };

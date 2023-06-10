@@ -2,10 +2,12 @@
 <gos>
 	<player>
 		<position>
-			<x>449.000305</x>
-			<y>380.29953</y>
+			<x>647.595703</x>
+			<y>525.806641</y>
 		</position>
 		<active>true</active>
 	</player>
-	<camera />
+	<camera>
+		<active>true</active>
+	</camera>
 </gos>

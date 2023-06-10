@@ -24,12 +24,10 @@ GameScene::GameScene()
 	load_map();
 	// Initialize all Game Objects and add them to container
 	Player player{map};
-	//player.setActive(true);
 	auto player_ptr{ std::make_shared<Player>(player)};
 	game_objects.at(GO::PLAYER).push_back(player_ptr);
 	auto player_ptr2{ player_ptr };
 	Camera camera{22, 44, player_ptr2};
-	camera.setActive(true);
 	camera.setBoundaries(map.getMapSize());
 	game_objects.at(GO::CAMERA).push_back(std::make_shared<Camera>(camera));
 
@@ -81,6 +79,9 @@ void GameScene::load_gos() {
 
 		pugi::xml_node player_node = gos_node.child("player");
 		dynamic_cast<Player&>(*game_objects.at(GO::PLAYER).at(0)).load(player_node);
+
+		pugi::xml_node camera_node = gos_node.child("camera");
+		dynamic_cast<Camera&>(*game_objects.at(GO::CAMERA).at(0)).load(player_node);
 
 	}
 	catch (const Exception& e) {
