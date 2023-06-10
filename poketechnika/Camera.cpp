@@ -2,7 +2,7 @@
 
 sf::Vector2f Camera::size = sf::Vector2f(0, 0);
 
-void Camera::update(float elapsedTime, const InputHandler& ih)
+void Camera::update(float elapsedTime, InputHandler& ih)
 {
 	sf::Vector2f player_position = player->getPosition();
 	if (player_position.x - (size.x / 2) + 16 > 0 && player_position.x - (size.x / 2) + 16 < boundaries.y - size.x)

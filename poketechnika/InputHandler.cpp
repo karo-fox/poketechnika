@@ -9,6 +9,12 @@ const std::map<State, ActionsMap> events{
 { State::GAME, {
 	{ sf::Keyboard::Escape, Action::ChangeSceneToMenu },
 }},
+{ State::BATTLE, {
+	{ sf::Keyboard::Right, Action::NextItem },
+	{ sf::Keyboard::Left, Action::PreviousItem },
+	{ sf::Keyboard::Enter, Action::ClickButton },
+	{ sf::Keyboard::Escape, Action::Exit },
+}}
 };
 
 const std::map<State, ActionsMap> real_time{
@@ -19,12 +25,15 @@ const std::map<State, ActionsMap> real_time{
 	{ sf::Keyboard::D, Action::MoveRight },
 	{ sf::Keyboard::A, Action::MoveLeft }
 }},
+{ State::BATTLE, {} },
 };
 
 InputHandler::InputHandler(State& state)
 	: event_actions{ events }, real_time_actions{ real_time }, 
 	active_actions{}, active_state{ state }
-{}
+{
+	srand(time(NULL));
+}
 
 void InputHandler::process_input(sf::RenderWindow& window) {
 	for (auto& elem : real_time_actions.at(active_state)) {
@@ -50,11 +59,18 @@ void InputHandler::reset_actions() {
 	active_actions.clear();
 }
 
-bool InputHandler::get_action(const Action& action) const {
+bool InputHandler::get_action(const Action& action)  {
 	auto search = active_actions.find(action);
 	return search != active_actions.end();
 }
 
-void InputHandler::add_action(const Action& action) {
+void InputHandler::add_action(const Action& action)  {
 	active_actions.insert(action);
+}
+
+bool InputHandler::randomizer(int percent) 
+{
+	int random = std::rand() % 100;
+	if (random <= percent) return true;
+	else return false;
 }

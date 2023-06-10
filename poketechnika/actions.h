@@ -4,14 +4,21 @@
 
 // Action is a result of user input
 enum class Action {
-	MoveRight, MoveLeft, MoveUp, MoveDown, 
-	ChangeSceneToGame, ChangeSceneToMenu, 
+	// GAME
+	MoveRight, MoveLeft, MoveUp, MoveDown,
+	// CHANGE SCENE
+	ChangeSceneToGame, ChangeSceneToMenu, ChangeSceneToBattle, 
+	// WINDOW
 	Close, 
-	NextItem, PreviousItem, ClickButton
+	// BUTTON
+	NextItem, PreviousItem, ClickButton,
+	// BATTLE MENU
+	Exit, AttackMenu, PokemonMenu, Catch, Run,
 };
 
 // Actions that change scenes
 static std::map<Action, State> change_scene{
 	{ Action::ChangeSceneToMenu, State::MAINMENU },
 	{ Action::ChangeSceneToGame, State::GAME },
+	{ Action::ChangeSceneToBattle, State::BATTLE },
 };

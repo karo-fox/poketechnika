@@ -11,7 +11,7 @@ private:
 	Drawable background;
 public:
 	MenuScene();
-	void update(float time_elapsed, const InputHandler& ih);
+	void update(float time_elapsed, InputHandler& ih);
 	//void process_input(sf::RenderWindow& window);
 	void render(Renderer& renderer);
 };

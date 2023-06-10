@@ -2,6 +2,7 @@
 #include "Game.h"
 #include "MenuScene.h"
 #include "GameScene.h"
+#include "BattleScene.h"
 #include "Button.h"
 
 Game::Game(int width, int height, bool fullscreen) 
@@ -22,9 +23,11 @@ Game::Game(int width, int height, bool fullscreen)
     // Create all scenes used in game
     MenuScene menu_scene{};
     GameScene game_scene{};
+    BattleScene battle_scene{};
     scenes = {
         {State::MAINMENU, std::make_shared<MenuScene>(menu_scene)},
         {State::GAME, std::make_shared<GameScene>(game_scene)},
+        {State::BATTLE, std::make_shared<BattleScene>(battle_scene)},
     };
     // TODO: Create all scenes (battle, error)
 
@@ -34,12 +37,6 @@ Game::Game(int width, int height, bool fullscreen)
 }
 
 void Game::process_input() {
-    ih.reset_actions();
-    ih.process_input(window);
-    if (ih.get_action(Action::ClickButton)) {
-        const auto action = scenes.at(state)->ui.click();
-        ih.add_action(action);
-    }
     for (auto& elem : change_scene) {
         if (ih.get_action(elem.first)) {
             state = elem.second;
@@ -49,6 +46,12 @@ void Game::process_input() {
     }
     if (ih.get_action(Action::Close)) {
         window.close();
+    }
+    ih.reset_actions();
+    ih.process_input(window);
+    if (ih.get_action(Action::ClickButton)) {
+        const auto action = scenes.at(state)->ui.click();
+        ih.add_action(action);
     }
 }
 

@@ -9,12 +9,16 @@ class UI : GameObject {
 
 	void next();
 	void previous();
-	void select();
+	
 	void unselect();
+	void unselect(int id);
 public:
+	void select();
 	std::vector<Button> _buttons;
 
 	UI(const std::vector<Button>& buttons = {});
 	Action click() const;
-	void update(float elapsedTime, const InputHandler& ih);
+	void update(float elapsedTime, InputHandler& ih);
+	void update(float elapsedTime, InputHandler& ih, int first, int size);
+	void resetSelectButton();
 };

@@ -8,9 +8,14 @@ Player::Player(const Map& map)
 	speed = 0.10f;
 }
 
-void Player::update(float elapsedTime, const InputHandler& ih)
+void Player::update(float elapsedTime, InputHandler& ih)
 {
 	// Movement logic
+	movementLogic(elapsedTime, ih);
+}
+
+void Player::movementLogic(float elapsedTime, InputHandler& ih)
+{
 	// Each if checks for one direction, for both start and end of player graphics (size)
 	sf::Vector2f move(0, 0);
 	if (ih.get_action(Action::MoveUp) &&
@@ -21,7 +26,7 @@ void Player::update(float elapsedTime, const InputHandler& ih)
 	}
 	if (ih.get_action(Action::MoveDown) &&
 		_map->isPassable(sf::Vector2f(position.x, position.y + size.y + speed * elapsedTime)) &&
-		_map->isPassable(sf::Vector2f(position.x + size.x, position.y + size.y + speed * elapsedTime))) 
+		_map->isPassable(sf::Vector2f(position.x + size.x, position.y + size.y + speed * elapsedTime)))
 	{
 		move += sf::Vector2f(0, speed * elapsedTime);
 	}
@@ -38,6 +43,13 @@ void Player::update(float elapsedTime, const InputHandler& ih)
 		move += sf::Vector2f(speed * elapsedTime, 0);
 	}
 	position += move;
+	// Checking for encounter
+	if (move != sf::Vector2f(0, 0)
+		&& _map->isBush(position + sf::Vector2f(size.x / 2, size.y / 2))
+		&& ih.randomizer(1))
+	{
+		ih.add_action(Action::ChangeSceneToBattle);
+	}
 }
 
 sf::Vector2f Player::getPosition()

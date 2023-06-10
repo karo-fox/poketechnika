@@ -9,7 +9,7 @@ class Scene {
 public:
 	UI ui;
 	virtual ~Scene() = default;
-	virtual void update(float time_elapsed, const InputHandler& ih) = 0;
+	virtual void update(float time_elapsed, InputHandler& ih) = 0;
 	//virtual void process_input(sf::RenderWindow& window) = 0;
 	virtual void render(Renderer& renderer) = 0;
 };
