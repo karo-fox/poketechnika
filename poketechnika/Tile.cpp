@@ -47,11 +47,11 @@ Tile& Tile::operator=(const Tile& other)
 Tile tile_from_xml(pugi::xml_node& tile_node, int x, int y)
 {
 	if (tile_node.child("position").hash_value()) {
-		x = std::stoi(tile_node.child("position").child("x").child_value());
-		y = std::stoi(tile_node.child("position").child("y").child_value());
+		x = tile_node.child("position").child("x").first_child().text().as_int();
+		y = tile_node.child("position").child("y").first_child().text().as_int();
 	}
 
-	tileTypes type = static_cast<tileTypes>(std::stoi(tile_node.child("type").child_value()));
+	tileTypes type = static_cast<tileTypes>(tile_node.child("type").first_child().text().as_int());
 
 	bool passable{};
 	switch (type) {
@@ -68,22 +68,20 @@ Tile tile_from_xml(pugi::xml_node& tile_node, int x, int y)
 		break;
 	}
 
-	int scale = 2;
+	float scale = 2;
 	if (tile_node.child("scale").hash_value()) {
-		scale = std::stoi(tile_node.child("scale").child_value());
+		scale = tile_node.child("scale").first_child().text().as_float();
 	}
 
 	Tile tile{ 
 		type, sf::Vector2f{static_cast<float>(x * 64) ,static_cast<float>(y * 64)}, 
-		passable, sf::Vector2f{static_cast<float>(scale), static_cast<float>(scale)}
+		passable, sf::Vector2f{scale, scale}
 	};
 	return tile;
 }
 
-void tile_to_xml(Tile& tile, pugi::xml_node& parent, bool save_position)
+void tile_to_xml(Tile& tile, pugi::xml_node& tile_node, bool save_position)
 {
-	pugi::xml_node tile_node = parent.append_child("tile");
-
 	if (save_position) {
 		pugi::xml_node position = tile_node.append_child("position");
 		pugi::xml_node x = position.append_child("x");

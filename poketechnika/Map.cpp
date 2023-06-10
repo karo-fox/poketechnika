@@ -44,8 +44,8 @@ Map& Map::operator=(const Map& other)
 
 Map map_from_xml(pugi::xml_node& map_node)
 {
-	int id = std::stoi(map_node.child("id").child_value());
-	std::string name = map_node.child("name").child_value();
+	int id = map_node.child("id").first_child().text().as_int();
+	std::string name = map_node.child("name").first_child().text().as_string();
 	LayerArray layers{};
 	pugi::xml_node layers_node = map_node.child("layers");
 	for (auto& y_axis_nodes : layers_node.children("y_axis")) {
@@ -72,15 +72,13 @@ Map map_from_xml(pugi::xml_node& map_node)
 	return map;
 }
 
-void map_to_xml(Map& map, pugi::xml_node& parent)
+void map_to_xml(Map& map, pugi::xml_node& map_node)
 {
-	pugi::xml_node map_node = parent.append_child("map");
-
 	pugi::xml_node id = map_node.append_child("id");
-	id.append_child(pugi::node_pcdata).set_value(std::to_string(map.id).c_str());
+	id.first_child().text().set(map.id);
 
 	pugi::xml_node name = map_node.append_child("name");
-	name.append_child(pugi::node_pcdata).set_value(map.name.c_str());
+	name.first_child().text().set(map.name.c_str());
 
 	pugi::xml_node layers = map_node.append_child("layers");
 	int layer_idx{};
