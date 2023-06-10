@@ -37,6 +37,11 @@ Game::Game(int width, int height, bool fullscreen)
 }
 
 void Game::process_input() {
+    if (ih.get_action(Action::ChangeSceneToMenu)) {
+        auto& scene = dynamic_cast<GameScene&>(*scenes.at(State::GAME));
+        scene.save_gos();
+    }
+
     for (auto& elem : change_scene) {
         if (ih.get_action(elem.first)) {
             state = elem.second;
@@ -44,9 +49,12 @@ void Game::process_input() {
             sm.set_scene(std::move(next_scene));
         }
     }
+    
+    // Close window and end game loop
     if (ih.get_action(Action::Close)) {
         window.close();
     }
+
     ih.reset_actions();
     ih.process_input(window);
     if (ih.get_action(Action::ClickButton)) {
@@ -64,5 +72,4 @@ void Game::run() {
         float time = clock.restart().asMilliseconds();
         sm.run_scene(time, ih);
     }
-    // TODO: Save all data after window closes
 }

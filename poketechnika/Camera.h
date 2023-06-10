@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <pugixml.hpp>
 #include <memory>
 #include "GameObject.h"
 #include "Map.h"

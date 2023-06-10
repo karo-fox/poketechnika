@@ -56,3 +56,13 @@ sf::Vector2f Player::getPosition()
 {
 	return position;
 }
+
+void Player::save(pugi::xml_node& node) {
+	pugi::xml_node active_node = node.child("active");
+	active_node.first_child().text().set(active);
+}
+
+void Player::load(pugi::xml_node& node) {
+	pugi::xml_node active_node = node.child("active");
+	active = active_node.first_child().text().as_bool();
+}

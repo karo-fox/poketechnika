@@ -1,4 +1,5 @@
 #include "Camera.h"
+#include <iostream>
 
 sf::Vector2f Camera::size = sf::Vector2f(0, 0);
 
