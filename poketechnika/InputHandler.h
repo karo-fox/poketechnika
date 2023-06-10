@@ -23,4 +23,5 @@ public:
 	void add_action(const Action& action);
 	bool get_action(const Action& action);
 	bool randomizer(int percent);
+	int randomizer(int start, int number);
 };

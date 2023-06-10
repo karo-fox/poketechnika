@@ -41,6 +41,10 @@ void Game::process_input() {
         auto& scene = dynamic_cast<GameScene&>(*scenes.at(State::GAME));
         scene.save_gos();
     }
+    if (ih.get_action(Action::RandomPokemon)) {
+        auto& scene = dynamic_cast<BattleScene&>(*scenes.at(State::BATTLE));
+        scene.setRandomEnemy(ih);
+    }
 
     for (auto& elem : change_scene) {
         if (ih.get_action(elem.first)) {

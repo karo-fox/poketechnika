@@ -74,3 +74,8 @@ bool InputHandler::randomizer(int percent)
 	if (random <= percent) return true;
 	else return false;
 }
+
+int InputHandler::randomizer(int start, int number) {
+	int random = (std::rand() % number) + start;
+	return random;
+}

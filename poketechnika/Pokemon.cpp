@@ -70,3 +70,7 @@ void Pokemon::load(pugi::xml_node& node) {
 	pugi::xml_node active_node = node.child("active");
 	active = active_node.first_child().text().as_bool();
 }
+
+std::string Pokemon::getName() {
+	return name;
+}
