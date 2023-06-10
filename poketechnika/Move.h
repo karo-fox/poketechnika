@@ -6,6 +6,6 @@ class Move
 private:
 	std::string name;
 	PokemonType type;
-	float dmg;
+	float power;
 	// TODO if time : conditions (sleep, paralyze etc)
 };

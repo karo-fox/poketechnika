@@ -38,6 +38,14 @@ void Player::update(float elapsedTime, const InputHandler& ih)
 		move += sf::Vector2f(speed * elapsedTime, 0);
 	}
 	position += move;
+	// Checking for bushes
+	// To iniciate battle
+	if (move != sf::Vector2f(0, 0) 
+		&& _map->isBush(position + sf::Vector2f(size.x / 2, size.y / 2))
+		&& ih.randomizer(1))
+	{
+		ih.add_action(Action::ChangeSceneToBattle);
+	}
 }
 
 sf::Vector2f Player::getPosition()

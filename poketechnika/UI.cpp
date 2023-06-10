@@ -12,6 +12,24 @@ void UI::update(float elapsedTime, const InputHandler& ih) {
 	}
 }
 
+void UI::update(float elapsedTime, const InputHandler& ih, int first, int size) {
+	if (ih.get_action(Action::Exit)) {
+		_active_idx = 0;
+	}
+	if (ih.get_action(Action::AttackMenu)) {
+		_active_idx = 4;
+	}
+	if (ih.get_action(Action::PokemonMenu)) {
+		_active_idx = 8;
+	}
+	if (ih.get_action(Action::NextItem)) {
+		if(_active_idx < size) next();
+	}
+	if (ih.get_action(Action::PreviousItem)) {
+		if(_active_idx > first) previous();
+	}
+}
+
 Action UI::click() const {
 	return _buttons.at(_active_idx).click();
 }

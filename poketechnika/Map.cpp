@@ -119,3 +119,19 @@ sf::Vector2f Map::getMapSize()
 {
 	return sf::Vector2f(layers[0].size() * 64, layers[0][0].size() * 64);
 }
+
+bool Map::isBush(sf::Vector2f pos) const
+{
+	sf::Vector2f chk = sf::Vector2f(((int)pos.x-(int)pos.x % 64), ((int)pos.y-(int)pos.y % 64));
+	for (int i = 0; i < layers.at(1).size(); i++)
+	{
+		for (int j = 0; j < layers[1][i].size(); j++)
+		{
+			if (chk.x == layers[1][i][j].position.x && chk.y == layers[1][i][j].position.y)
+			{
+				return layers[1][i][j].isType(tileTypes::BUSH);
+			}
+		}
+	}
+	return false;
+}

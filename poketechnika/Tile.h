@@ -18,6 +18,7 @@ public:
 	Tile(tileTypes type_, sf::Vector2f pos, bool passable_, sf::Vector2f s = sf::Vector2f{ 2, 2 });
 	Tile(const Tile& other);
 	bool isPassable() const;
+	bool isType(tileTypes type_) const;
 
 	Tile& operator= (const Tile& other);
 

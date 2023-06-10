@@ -26,7 +26,6 @@ GameScene::GameScene()
 	}, map{}
 {
 	load_map();
-	
 	// Initialize all Game Objects and add them to container
 	Player player{map};
 	player.setActive(true);

@@ -37,6 +37,12 @@ bool Tile::isPassable() const
 	return passable;
 }
 
+bool Tile::isType(tileTypes type_) const
+{
+	if (type_ == type) return true;
+	else return false;
+}
+
 Tile& Tile::operator=(const Tile& other)
 {
 	position = other.position;

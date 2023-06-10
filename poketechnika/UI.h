@@ -17,4 +17,5 @@ public:
 	UI(const std::vector<Button>& buttons = {});
 	Action click() const;
 	void update(float elapsedTime, const InputHandler& ih);
+	void update(float elapsedTime, const InputHandler& ih, int first, int size);
 };
