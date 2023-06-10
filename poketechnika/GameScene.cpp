@@ -26,9 +26,11 @@ GameScene::GameScene()
 	Player player{map};
 	auto player_ptr{ std::make_shared<Player>(player)};
 	game_objects.at(GO::PLAYER).push_back(player_ptr);
+
 	auto player_ptr2{ player_ptr };
 	Camera camera{22, 44, player_ptr2};
 	camera.setBoundaries(map.getMapSize());
+	camera.setActive(true);
 	game_objects.at(GO::CAMERA).push_back(std::make_shared<Camera>(camera));
 
 	load_gos();
@@ -62,9 +64,6 @@ void GameScene::save_gos() {
 		pugi::xml_node player_node = gos_node.child("player");
 		dynamic_cast<Player&>(*game_objects.at(GO::PLAYER).at(0)).save(player_node);
 
-		pugi::xml_node camera_node = gos_node.child("camera");
-		dynamic_cast<Camera&>(*game_objects.at(GO::CAMERA).at(0)).save(camera_node);
-
 		gos_file.save_file(GOS_FILE_PATH);
 	}
 	catch (const Exception& e) {
@@ -79,10 +78,6 @@ void GameScene::load_gos() {
 
 		pugi::xml_node player_node = gos_node.child("player");
 		dynamic_cast<Player&>(*game_objects.at(GO::PLAYER).at(0)).load(player_node);
-
-		pugi::xml_node camera_node = gos_node.child("camera");
-		dynamic_cast<Camera&>(*game_objects.at(GO::CAMERA).at(0)).load(player_node);
-
 	}
 	catch (const Exception& e) {
 		std::cout << e.what() << '\n';

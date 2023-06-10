@@ -14,19 +14,19 @@
 			<power>0.400000006</power>
 		</move1>
 		<move2>
-			<name>Scratch</name>
-			<type>1</type>
+			<name>Ember</name>
+			<type>2</type>
 			<power>0.400000006</power>
 		</move2>
 		<move3>
-			<name>Scratch</name>
-			<type>1</type>
-			<power>0.400000006</power>
+			<name>Dragon Breath</name>
+			<type>15</type>
+			<power>0.600000024</power>
 		</move3>
 		<move4>
-			<name>Scratch</name>
-			<type>1</type>
-			<power>0.400000006</power>
+			<name>Fire Fang</name>
+			<type>15</type>
+			<power>0.649999976</power>
 		</move4>
 		<active>true</active>
 		<front>assets/textures/pokemon/Charmander_front.png</front>

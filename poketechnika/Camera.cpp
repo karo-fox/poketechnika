@@ -50,13 +50,3 @@ void Camera::setBoundaries(sf::Vector2f bound)
 {
 	boundaries = bound;
 }
-
-void Camera::save(pugi::xml_node& node) {
-	pugi::xml_node active_node = node.child("active");
-	active_node.first_child().text().set(active);
-}
-
-void Camera::load(pugi::xml_node& node) {
-	pugi::xml_node active_node = node.child("active");
-	active = active_node.first_child().text().as_bool();
-}
