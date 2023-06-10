@@ -15,7 +15,7 @@ class Camera : public GameObject
 public:
 	Camera(int x, int y, std::shared_ptr<Player> p);
 	static void setCameraSize(int x, int y);
-	void update(float elapsedTime, const InputHandler& ih);
+	void update(float elapsedTime, InputHandler& ih);
 	bool isWithinCamera(sf::Vector2f pos) const;
 	void setBoundaries(sf::Vector2f bound);
 	sf::Vector2f getPosition() const;

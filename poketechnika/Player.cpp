@@ -8,13 +8,13 @@ Player::Player(const Map& map)
 	speed = 0.10f;
 }
 
-void Player::update(float elapsedTime, const InputHandler& ih)
+void Player::update(float elapsedTime, InputHandler& ih)
 {
 	// Movement logic
 	movementLogic(elapsedTime, ih);
 }
 
-void Player::movementLogic(float elapsedTime, const InputHandler& ih)
+void Player::movementLogic(float elapsedTime, InputHandler& ih)
 {
 	// Each if checks for one direction, for both start and end of player graphics (size)
 	sf::Vector2f move(0, 0);

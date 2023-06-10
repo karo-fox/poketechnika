@@ -14,6 +14,6 @@ private:
 	int buttonRange[2];
 public:
 	BattleScene();
-	void update(float time_elapsed, const InputHandler& ih);
+	void update(float time_elapsed, InputHandler& ih);
 	void render(Renderer& renderer);
 };

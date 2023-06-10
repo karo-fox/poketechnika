@@ -29,7 +29,7 @@ BattleScene::BattleScene()
 	std::cout << "Created battle scene" << '\n';
 }
 
-void BattleScene::update(float time_elapsed, const InputHandler& ih) {
+void BattleScene::update(float time_elapsed, InputHandler& ih) {
 	// Change menu type
 	if (menu == BattleMenu::MAIN)
 	{

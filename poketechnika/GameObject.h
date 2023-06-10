@@ -9,7 +9,7 @@ protected:
 	bool active;
 public:
 	GameObject();
-	virtual void update(float elapsedTime, const InputHandler& ih) = 0;
+	virtual void update(float elapsedTime, InputHandler& ih) = 0;
 	void setActive(bool active_);
 	bool isActive();
 };

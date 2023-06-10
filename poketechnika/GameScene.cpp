@@ -34,7 +34,7 @@ GameScene::GameScene()
 	std::cout << "Created Game Scene" << '\n';
 }
 
-void GameScene::update(float time_elapsed, const InputHandler& ih) {
+void GameScene::update(float time_elapsed, InputHandler& ih) {
 	for (auto& go_vec : game_objects) {
 		for (auto& go : go_vec.second) {
 			if (go->isActive()) {

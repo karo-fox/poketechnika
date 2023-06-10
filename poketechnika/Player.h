@@ -16,6 +16,6 @@ public:
 
 	sf::Vector2f getPosition();
 
-	void update(float elapsedTime, const InputHandler& ih) override;
-	void movementLogic(float elapsedTime, const InputHandler& ih);
+	void update(float elapsedTime, InputHandler& ih) override;
+	void movementLogic(float elapsedTime, InputHandler& ih);
 };

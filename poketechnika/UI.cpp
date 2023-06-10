@@ -3,7 +3,7 @@
 UI::UI(const std::vector<Button>& buttons) 
 	: GameObject{}, _buttons {buttons}, _active_idx{} {}
 
-void UI::update(float elapsedTime, const InputHandler& ih) {
+void UI::update(float elapsedTime, InputHandler& ih) {
 	if (ih.get_action(Action::NextItem)) {
 		next();
 	}
@@ -13,7 +13,7 @@ void UI::update(float elapsedTime, const InputHandler& ih) {
 	if (_buttons.size() > 0) select();
 }
 
-void UI::update(float elapsedTime, const InputHandler& ih, int first, int size) {
+void UI::update(float elapsedTime, InputHandler& ih, int first, int size) {
 	if (ih.get_action(Action::Exit)) {
 		_active_idx = 0;
 	}

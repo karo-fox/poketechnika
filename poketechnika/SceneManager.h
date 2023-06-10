@@ -14,6 +14,6 @@ private:
 public:
 	SceneManager(sf::RenderWindow& window, std::shared_ptr<Scene>&& scene = {});
 	void set_scene(std::shared_ptr<Scene> &&scene);
-	void run_scene(float time_elapsed, const InputHandler& ih);
+	void run_scene(float time_elapsed, InputHandler& ih);
 	void set_renderer_scale();
 };

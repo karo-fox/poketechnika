@@ -25,7 +25,7 @@ private:
 	void load_map();
 public:
 	GameScene();
-	void update(float time_elapsed, const InputHandler& ih);
+	void update(float time_elapsed, InputHandler& ih);
 	//void process_input(sf::RenderWindow& window);
 	void render(Renderer& render);
 };

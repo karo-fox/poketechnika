@@ -15,7 +15,7 @@ MenuScene::MenuScene()
 	std::cout << "Created menu scene" << '\n';
 }
 
-void MenuScene::update(float time_elapsed, const InputHandler& ih) {
+void MenuScene::update(float time_elapsed, InputHandler& ih) {
 	ui.select();
 	ui.update(time_elapsed, ih);
 }

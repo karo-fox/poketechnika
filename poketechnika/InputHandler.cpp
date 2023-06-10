@@ -59,16 +59,16 @@ void InputHandler::reset_actions() {
 	active_actions.clear();
 }
 
-bool InputHandler::get_action(const Action& action) const {
+bool InputHandler::get_action(const Action& action)  {
 	auto search = active_actions.find(action);
 	return search != active_actions.end();
 }
 
-void InputHandler::add_action(const Action& action) const {
+void InputHandler::add_action(const Action& action)  {
 	active_actions.insert(action);
 }
 
-bool InputHandler::randomizer(int percent) const
+bool InputHandler::randomizer(int percent) 
 {
 	int random = std::rand() % 100;
 	if (random <= percent) return true;
