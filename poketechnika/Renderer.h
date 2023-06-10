@@ -5,6 +5,7 @@
 #include "Camera.h"
 #include "Button.h"
 #include "Pokemon.h"
+#include "PokemonTypes.h"
 
 class Renderer
 {
@@ -18,9 +19,9 @@ public:
 	void rendDisplay();
 	sf::RenderWindow& getWindow();
 
-	void draw(Drawable& drawable);
+	void draw(Drawable& drawable, float scale_rate = 1.0);
 	void draw(Drawable& drawable, sf::Vector2f offset);
 	void draw(Map& map, const Camera& cam);
 	void draw(Button& button);
-	void draw(Pokemon& pokemon);
+	void draw(Pokemon& pokemon, Side side);
 };

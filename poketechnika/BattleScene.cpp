@@ -1,11 +1,16 @@
 #include "BattleScene.h"
 #include "PokemonTable.h"
+#include "Exception.h"
+#include "database.h"
 #include <iostream>
+#include <pugixml.hpp>
+
+const char* POKEMON_FILE_PATH = "data/pokemon.xml";
 
 BattleScene::BattleScene()
 	: Scene{},
 	background{ "assets/textures/background_battle.png", sf::Vector2f{0, 0}, true },
-	menu(BattleMenu::MAIN), buttonRange{0,4}
+	menu(BattleMenu::MAIN), buttonRange{ 0,4 }, pokemonTemplate{}
 {
 	// UI
 	std::vector<Button> buttons{
@@ -28,6 +33,9 @@ BattleScene::BattleScene()
 		Button{"Pokemon6", Action::Close, sf::Vector2f{1100, 625 } },
 	};
 	ui = UI{ buttons };
+
+	load_pokemon();
+
 	// Pokemon
 	playerTeam[0] = pokemonTemplate[1];
 	playerTeam[0].setActive(true);
@@ -36,7 +44,7 @@ BattleScene::BattleScene()
 	playerTeam[3] = pokemonTemplate[0];
 	playerTeam[4] = pokemonTemplate[0];
 	playerTeam[5] = pokemonTemplate[0];
-	for (int i = 0; i < 5; i++) playerTeam[i].setOwner(true);
+
 	enemyTeam[0] = pokemonTemplate[1];
 	enemyTeam[0].setActive(true);
 	enemyTeam[1] = pokemonTemplate[0];
@@ -44,8 +52,29 @@ BattleScene::BattleScene()
 	enemyTeam[3] = pokemonTemplate[0];
 	enemyTeam[4] = pokemonTemplate[0];
 	enemyTeam[5] = pokemonTemplate[0];
-	for (int i = 0; i < 5; i++) enemyTeam[i].setOwner(false);
+
 	std::cout << "Created battle scene" << '\n';
+}
+
+
+void BattleScene::load_pokemon()
+{
+	try {
+		pugi::xml_document pokemon_file = load_xml_file(POKEMON_FILE_PATH);
+		pugi::xml_node pokemon_node = pokemon_file.child("pokemon");
+		pugi::xml_node charmander_node = pokemon_node.child("charmander");
+		Pokemon charmander{};
+		charmander.load(charmander_node);
+
+		pokemonTemplate = {
+			{0, Pokemon()},
+			{1, charmander}
+		};
+
+	}
+	catch (const Exception& e) {
+		std::cout << e.what() << '\n';
+	}
 }
 
 void BattleScene::update(float time_elapsed, InputHandler& ih) {
@@ -95,7 +124,7 @@ void BattleScene::render(Renderer& renderer) {
 	// TODO: Pokemons, healthbars, Pokemon names, BattleLog (or animations xD)
 	for (int i = 0; i < 6; i++)
 	{
-		if (playerTeam[i].isActive()) renderer.draw(playerTeam[i]);
-		if (enemyTeam[i].isActive()) renderer.draw(enemyTeam[i]);
+		if (playerTeam[i].isActive()) renderer.draw(playerTeam[i], Side::back);
+		if (enemyTeam[i].isActive()) renderer.draw(enemyTeam[i], Side::front);
 	}
 }

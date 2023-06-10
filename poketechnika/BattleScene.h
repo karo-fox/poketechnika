@@ -15,6 +15,8 @@ private:
 	int buttonRange[2];
 	Pokemon playerTeam[6];
 	Pokemon enemyTeam[6];
+	std::map<int, Pokemon> pokemonTemplate;
+	void load_pokemon();
 public:
 	BattleScene();
 	void update(float time_elapsed, InputHandler& ih);

@@ -13,9 +13,15 @@ void Renderer::rendDisplay()
 	window.display();
 }
 
-void Renderer::draw(Drawable& drawable) {
-	if (drawable.isScalable()) drawable.sprite.setScale(scale, scale);
-	drawable.sprite.setPosition(drawable.position);
+void Renderer::draw(Drawable& drawable, float scale_rate) {
+	if (drawable.isScalable()) {
+		drawable.sprite.setScale(scale * scale_rate, scale * scale_rate);
+		drawable.sprite.setPosition(drawable.position * scale);
+	}
+	else {
+		drawable.sprite.setPosition(drawable.position);
+	}
+	
 	window.draw(drawable.sprite);
 }
 
@@ -60,14 +66,14 @@ void Renderer::draw(Button& button) {
 	window.draw(button.text);
 }
 
-void Renderer::draw(Pokemon& pokemon)
+void Renderer::draw(Pokemon& pokemon, Side side)
 {
-	if (pokemon.isScalable())
-	{
-		pokemon.sprite.setScale(scale*6.0f, scale*6.0f);
-		pokemon.sprite.setPosition(pokemon.position * scale);
+	if (side == Side::front) {
+		draw(pokemon.front, 6.0);
 	}
-	window.draw(pokemon.sprite);
+	else {
+		draw(pokemon.back, 6.0);
+	}
 	//TODO UI hp bar
 }
 

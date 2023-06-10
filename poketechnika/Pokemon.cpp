@@ -1,12 +1,12 @@
 #include "Pokemon.h"
 
-Pokemon::Pokemon(std::string name_, int lvl_, int xp_, PokemonType type1_, PokemonType type2_, float hp_, float maxhp_, Move move1_, Move move2_, Move move3_, Move move4_)
-	: Drawable("assets/textures/pokemon/error.png", sf::Vector2f{0, 0}, true),
+Pokemon::Pokemon(std::string name_, int lvl_, int xp_, PokemonType type1_, PokemonType type2_, float hp_, float maxhp_, Move move1_, Move move2_, Move move3_, Move move4_, const std::string& front_texture, const std::string& back_texture)
+	: front(front_texture, sf::Vector2f{ 800, -25 }, true), back(back_texture, sf::Vector2f{ 150, 281 }, true),
 	name(name_), lvl(lvl_), xp(xp_), type1(type1_), type2(type2_), hp(hp_), maxhp(maxhp_), move1(move1_), move2(move2_), move3(move3_), move4(move4_) {
 	active = false;
 }
 
-Pokemon::Pokemon() : Drawable("assets/textures/pokemon/error.png", sf::Vector2f{ 0, 0 }, true)
+Pokemon::Pokemon() : front("assets/textures/pokemon/error.png", sf::Vector2f{ 800, -25 }, true), back("assets/textures/pokemon/error.png", sf::Vector2f{ 150, 281 }, true)
 {
 	name = "NULL";
 	lvl = 99;
@@ -22,27 +22,7 @@ Pokemon::Pokemon() : Drawable("assets/textures/pokemon/error.png", sf::Vector2f{
 	active = false;
 }
 
-void Pokemon::update(float elapsedTime, InputHandler& ih)
-{
-
-}
-
-void Pokemon::setOwner(bool isPlayer)
-{
-	if (isPlayer)
-	{
-		file = "assets/textures/pokemon/" + name + "_back.png";
-		position = sf::Vector2f(150, 281);
-		setDrawable();
-	}
-	else
-	{
-		file = "assets/textures/pokemon/" + name + "_front.png";
-		position = sf::Vector2f(800, -25);
-		setDrawable();
-	}
-}
-	: name(name_), lvl(lvl_), xp(xp_), type1(type1_), type2(type2_), hp(hp_), maxhp(maxhp_), move1(move1_), move2(move2_), move3(move3_), move4(move4_) {}
+void Pokemon::update(float elapsedTime, InputHandler& ih) {}
 
 void Pokemon::save(pugi::xml_node& node) {
 	node.child("name").first_child().text().set(name.c_str());
@@ -80,4 +60,7 @@ void Pokemon::load(pugi::xml_node& node) {
 	move1 = load_move(move3_node);
 	pugi::xml_node move4_node = node.child("move4");
 	move1 = load_move(move4_node);
+
+	front = Drawable{ node.child("front").first_child().text().as_string(), front.position, front.isScalable() };
+	back = Drawable{ node.child("back").first_child().text().as_string(), back.position, back.isScalable() };
 }
