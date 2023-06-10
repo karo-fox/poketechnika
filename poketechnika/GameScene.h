@@ -7,7 +7,6 @@
 #include "Scene.h"
 #include "GameObject.h"
 #include "Map.h"
-//#include "InputHandler.h"
 
 
 enum class GO {
@@ -28,4 +27,6 @@ public:
 	void update(float time_elapsed, InputHandler& ih);
 	//void process_input(sf::RenderWindow& window);
 	void render(Renderer& render);
+	void save_gos();
+	void load_gos();
 };

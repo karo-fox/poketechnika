@@ -56,3 +56,22 @@ sf::Vector2f Player::getPosition()
 {
 	return position;
 }
+
+void Player::save(pugi::xml_node& node) {
+	pugi::xml_node position_node = node.child("position");
+	position_node.child("x").first_child().text().set(position.x);
+	position_node.child("y").first_child().text().set(position.y);
+
+	pugi::xml_node active_node = node.child("active");
+	active_node.first_child().text().set(active);
+}
+
+void Player::load(pugi::xml_node& node) {
+	pugi::xml_node position_node = node.child("position");
+	float x = position_node.child("x").first_child().text().as_float();
+	float y = position_node.child("y").first_child().text().as_float();
+	position = sf::Vector2f{ x, y };
+
+	pugi::xml_node active_node = node.child("active");
+	active = active_node.first_child().text().as_bool();
+}

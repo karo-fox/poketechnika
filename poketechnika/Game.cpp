@@ -44,6 +44,8 @@ void Game::process_input() {
             sm.set_scene(std::move(next_scene));
         }
     }
+    
+    // Close window and end game loop
     if (ih.get_action(Action::Close)) {
         window.close();
     }
@@ -64,5 +66,4 @@ void Game::run() {
         float time = clock.restart().asMilliseconds();
         sm.run_scene(time, ih);
     }
-    // TODO: Save all data after window closes
 }
