@@ -1,14 +1,31 @@
 #include "Camera.h"
+#include <iostream>
 
 sf::Vector2f Camera::size = sf::Vector2f(0, 0);
 
 void Camera::update(float elapsedTime, InputHandler& ih)
 {
 	sf::Vector2f player_position = player->getPosition();
-	if (player_position.x - (size.x / 2) + 16 > 0 && player_position.x - (size.x / 2) + 16 < boundaries.y - size.x)
-		position.x = player_position.x - (size.x / 2) + 16;
-	if (player_position.y - (size.y / 2) + 16 > 0 && player_position.y - (size.y / 2) + 16 < boundaries.x - size.y)
-		position.y = player_position.y - (size.y / 2) + 16;
+	if (size.x < boundaries.x)
+	{
+		if (player_position.x - (size.x / 2) + 16 > 0 && player_position.x - (size.x / 2) + 16 < boundaries.y - size.x)
+			position.x = player_position.x - (size.x / 2) + 16;
+	}
+	else
+	{
+		//std::cout << size.x << boundaries.x << std::endl;
+		position.x = -((size.x - boundaries.y) / 2);
+		std::cout << position.x << std::endl;
+	}
+	if (size.y < boundaries.y)
+	{
+		if (player_position.y - (size.y / 2) + 16 > 0 && player_position.y - (size.y / 2) + 16 < boundaries.x - size.y)
+			position.y = player_position.y - (size.y / 2) + 16;
+	}
+	else
+	{
+		position.y = -((size.y - boundaries.x) / 2);
+	}
 }
 
 bool Camera::isWithinCamera(sf::Vector2f pos) const
