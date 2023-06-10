@@ -4,7 +4,7 @@
 #include "Drawable.h"
 
 enum class tileTypes {
-	GRASS, PAVEMENT, STREET, PATH, BUILDING, ROOF, BUSH
+	GRASS, PAVEMENT, STREET, PATH, BUILDING, ROOF, BUSH, BOSS
 };
 
 class Tile : public Drawable

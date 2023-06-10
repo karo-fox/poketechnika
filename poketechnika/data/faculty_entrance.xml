@@ -2123,6 +2123,13 @@
                     </position>
                     <type>6</type>
                 </tile>
+                <tile>
+                    <position>
+                        <x>7</x>
+                        <y>7</y>
+                    </position>
+                    <type>7</type>
+                </tile>
             </x_axis>
         </y_axis>
     </layers>
