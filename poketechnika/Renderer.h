@@ -4,6 +4,7 @@
 #include "Map.h"
 #include "Camera.h"
 #include "Button.h"
+#include "Pokemon.h"
 
 class Renderer
 {
@@ -21,4 +22,5 @@ public:
 	void draw(Drawable& drawable, sf::Vector2f offset);
 	void draw(Map& map, const Camera& cam);
 	void draw(Button& button);
+	void draw(Pokemon& pokemon);
 };

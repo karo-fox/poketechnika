@@ -18,4 +18,5 @@ public:
 	Drawable& operator= (const Drawable& other);
 
 	bool isScalable();
+	void setDrawable();
 };

@@ -175,6 +175,7 @@
     <ClInclude Include="Move.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Pokemon.h" />
+    <ClInclude Include="PokemonTable.h" />
     <ClInclude Include="PokemonTypes.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Scene.h" />

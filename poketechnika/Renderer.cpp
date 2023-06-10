@@ -60,6 +60,17 @@ void Renderer::draw(Button& button) {
 	window.draw(button.text);
 }
 
+void Renderer::draw(Pokemon& pokemon)
+{
+	if (pokemon.isScalable())
+	{
+		pokemon.sprite.setScale(scale*6.0f, scale*6.0f);
+		pokemon.sprite.setPosition(pokemon.position * scale);
+	}
+	window.draw(pokemon.sprite);
+	//TODO UI hp bar
+}
+
 void Renderer::setScale()
 {
 	scale = window.getSize().x / 1280.0f;
