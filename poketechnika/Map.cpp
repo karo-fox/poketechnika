@@ -118,7 +118,7 @@ bool Map::isPassable(sf::Vector2f pos) const
 	return false;
 }
 
-bool Map::isBush(sf::Vector2f pos) const
+bool Map::isTileType(sf::Vector2f pos, tileTypes type) const
 {
 	sf::Vector2f chk = sf::Vector2f(((int)pos.x - (int)pos.x % 64), ((int)pos.y - (int)pos.y % 64));
 	for (int i = 0; i < layers.at(1).size(); i++)
@@ -127,7 +127,7 @@ bool Map::isBush(sf::Vector2f pos) const
 		{
 			if (chk.x == layers[1][i][j].position.x && chk.y == layers[1][i][j].position.y)
 			{
-				return layers[1][i][j].isType(tileTypes::BUSH);
+				return layers[1][i][j].isType(type);
 			}
 		}
 	}
