@@ -87,6 +87,7 @@ void GameScene::load_gos() {
 		std::cout << e.what() << '\n';
 	}
 }
+
 void GameScene::load_map() {
 	try {
 		pugi::xml_document map_file = load_xml_file(map_files.at(MapId::FACULTY_ENTRANCE));
