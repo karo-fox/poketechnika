@@ -133,11 +133,11 @@ void BattleScene::update(float time_elapsed, InputHandler& ih) {
 		if (ih.get_action(Action::Catch)) {
 			if (isCatchable) {
 				// TODO: percent chance with hp and lvl variables
-				battleLog.addText("\nNie udalo sie!");
+				battleLog.addText("\nYou failed!");
 			}
 			else {
 				// Show Nie mo¿esz tego zrobiæ!
-				battleLog.addText("\nNie mozesz tego zrobic!");
+				battleLog.addText("\nYou can't do that!");
 			}
 		}
 		if (ih.get_action(Action::Run)) {
