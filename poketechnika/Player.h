@@ -6,12 +6,23 @@
 #include "InputHandler.h"
 #include "Map.h"
 
+enum class CurrentAnimation {
+	IDLE, RUNNING1, RUNNING2, RUNNING3
+};
+
+enum class Faceing {
+	UP, DOWN, LEFT, RIGHT
+};
+
 class Player : public GameObject, public Drawable
 {
 private:
 	float speed;
 	sf::Vector2f size;
 	std::shared_ptr<Map> _map;
+	CurrentAnimation animation;
+	Faceing face;
+	int animDur;
 public:
 	Player(const Map& m);
 	sf::Vector2f getPosition();
@@ -20,4 +31,5 @@ public:
 	void movementLogic(float elapsedTime, InputHandler& ih);
 	void save(pugi::xml_node& node);
 	void load(pugi::xml_node& node);
+	void updateSprite();
 };

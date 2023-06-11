@@ -12,6 +12,17 @@ Drawable::Drawable(const std::string& texture_file, const sf::Vector2f& pos)
 	}
 }
 
+Drawable::Drawable(const std::string& texture_file, sf::IntRect rect, const sf::Vector2f& pos)
+	: position{ pos }, texture{}, sprite{}, file{ texture_file }, scalable(false)
+{
+	if (texture.loadFromFile(file, rect)) {
+		sprite.setTexture(texture);
+	}
+	else {
+		throw Exception{ "Unable to load texture from " + file };
+	}
+}
+
 Drawable::Drawable(const std::string& texture_file, const sf::Vector2f& pos, bool scal)
 	: position{ pos }, texture{}, sprite{}, file{ texture_file }, scalable(scal)
 {
