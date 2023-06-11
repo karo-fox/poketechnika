@@ -77,6 +77,18 @@ void Renderer::draw(Pokemon& pokemon, Side side)
 	//TODO UI hp bar
 }
 
+void Renderer::draw(TextArea& textArea)
+{
+	// Background
+	textArea.sprite.setScale(scale, scale);
+	textArea.sprite.setPosition(textArea.position);
+	window.draw(textArea.sprite);
+	// Text
+	textArea.text.setScale(scale, scale);
+	textArea.text.setPosition(textArea.textPos);
+	window.draw(textArea.text);
+}
+
 void Renderer::setScale()
 {
 	scale = window.getSize().x / 1280.0f;
