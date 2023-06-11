@@ -45,9 +45,9 @@ void Renderer::draw(Map& map, const Camera& cam) {
 	}
 }
 
-void Renderer::draw(Button& button) {
+void Renderer::draw(Button& button, float scale_rate) {
 	if (button.isScalable()) {
-		button.sprite.setScale(scale, scale);
+		button.sprite.setScale(scale * scale_rate, scale * scale_rate);
 		button.sprite.setPosition(button.position * scale);
 	}
 	else {
@@ -57,7 +57,8 @@ void Renderer::draw(Button& button) {
 	if (button.isScalable()) {
 		button.text.setScale(scale, scale);
 		button.text.setPosition(
-			button.position.x * scale + 3, button.position.y * scale + 3
+			button.position.x * scale + 3 * scale_rate, 
+			button.position.y * scale + 3 * scale_rate
 		);
 	}
 	else {

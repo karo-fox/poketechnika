@@ -23,7 +23,7 @@ public:
 	void draw(Drawable& drawable, float scale_rate = 1.0);
 	void draw(Drawable& drawable, sf::Vector2f offset);
 	void draw(Map& map, const Camera& cam);
-	void draw(Button& button);
+	void draw(Button& button, float scale_rate = 1.0);
 	void draw(TextArea& textArea);
 	void draw(Pokemon& pokemon, Side side);
 };

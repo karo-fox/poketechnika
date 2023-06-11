@@ -17,22 +17,22 @@ BattleScene::BattleScene()
 	// UI
 	std::vector<Button> buttons{
 		// Main menu
-		Button{"Attack", Action::AttackMenu, sf::Vector2f{500, 625} },
-		Button{"Pokemon", Action::PokemonMenu, sf::Vector2f{700, 625} },
-		Button{"Catch", Action::Catch, sf::Vector2f{900, 625} },
-		Button{"Run", Action::Run, sf::Vector2f{1100, 625} },
+		Button{"Attack", Action::AttackMenu, sf::Vector2f{400, 625} },
+		Button{"Pokemon", Action::PokemonMenu, sf::Vector2f{600, 625} },
+		Button{"Catch", Action::Catch, sf::Vector2f{800, 625} },
+		Button{"Run", Action::Run, sf::Vector2f{1000, 625} },
 		// Attack
-		Button{"Attack1", Action::Close, sf::Vector2f{500, 625 } },
-		Button{"Attack2", Action::Close, sf::Vector2f{700, 625 } },
-		Button{"Attack3", Action::Close, sf::Vector2f{900, 625 } },
-		Button{"Attack4", Action::Close, sf::Vector2f{1100, 625 } },
+		Button{"Attack1", Action::Close, sf::Vector2f{400, 625 } },
+		Button{"Attack2", Action::Close, sf::Vector2f{600, 625 } },
+		Button{"Attack3", Action::Close, sf::Vector2f{800, 625 } },
+		Button{"Attack4", Action::Close, sf::Vector2f{1000, 625 } },
 		// Pokemon
-		Button{"Pokemon1", Action::Close, sf::Vector2f{100, 625 } },
-		Button{"Pokemon2", Action::Close, sf::Vector2f{300, 625 } },
-		Button{"Pokemon3", Action::Close, sf::Vector2f{500, 625 } },
-		Button{"Pokemon4", Action::Close, sf::Vector2f{700, 625 } },
-		Button{"Pokemon5", Action::Close, sf::Vector2f{900, 625 } },
-		Button{"Pokemon6", Action::Close, sf::Vector2f{1100, 625 } },
+		Button{"Pokemon1", Action::Close, sf::Vector2f{50, 625 } },
+		Button{"Pokemon2", Action::Close, sf::Vector2f{250, 625 } },
+		Button{"Pokemon3", Action::Close, sf::Vector2f{450, 625 } },
+		Button{"Pokemon4", Action::Close, sf::Vector2f{650, 625 } },
+		Button{"Pokemon5", Action::Close, sf::Vector2f{850, 625 } },
+		Button{"Pokemon6", Action::Close, sf::Vector2f{1050, 625 } },
 	};
 	ui = UI{ buttons };
 

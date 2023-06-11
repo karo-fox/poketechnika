@@ -18,7 +18,7 @@ public:
 	sf::Text text;
 
 	Button(
-		const std::string& txt, const Action& action, const sf::Vector2f& position, 
+		const std::string& txt, const Action& action, const sf::Vector2f& position,
 		const std::string& texture_file = "assets/textures/button.png"
 	);
 	Button(
