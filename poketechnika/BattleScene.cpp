@@ -3,6 +3,7 @@
 #include "Exception.h"
 #include "database.h"
 #include "ImageButton.h"
+#include "Text3Button.h"
 #include <iostream>
 #include <pugixml.hpp>
 
@@ -23,10 +24,11 @@ BattleScene::BattleScene()
 		std::make_shared<Button>(Button{"Catch", Action::Catch, sf::Vector2f{800, 625} }),
 		std::make_shared<Button>(Button{"Run", Action::Run, sf::Vector2f{1000, 625} }),
 		// Attack
-		std::make_shared<Button>(Button{"Attack1", Action::Close, sf::Vector2f{400, 625 } }),
-		std::make_shared<Button>(Button{"Attack2", Action::Close, sf::Vector2f{600, 625 } }),
-		std::make_shared<Button>(Button{"Attack3", Action::Close, sf::Vector2f{800, 625 } }),
-		std::make_shared<Button>(Button{"Attack4", Action::Close, sf::Vector2f{1000, 625 } }),
+		std::make_shared<Text3Button>(Text3Button{"Attack1", "type", "power", Action::Close, sf::Vector2f{250, 600}}),
+		std::make_shared<Text3Button>(Text3Button{"Attack2", "type", "power", Action::Close, sf::Vector2f{500, 600}}),
+		std::make_shared<Text3Button>(Text3Button{"Attack3", "type", "power", Action::Close, sf::Vector2f{750, 600}}),
+		std::make_shared<Text3Button>(Text3Button{"Attack4", "type", "power", Action::Close, sf::Vector2f{1000, 600}}),
+
 		// Pokemon
 		std::make_shared<ImageButton>(ImageButton{ Action::Close, sf::Vector2f{50, 625 }, "assets/textures/pokemon/Squirtle_front.png" }),
 		std::make_shared<ImageButton>(ImageButton{ Action::Close, sf::Vector2f{250, 625 }, "assets/textures/pokemon/Squirtle_front.png" }),
@@ -161,6 +163,9 @@ void BattleScene::render(Renderer& renderer) {
 			switch (menu) {
 			case BattleMenu::POKEMON:
 				renderer.draw(dynamic_cast<ImageButton&>(*button), 2.0);
+				break;
+			case BattleMenu::MOVES:
+				renderer.draw(dynamic_cast<Text3Button&>(*button), 2.5);
 				break;
 			default:
 				renderer.draw(*button, 2.0);

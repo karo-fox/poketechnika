@@ -5,6 +5,7 @@
 #include "Camera.h"
 #include "Button.h"
 #include "ImageButton.h"
+#include "Text3Button.h"
 #include "Pokemon.h"
 #include "PokemonTypes.h"
 #include "TextArea.h"
@@ -27,5 +28,6 @@ public:
 	void draw(Button& button, float scale_rate = 1.0);
 	void draw(TextArea& textArea);
 	void draw(ImageButton& button, float scale_rate = 1.0);
+	void draw(Text3Button& button, float scale_rate = 1.0);
 	void draw(Pokemon& pokemon, Side side);
 };

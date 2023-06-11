@@ -31,6 +31,12 @@
     <Filter Include="Pliki źródłowe\Graphics">
       <UniqueIdentifier>{ec9d1083-28f2-481c-909d-dac9820dcfde}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Pliki nagłówkowe\UI">
+      <UniqueIdentifier>{e992d403-18ba-456f-8d3f-a233f39b1096}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\UI">
+      <UniqueIdentifier>{e4d17f59-4012-42bd-bda4-2400fbf3990c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -78,12 +84,6 @@
     <ClCompile Include="InputHandler.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
-    <ClCompile Include="Button.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
-    <ClCompile Include="UI.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>Pliki źródłowe\GameObjects</Filter>
     </ClCompile>
@@ -95,6 +95,21 @@
     </ClCompile>
     <ClCompile Include="BattleScene.cpp">
       <Filter>Pliki źródłowe\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="BossScene.cpp">
+      <Filter>Pliki źródłowe\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageButton.cpp">
+      <Filter>Pliki źródłowe\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UI.cpp">
+      <Filter>Pliki źródłowe\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Pliki źródłowe\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Text3Button.cpp">
+      <Filter>Pliki źródłowe\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -149,12 +164,6 @@
     <ClInclude Include="Camera.h">
       <Filter>Pliki nagłówkowe\GameObjects</Filter>
     </ClInclude>
-    <ClInclude Include="Button.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="UI.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
     <ClInclude Include="Pokemon.h">
       <Filter>Pliki nagłówkowe\GameObjects</Filter>
     </ClInclude>
@@ -169,6 +178,21 @@
     </ClInclude>
     <ClInclude Include="PokemonTable.h">
       <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="BossScene.h">
+      <Filter>Pliki nagłówkowe\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Pliki nagłówkowe\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageButton.h">
+      <Filter>Pliki nagłówkowe\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI.h">
+      <Filter>Pliki nagłówkowe\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Text3Button.h">
+      <Filter>Pliki nagłówkowe\UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

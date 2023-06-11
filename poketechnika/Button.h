@@ -10,11 +10,11 @@ enum class ButtonType {
 
 class Button : public Drawable {
 private:
-	static sf::Font _font;
 	const Action _action;
 	sf::Vector2f _size;
 	ButtonType type;
 public:
+	static sf::Font _font;
 	sf::Text text;
 
 	Button(
