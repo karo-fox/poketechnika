@@ -150,7 +150,6 @@ void BattleScene::update(float time_elapsed, InputHandler& ih) {
 	{
 		// Enemy mechanic
 	}
-}
 		if (ih.get_action(Action::PokemonMenu)) {
 			menu = BattleMenu::POKEMON;
 			buttonRange[0] = 8;
@@ -179,7 +178,6 @@ void BattleScene::update(float time_elapsed, InputHandler& ih) {
 				);
 			}
 		}
-	}
 	else
 	{
 		if (ih.get_action(Action::Exit)) {
@@ -188,14 +186,6 @@ void BattleScene::update(float time_elapsed, InputHandler& ih) {
 			buttonRange[1] = 4;
 			ui.resetSelectButton();
 		}
-	}
-	// Update ui (button switching, click)
-	ui.update(time_elapsed, ih, buttonRange[0], buttonRange[1] - 1);
-	// Running from battle
-	if (ih.get_action(Action::Run)) {
-		//TODO: percent chance with visibility in battlelog
-		ih.add_action(Action::ChangeSceneToGame);
-		save_player_team();
 	}
 }
 
