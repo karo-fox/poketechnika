@@ -4,14 +4,14 @@
 sf::Font Bar::_font{};
 
 Bar::Bar(
-	int max_val, int val, const sf::Vector2f pos, 
+	int max_val, float val, const sf::Vector2f pos, 
 	const std::string& texture_file
 ) : Drawable{ texture_file, pos }, max_value{ max_val }, value{ val }, text{},
 	progress{ "assets/textures/bar_progress.png", 
-		sf::IntRect{0, 0, static_cast<int>(static_cast<float>(value)/max_value * 191), 32 }, 
+		sf::IntRect{0, 0, static_cast<int>(value/max_value * 191), 32 }, 
 	pos }
 {
-	std::string txt = std::to_string(value) + " / " + std::to_string(max_value);
+	std::string txt = std::to_string(static_cast<int>(value)) + " / " + std::to_string(max_value);
 	text.setFont(_font);
 	text.setString(txt);
 	text.setCharacterSize(24);

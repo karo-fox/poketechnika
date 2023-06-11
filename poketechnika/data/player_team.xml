@@ -92,7 +92,7 @@
 			<type>4</type>
 			<power>0.649999976</power>
 		</move4>
-		<active>false</active>
+		<active>true</active>
 		<front>assets/textures/pokemon/Pikachu_front.png</front>
 		<back>assets/textures/pokemon/Pikachu_back.png</back>
 	</pokemon>
@@ -188,7 +188,7 @@
 			<type>15</type>
 			<power>0.400000006</power>
 		</move4>
-		<active>true</active>
+		<active>false</active>
 		<front>assets/textures/pokemon/Pidgey_front.png</front>
 		<back>assets/textures/pokemon/Pidgey_back.png</back>
 	</pokemon>

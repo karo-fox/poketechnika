@@ -120,7 +120,7 @@ void Renderer::draw(Pokemon& pokemon, Side side)
 	if (side == Side::front) {
 		draw(pokemon.front, 6.0);
 		Bar hp_bar{ 
-			pokemon.getMaxHp(), pokemon.getHp(), 
+			pokemon.getMaxHp(), pokemon.getHP(), 
 			sf::Vector2f{
 				pokemon.front.position.x,
 				pokemon.front.position.y + 375
@@ -131,7 +131,7 @@ void Renderer::draw(Pokemon& pokemon, Side side)
 	else {
 		draw(pokemon.back, 6.0);
 		Bar hp_bar{ 
-			pokemon.getMaxHp(), pokemon.getHp(), 
+			pokemon.getMaxHp(), pokemon.getHP(), 
 			sf::Vector2f{
 				pokemon.back.position.x, 
 				pokemon.back.position.y + 100
