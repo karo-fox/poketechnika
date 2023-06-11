@@ -307,6 +307,7 @@ void BattleScene::update(float time_elapsed, InputHandler& ih) {
 		else if (ih.get_action(Action::Catch)) {
 			if (isCatchable) {
 				// TODO: percent chance with hp and lvl variables
+
 				bool success = false;
 				for (int i = 0; i < 6; i++) {
 					if (playerTeam[i].getName() == "NULL" && !success) {
@@ -321,7 +322,7 @@ void BattleScene::update(float time_elapsed, InputHandler& ih) {
 				currentTurn = Turn::ENEMY;
 			}
 			else {
-				// Show Nie mo¿esz tego zrobiæ!
+				// Show Nie moÂ¿esz tego zrobiÃ¦!
 				battleLog.addText("\nYou cannot do that!");
 			}
 		}

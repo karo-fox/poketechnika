@@ -12,7 +12,8 @@ std::vector<std::string> Move::data() {
 		"dark", "steel", "fairy"
 	};
 	return std::vector<std::string>{
-		name, types_string.at(static_cast<int>(type)), std::to_string(power)
+		name, types_string.at(static_cast<int>(type)), 
+		std::to_string(static_cast<int>(power*100))
 	};
 }
 
