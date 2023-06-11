@@ -332,6 +332,10 @@ void BattleScene::update(float time_elapsed, InputHandler& ih) {
 						playerTeam[i].setActive(false);
 						battleLog.addText("\nYou successfully catched a " + enemyTeam[0].getName() + "!");
 						success = true;
+						for (int i = 0; i < 6; i++)
+						{
+							playerTeam[i].setHPToMax();
+						}
 						ih.add_action(Action::ChangeSceneToGame);
 					}
 				}
