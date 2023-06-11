@@ -19,7 +19,7 @@ Button::Button(
 // Image button
 Button::Button(
 	const Action& action, const sf::Vector2f& position,
-	const std::string& texture_file, sf::Vector2f size
+	sf::Vector2f size, const std::string& texture_file
 ) : Drawable{ texture_file, position, true }, _action{ action }, text{},
 	_size(size), type(ButtonType::IMAGE)
 {

@@ -2,6 +2,7 @@
 #include "PokemonTable.h"
 #include "Exception.h"
 #include "database.h"
+#include "ImageButton.h"
 #include <iostream>
 #include <pugixml.hpp>
 
@@ -15,24 +16,24 @@ BattleScene::BattleScene()
 	battleLog("Log walki", sf::Vector2f(0,0))
 {
 	// UI
-	std::vector<Button> buttons{
+	std::vector<std::shared_ptr<Button>> buttons{
 		// Main menu
-		Button{"Attack", Action::AttackMenu, sf::Vector2f{400, 625} },
-		Button{"Pokemon", Action::PokemonMenu, sf::Vector2f{600, 625} },
-		Button{"Catch", Action::Catch, sf::Vector2f{800, 625} },
-		Button{"Run", Action::Run, sf::Vector2f{1000, 625} },
+		std::make_shared<Button>(Button{"Attack", Action::AttackMenu, sf::Vector2f{400, 625} }),
+		std::make_shared<Button>(Button{"Pokemon", Action::PokemonMenu, sf::Vector2f{600, 625} }),
+		std::make_shared<Button>(Button{"Catch", Action::Catch, sf::Vector2f{800, 625} }),
+		std::make_shared<Button>(Button{"Run", Action::Run, sf::Vector2f{1000, 625} }),
 		// Attack
-		Button{"Attack1", Action::Close, sf::Vector2f{400, 625 } },
-		Button{"Attack2", Action::Close, sf::Vector2f{600, 625 } },
-		Button{"Attack3", Action::Close, sf::Vector2f{800, 625 } },
-		Button{"Attack4", Action::Close, sf::Vector2f{1000, 625 } },
+		std::make_shared<Button>(Button{"Attack1", Action::Close, sf::Vector2f{400, 625 } }),
+		std::make_shared<Button>(Button{"Attack2", Action::Close, sf::Vector2f{600, 625 } }),
+		std::make_shared<Button>(Button{"Attack3", Action::Close, sf::Vector2f{800, 625 } }),
+		std::make_shared<Button>(Button{"Attack4", Action::Close, sf::Vector2f{1000, 625 } }),
 		// Pokemon
-		Button{"Pokemon1", Action::Close, sf::Vector2f{50, 625 } },
-		Button{"Pokemon2", Action::Close, sf::Vector2f{250, 625 } },
-		Button{"Pokemon3", Action::Close, sf::Vector2f{450, 625 } },
-		Button{"Pokemon4", Action::Close, sf::Vector2f{650, 625 } },
-		Button{"Pokemon5", Action::Close, sf::Vector2f{850, 625 } },
-		Button{"Pokemon6", Action::Close, sf::Vector2f{1050, 625 } },
+		std::make_shared<ImageButton>(ImageButton{ Action::Close, sf::Vector2f{50, 625 }, "assets/textures/pokemon/Squirtle_front.png" }),
+		std::make_shared<ImageButton>(ImageButton{ Action::Close, sf::Vector2f{250, 625 }, "assets/textures/pokemon/Squirtle_front.png" }),
+		std::make_shared<ImageButton>(ImageButton{ Action::Close, sf::Vector2f{450, 625 }, "assets/textures/pokemon/Squirtle_front.png" }),
+		std::make_shared<ImageButton>(ImageButton{ Action::Close, sf::Vector2f{650, 625 }, "assets/textures/pokemon/Squirtle_front.png" }),
+		std::make_shared<ImageButton>(ImageButton{ Action::Close, sf::Vector2f{850, 625 }, "assets/textures/pokemon/Squirtle_front.png" }),
+		std::make_shared<ImageButton>(ImageButton{ Action::Close, sf::Vector2f{1050, 625 }, "assets/textures/pokemon/Squirtle_front.png" }),
 	};
 	ui = UI{ buttons };
 
@@ -154,10 +155,19 @@ void BattleScene::render(Renderer& renderer) {
 	renderer.draw(background);
 	
 	// Buttons
-	int k = 0;
+	int i = 0;
 	for (auto& button : ui._buttons) {
-		if(k < buttonRange[1] && k >= buttonRange[0]) renderer.draw(button);
-		k++;
+		if (i < buttonRange[1] && i >= buttonRange[0]) {
+			switch (menu) {
+			case BattleMenu::POKEMON:
+				renderer.draw(dynamic_cast<ImageButton&>(*button), 2.0);
+				break;
+			default:
+				renderer.draw(*button, 2.0);
+				break;
+			}
+		}
+		i++;
 	}
 
 	// TODO: healthbars, Pokemon names, (or animations xD)

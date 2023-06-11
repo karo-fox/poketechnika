@@ -1,6 +1,6 @@
 #include "UI.h"
 
-UI::UI(const std::vector<Button>& buttons) 
+UI::UI(const std::vector<std::shared_ptr<Button>>& buttons) 
 	: GameObject{}, _buttons {buttons}, _active_idx{} {}
 
 void UI::update(float elapsedTime, InputHandler& ih) {
@@ -41,7 +41,7 @@ void UI::resetSelectButton()
 }
 
 Action UI::click() const {
-	return _buttons.at(_active_idx).click();
+	return _buttons.at(_active_idx)->click();
 }
 
 void UI::next() {
@@ -59,16 +59,16 @@ void UI::previous() {
 }
 
 void UI::select() {
-	_buttons.at(_active_idx).sprite.setColor(sf::Color(255, 0, 0));
-	_buttons.at(_active_idx).text.setFillColor(sf::Color(255, 255, 255));
+	_buttons.at(_active_idx)->sprite.setColor(sf::Color(255, 0, 0));
+	_buttons.at(_active_idx)->text.setFillColor(sf::Color(255, 255, 255));
 }
 
 void UI::unselect() {
-	_buttons.at(_active_idx).sprite.setColor(sf::Color(255, 255, 255));
-	_buttons.at(_active_idx).text.setFillColor(sf::Color(0, 0, 0));
+	_buttons.at(_active_idx)->sprite.setColor(sf::Color(255, 255, 255));
+	_buttons.at(_active_idx)->text.setFillColor(sf::Color(0, 0, 0));
 }
 
 void UI::unselect(int id) {
-	_buttons.at(id).sprite.setColor(sf::Color(255, 255, 255));
-	_buttons.at(id).text.setFillColor(sf::Color(0, 0, 0));
+	_buttons.at(id)->sprite.setColor(sf::Color(255, 255, 255));
+	_buttons.at(id)->text.setFillColor(sf::Color(0, 0, 0));
 }

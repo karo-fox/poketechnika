@@ -7,9 +7,9 @@ MenuScene::MenuScene()
 	: Scene{},
 	background{ "assets/textures/background_menu.png", sf::Vector2f{0, 0}, true }
 {
-	std::vector<Button> buttons{
-		Button{"Start", Action::ChangeSceneToGame, sf::Vector2f{592, 360} },
-		Button{"Close", Action::Close, sf::Vector2f{592, 424} },
+	std::vector<std::shared_ptr<Button>> buttons{
+		std::make_shared<Button>(Button{"Start", Action::ChangeSceneToGame, sf::Vector2f{592, 360} }),
+		std::make_shared<Button>(Button{"Close", Action::Close, sf::Vector2f{592, 424} }),
 	};
 	ui = UI{ buttons };
 	std::cout << "Created menu scene" << '\n';
@@ -23,6 +23,6 @@ void MenuScene::update(float time_elapsed, InputHandler& ih) {
 void MenuScene::render(Renderer& renderer) {
 	renderer.draw(background);
 	for (auto& button : ui._buttons) {
-		renderer.draw(button);
+		renderer.draw(*button);
 	}
 }

@@ -67,6 +67,21 @@ void Renderer::draw(Button& button, float scale_rate) {
 	window.draw(button.text);
 }
 
+void Renderer::draw(ImageButton& button, float scale_rate) {
+	if (button.isScalable()) {
+		button.sprite.setScale(scale * scale_rate, scale * scale_rate);
+		button.sprite.setPosition(button.position * scale);
+		button.image.sprite.setScale(scale, scale);
+		button.image.sprite.setPosition(button.position * scale);
+	}
+	else {
+		button.sprite.setPosition(button.position);
+		button.image.sprite.setPosition(button.position);
+	}
+	window.draw(button.sprite);
+	window.draw(button.image.sprite);
+}
+
 void Renderer::draw(Pokemon& pokemon, Side side)
 {
 	if (side == Side::front) {

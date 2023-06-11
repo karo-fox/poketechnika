@@ -153,6 +153,7 @@
     <ClCompile Include="Move.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Pokemon.cpp" />
+    <ClCompile Include="ImageButton.cpp" />
     <ClCompile Include="pugixml.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="GameScene.cpp" />
@@ -178,6 +179,7 @@
     <ClInclude Include="Move.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Pokemon.h" />
+    <ClInclude Include="ImageButton.h" />
     <ClInclude Include="PokemonTable.h" />
     <ClInclude Include="PokemonTypes.h" />
     <ClInclude Include="Renderer.h" />
