@@ -32,12 +32,13 @@ void UI::update(float elapsedTime, InputHandler& ih, int first, int size) {
 	if (_buttons.size() > 0) select();
 }
 
-void UI::resetSelectButton()
+void UI::resetSelectButton(int idx)
 {
 	for (int i = 0; i < _buttons.size(); i++)
 	{
 		unselect(i);
 	}
+	_active_idx = idx;
 }
 
 Action UI::click() const {

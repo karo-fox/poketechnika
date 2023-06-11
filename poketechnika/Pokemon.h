@@ -34,6 +34,13 @@ public:
     void save(pugi::xml_node& node);
     void load(pugi::xml_node& node);
 
+    void reduceHP(float red);
+    float getHP();
+    int getLvl();
+    void setHPToMax();
     std::string getName();
     std::vector<std::string> getMoveData(int move_idx);
+    Move getMove(int id);
+    PokemonType getType1();
+    PokemonType getType2();
 };

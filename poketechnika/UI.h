@@ -20,5 +20,5 @@ public:
 	Action click() const;
 	void update(float elapsedTime, InputHandler& ih);
 	void update(float elapsedTime, InputHandler& ih, int first, int size);
-	void resetSelectButton();
+	void resetSelectButton(int idx);
 };

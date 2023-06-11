@@ -44,6 +44,9 @@ void Pokemon::save(pugi::xml_node& node) {
 
 	pugi::xml_node active_node = node.child("active");
 	active_node.first_child().text().set(active);
+
+	node.child("front").first_child().text().set(front.file.c_str());
+	node.child("back").first_child().text().set(back.file.c_str());
 }
 
 void Pokemon::load(pugi::xml_node& node) {
@@ -76,7 +79,7 @@ std::string Pokemon::getName() {
 }
 
 std::vector<std::string> Pokemon::getMoveData(int move_idx) {
-	auto& move = move1;
+	auto move = move1;
 	switch (move_idx) {
 	case 1:
 		move = move1;
@@ -95,4 +98,40 @@ std::vector<std::string> Pokemon::getMoveData(int move_idx) {
 		break;
 	}
 	return move.data();
+}
+
+Move Pokemon::getMove(int id)
+{
+	if (id == 1) return move1;
+	else if (id == 2) return move2;
+	else if (id == 3) return move3;
+	else if (id == 4) return move4;
+	else return Move();
+}
+
+PokemonType Pokemon::getType1() {
+	return type1;
+}
+
+PokemonType Pokemon::getType2() {
+	return type2;
+}
+
+void Pokemon::reduceHP(float red)
+{
+	hp -= red;
+}
+
+float Pokemon::getHP()
+{
+	return hp;
+}
+
+int Pokemon::getLvl()
+{
+	return lvl;
+}
+
+void Pokemon::setHPToMax() {
+	hp = maxhp;
 }
