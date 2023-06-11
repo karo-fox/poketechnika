@@ -2,6 +2,8 @@
 #include "PokemonTable.h"
 #include "Exception.h"
 #include "database.h"
+#include "ImageButton.h"
+#include "Text3Button.h"
 #include <iostream>
 #include <pugixml.hpp>
 
@@ -12,27 +14,28 @@ BattleScene::BattleScene()
 	: Scene{},
 	background{ "assets/textures/background_battle.png", sf::Vector2f{0, 0}, true },
 	menu(BattleMenu::MAIN), buttonRange{ 0,4 }, pokemonTemplate{}, currentTurn(Turn::PLAYER),
-	battleLog("Log walki", sf::Vector2f(0,0))
+	battleLog("Log walki", sf::Vector2f(0,0)), active_player_pokemon_idx{}
 {
 	// UI
-	std::vector<Button> buttons{
+	std::vector<std::shared_ptr<Button>> buttons{
 		// Main menu
-		Button{"Attack", Action::AttackMenu, sf::Vector2f{500, 625} },
-		Button{"Pokemon", Action::PokemonMenu, sf::Vector2f{700, 625} },
-		Button{"Catch", Action::Catch, sf::Vector2f{900, 625} },
-		Button{"Run", Action::Run, sf::Vector2f{1100, 625} },
+		std::make_shared<Button>(Button{"Attack", Action::AttackMenu, sf::Vector2f{400, 625} }),
+		std::make_shared<Button>(Button{"Pokemon", Action::PokemonMenu, sf::Vector2f{600, 625} }),
+		std::make_shared<Button>(Button{"Catch", Action::Catch, sf::Vector2f{800, 625} }),
+		std::make_shared<Button>(Button{"Run", Action::Run, sf::Vector2f{1000, 625} }),
 		// Attack
-		Button{"Attack1", Action::Close, sf::Vector2f{500, 625 } },
-		Button{"Attack2", Action::Close, sf::Vector2f{700, 625 } },
-		Button{"Attack3", Action::Close, sf::Vector2f{900, 625 } },
-		Button{"Attack4", Action::Close, sf::Vector2f{1100, 625 } },
+		std::make_shared<Text3Button>(Text3Button{"Attack1", "type", "power", Action::Close, sf::Vector2f{250, 600}}),
+		std::make_shared<Text3Button>(Text3Button{"Attack2", "type", "power", Action::Close, sf::Vector2f{500, 600}}),
+		std::make_shared<Text3Button>(Text3Button{"Attack3", "type", "power", Action::Close, sf::Vector2f{750, 600}}),
+		std::make_shared<Text3Button>(Text3Button{"Attack4", "type", "power", Action::Close, sf::Vector2f{1000, 600}}),
+
 		// Pokemon
-		Button{"Pokemon1", Action::Close, sf::Vector2f{100, 625 } },
-		Button{"Pokemon2", Action::Close, sf::Vector2f{300, 625 } },
-		Button{"Pokemon3", Action::Close, sf::Vector2f{500, 625 } },
-		Button{"Pokemon4", Action::Close, sf::Vector2f{700, 625 } },
-		Button{"Pokemon5", Action::Close, sf::Vector2f{900, 625 } },
-		Button{"Pokemon6", Action::Close, sf::Vector2f{1100, 625 } },
+		std::make_shared<ImageButton>(ImageButton{ Action::Close, sf::Vector2f{50, 625 }, "assets/textures/pokemon/Squirtle_front.png" }),
+		std::make_shared<ImageButton>(ImageButton{ Action::Close, sf::Vector2f{250, 625 }, "assets/textures/pokemon/Squirtle_front.png" }),
+		std::make_shared<ImageButton>(ImageButton{ Action::Close, sf::Vector2f{450, 625 }, "assets/textures/pokemon/Squirtle_front.png" }),
+		std::make_shared<ImageButton>(ImageButton{ Action::Close, sf::Vector2f{650, 625 }, "assets/textures/pokemon/Squirtle_front.png" }),
+		std::make_shared<ImageButton>(ImageButton{ Action::Close, sf::Vector2f{850, 625 }, "assets/textures/pokemon/Squirtle_front.png" }),
+		std::make_shared<ImageButton>(ImageButton{ Action::Close, sf::Vector2f{1050, 625 }, "assets/textures/pokemon/Squirtle_front.png" }),
 	};
 	ui = UI{ buttons };
 
@@ -147,6 +150,43 @@ void BattleScene::update(float time_elapsed, InputHandler& ih) {
 	{
 		// Enemy mechanic
 	}
+		if (ih.get_action(Action::PokemonMenu)) {
+			menu = BattleMenu::POKEMON;
+			buttonRange[0] = 8;
+			buttonRange[1] = 14;
+			for (int i = buttonRange[0]; i < buttonRange[1]; i++) {
+				ui._buttons.at(i) = std::make_shared<ImageButton>(
+					ImageButton{
+						ui._buttons.at(i)->click(), 
+						ui._buttons.at(i)->position, 
+						playerTeam[i-buttonRange[0]].front.file
+					}
+				);
+			}
+		}
+		else if (ih.get_action(Action::AttackMenu)) {
+			menu = BattleMenu::MOVES;
+			buttonRange[0] = 4;
+			buttonRange[1] = 8;
+			for (int i = buttonRange[0]; i < buttonRange[1]; i++) {
+				auto move_data = playerTeam[active_player_pokemon_idx].getMoveData((i - buttonRange[0])+1);
+				ui._buttons.at(i) = std::make_shared<Text3Button>(
+					Text3Button{
+						move_data.at(0), move_data.at(1), move_data.at(2),
+						ui._buttons.at(i)->click(), ui._buttons.at(i)->position
+					}
+				);
+			}
+		}
+	else
+	{
+		if (ih.get_action(Action::Exit)) {
+			menu = BattleMenu::MAIN;
+			buttonRange[0] = 0;
+			buttonRange[1] = 4;
+			ui.resetSelectButton();
+		}
+	}
 }
 
 void BattleScene::render(Renderer& renderer) {
@@ -154,10 +194,22 @@ void BattleScene::render(Renderer& renderer) {
 	renderer.draw(background);
 	
 	// Buttons
-	int k = 0;
+	int i = 0;
 	for (auto& button : ui._buttons) {
-		if(k < buttonRange[1] && k >= buttonRange[0]) renderer.draw(button);
-		k++;
+		if (i < buttonRange[1] && i >= buttonRange[0]) {
+			switch (menu) {
+			case BattleMenu::POKEMON:
+				renderer.draw(dynamic_cast<ImageButton&>(*button), 2.0);
+				break;
+			case BattleMenu::MOVES:
+				renderer.draw(dynamic_cast<Text3Button&>(*button), 2.5);
+				break;
+			default:
+				renderer.draw(*button, 2.0);
+				break;
+			}
+		}
+		i++;
 	}
 
 	// TODO: healthbars, Pokemon names, (or animations xD)

@@ -14,9 +14,9 @@ class UI : GameObject {
 	void unselect(int id);
 public:
 	void select();
-	std::vector<Button> _buttons;
+	std::vector<std::shared_ptr<Button>> _buttons;
 
-	UI(const std::vector<Button>& buttons = {});
+	UI(const std::vector<std::shared_ptr<Button>>& buttons = {});
 	Action click() const;
 	void update(float elapsedTime, InputHandler& ih);
 	void update(float elapsedTime, InputHandler& ih, int first, int size);

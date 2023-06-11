@@ -9,9 +9,9 @@
 		<hp>10</hp>
 		<maxhp>10</maxhp>
 		<move1>
-			<name>Scratch</name>
-			<type>1</type>
-			<power>0.400000006</power>
+			<name>Fire Fang</name>
+			<type>15</type>
+			<power>0.649999976</power>
 		</move1>
 		<move2>
 			<name>Ember</name>

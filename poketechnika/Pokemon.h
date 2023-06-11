@@ -35,4 +35,5 @@ public:
     void load(pugi::xml_node& node);
 
     std::string getName();
+    std::vector<std::string> getMoveData(int move_idx);
 };

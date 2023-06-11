@@ -45,9 +45,9 @@ void Renderer::draw(Map& map, const Camera& cam) {
 	}
 }
 
-void Renderer::draw(Button& button) {
+void Renderer::draw(Button& button, float scale_rate) {
 	if (button.isScalable()) {
-		button.sprite.setScale(scale, scale);
+		button.sprite.setScale(scale * scale_rate, scale * scale_rate);
 		button.sprite.setPosition(button.position * scale);
 	}
 	else {
@@ -57,13 +57,62 @@ void Renderer::draw(Button& button) {
 	if (button.isScalable()) {
 		button.text.setScale(scale, scale);
 		button.text.setPosition(
-			button.position.x * scale + 3, button.position.y * scale + 3
+			button.position.x * scale + 3 * scale_rate, 
+			button.position.y * scale + 3 * scale_rate
 		);
 	}
 	else {
 		button.text.setPosition(button.position.x + 3, button.position.y + 3);
 	}
 	window.draw(button.text);
+}
+
+void Renderer::draw(ImageButton& button, float scale_rate) {
+	if (button.isScalable()) {
+		button.sprite.setScale(scale * scale_rate, scale * scale_rate);
+		button.sprite.setPosition(button.position * scale);
+		button.image.sprite.setScale(scale, scale);
+		button.image.sprite.setPosition(button.position * scale);
+	}
+	else {
+		button.sprite.setPosition(button.position);
+		button.image.sprite.setPosition(button.position);
+	}
+	window.draw(button.sprite);
+	window.draw(button.image.sprite);
+}
+
+void Renderer::draw(Text3Button& button, float scale_rate)
+{
+	if (button.isScalable()) {
+		button.sprite.setScale(scale * scale_rate, scale * scale_rate);
+		button.sprite.setPosition(button.position * scale);
+		button.text.setScale(scale, scale);
+		button.text.setPosition(
+			button.position.x * scale + 3 * scale,
+			button.position.y * scale + 3 * scale
+		);
+		button.text2.setScale(scale, scale);
+		button.text2.setPosition(
+			button.position.x * scale + 3 * scale,
+			button.position.y * scale + (3 + 24) * scale
+		);
+		button.text3.setScale(scale, scale);
+		button.text3.setPosition(
+			button.position.x * scale + 3 * scale,
+			button.position.y * scale + (3 + 48) * scale
+		);
+	}
+	else {
+		button.sprite.setPosition(button.position);
+		button.text.setPosition(button.position.x + 3, button.position.y + 3);
+		button.text2.setPosition(button.position.x + 3, button.position.y + 3 + 24);
+		button.text3.setPosition(button.position.x + 3, button.position.y + 3 + 48);
+	}
+	window.draw(button.sprite);
+	window.draw(button.text);
+	window.draw(button.text2);
+	window.draw(button.text3);
 }
 
 void Renderer::draw(Pokemon& pokemon, Side side)

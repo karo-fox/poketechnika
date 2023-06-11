@@ -74,3 +74,25 @@ void Pokemon::load(pugi::xml_node& node) {
 std::string Pokemon::getName() {
 	return name;
 }
+
+std::vector<std::string> Pokemon::getMoveData(int move_idx) {
+	auto& move = move1;
+	switch (move_idx) {
+	case 1:
+		move = move1;
+		break;
+	case 2:
+		move = move2;
+		break;
+	case 3:
+		move = move3;
+		break;
+	case 4:
+		move = move4;
+		break;
+	default:
+		move = move1;
+		break;
+	}
+	return move.data();
+}
