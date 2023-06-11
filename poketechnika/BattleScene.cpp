@@ -14,7 +14,7 @@ BattleScene::BattleScene()
 	: Scene{},
 	background{ "assets/textures/background_battle.png", sf::Vector2f{0, 0}, true },
 	menu(BattleMenu::MAIN), buttonRange{ 0,4 }, pokemonTemplate{}, currentTurn(Turn::PLAYER),
-	battleLog("Log walki", sf::Vector2f(0,0)), active_player_pokemon_idx{}
+	battleLog("Battle Log:", sf::Vector2f(0,0)), active_player_pokemon_idx{}
 {
 	// UI
 	std::vector<std::shared_ptr<Button>> buttons{
@@ -24,18 +24,18 @@ BattleScene::BattleScene()
 		std::make_shared<Button>(Button{"Catch", Action::Catch, sf::Vector2f{800, 625} }),
 		std::make_shared<Button>(Button{"Run", Action::Run, sf::Vector2f{1000, 625} }),
 		// Attack
-		std::make_shared<Text3Button>(Text3Button{"Attack1", "type", "power", Action::Close, sf::Vector2f{250, 600}}),
-		std::make_shared<Text3Button>(Text3Button{"Attack2", "type", "power", Action::Close, sf::Vector2f{500, 600}}),
-		std::make_shared<Text3Button>(Text3Button{"Attack3", "type", "power", Action::Close, sf::Vector2f{750, 600}}),
-		std::make_shared<Text3Button>(Text3Button{"Attack4", "type", "power", Action::Close, sf::Vector2f{1000, 600}}),
+		std::make_shared<Text3Button>(Text3Button{"Attack1", "type", "power", Action::Attack1, sf::Vector2f{250, 600}}),
+		std::make_shared<Text3Button>(Text3Button{"Attack2", "type", "power", Action::Attack2, sf::Vector2f{500, 600}}),
+		std::make_shared<Text3Button>(Text3Button{"Attack3", "type", "power", Action::Attack3, sf::Vector2f{750, 600}}),
+		std::make_shared<Text3Button>(Text3Button{"Attack4", "type", "power", Action::Attack4, sf::Vector2f{1000, 600}}),
 
 		// Pokemon
-		std::make_shared<ImageButton>(ImageButton{ Action::Close, sf::Vector2f{50, 625 }, "assets/textures/pokemon/Squirtle_front.png" }),
-		std::make_shared<ImageButton>(ImageButton{ Action::Close, sf::Vector2f{250, 625 }, "assets/textures/pokemon/Squirtle_front.png" }),
-		std::make_shared<ImageButton>(ImageButton{ Action::Close, sf::Vector2f{450, 625 }, "assets/textures/pokemon/Squirtle_front.png" }),
-		std::make_shared<ImageButton>(ImageButton{ Action::Close, sf::Vector2f{650, 625 }, "assets/textures/pokemon/Squirtle_front.png" }),
-		std::make_shared<ImageButton>(ImageButton{ Action::Close, sf::Vector2f{850, 625 }, "assets/textures/pokemon/Squirtle_front.png" }),
-		std::make_shared<ImageButton>(ImageButton{ Action::Close, sf::Vector2f{1050, 625 }, "assets/textures/pokemon/Squirtle_front.png" }),
+		std::make_shared<ImageButton>(ImageButton{ Action::Pokemon1, sf::Vector2f{50, 625 }, "assets/textures/pokemon/Squirtle_front.png" }),
+		std::make_shared<ImageButton>(ImageButton{ Action::Pokemon2, sf::Vector2f{250, 625 }, "assets/textures/pokemon/Squirtle_front.png" }),
+		std::make_shared<ImageButton>(ImageButton{ Action::Pokemon3, sf::Vector2f{450, 625 }, "assets/textures/pokemon/Squirtle_front.png" }),
+		std::make_shared<ImageButton>(ImageButton{ Action::Pokemon4, sf::Vector2f{650, 625 }, "assets/textures/pokemon/Squirtle_front.png" }),
+		std::make_shared<ImageButton>(ImageButton{ Action::Pokemon5, sf::Vector2f{850, 625 }, "assets/textures/pokemon/Squirtle_front.png" }),
+		std::make_shared<ImageButton>(ImageButton{ Action::Pokemon6, sf::Vector2f{1050, 625 }, "assets/textures/pokemon/Squirtle_front.png" }),
 	};
 	ui = UI{ buttons };
 
@@ -43,9 +43,9 @@ BattleScene::BattleScene()
 	load_pokemon();
 
 	load_player_team();
-	playerTeam[0].setActive(true);
-
-	enemyTeam[0] = pokemonTemplate[1];
+	//playerTeam[0].setActive(true);
+	for (int i = 0; i < 6; i++) if (playerTeam[i].isActive()) active_player_pokemon_idx = i;
+	enemyTeam[0] = pokemonTemplate[0];
 	enemyTeam[0].setActive(true);
 	enemyTeam[1] = pokemonTemplate[0];
 	enemyTeam[2] = pokemonTemplate[0];
@@ -61,6 +61,9 @@ void BattleScene::setRandomEnemy(InputHandler& ih)
 	enemyTeam[0] = pokemonTemplate[ih.randomizer(1, pokemonTemplate.size()-1)];
 	enemyTeam[0].setActive(true);
 	isCatchable = true;
+	battleLog.setText("Battle Log:");
+	battleLog.addText("\nA wild " + enemyTeam[0].getName() + " appears!");
+	currentTurn = Turn::PLAYER;
 }
 
 void BattleScene::load_pokemon()
@@ -127,65 +130,279 @@ void BattleScene::save_player_team() {
 void BattleScene::update(float time_elapsed, InputHandler& ih) {
 	setMenuType(ih); // Change menu type
 	ui.update(time_elapsed, ih, buttonRange[0], buttonRange[1] - 1); // Update ui (button switching, click)
-	
 	if (currentTurn == Turn::PLAYER)
 	{
-		if (ih.get_action(Action::Catch)) {
-			if (isCatchable) {
-				// TODO: percent chance with hp and lvl variables
-				battleLog.addText("\nYou failed!");
+		int enemyPokemon = 0;
+		for (enemyPokemon; enemyPokemon < 6; enemyPokemon++) if (enemyTeam[enemyPokemon].isActive()) break;
+		if (ih.get_action(Action::Attack1)) {
+			float mod = playerTeam[active_player_pokemon_idx].getMove(1).getModifier(playerTeam[active_player_pokemon_idx].getMove(1).getType(), enemyTeam[enemyPokemon].getType1(), enemyTeam[enemyPokemon].getType2());
+			float damage = playerTeam[active_player_pokemon_idx].getLvl()* mod * 5.0f * playerTeam[active_player_pokemon_idx].getMove(1).getPower();
+			enemyTeam[enemyPokemon].reduceHP(damage);
+			battleLog.addText("\n"+playerTeam[active_player_pokemon_idx].getName()+" used "+ playerTeam[active_player_pokemon_idx].getMove(1).getName() + " for "+ std::to_string((int)damage) + " damage!");
+			currentTurn = Turn::ENEMY;
+			ih.add_action(Action::Exit);
+		}
+		else if (ih.get_action(Action::Attack2)) {
+			float mod = playerTeam[active_player_pokemon_idx].getMove(2).getModifier(playerTeam[active_player_pokemon_idx].getMove(2).getType(), enemyTeam[enemyPokemon].getType1(), enemyTeam[enemyPokemon].getType2());
+			float damage = playerTeam[active_player_pokemon_idx].getLvl() * mod * 5.0f * playerTeam[active_player_pokemon_idx].getMove(2).getPower();
+			enemyTeam[enemyPokemon].reduceHP(damage);
+			battleLog.addText("\n" + playerTeam[active_player_pokemon_idx].getName() + " used " + playerTeam[active_player_pokemon_idx].getMove(2).getName() + " for " + std::to_string((int)damage) + " damage!");
+			currentTurn = Turn::ENEMY;
+			ih.add_action(Action::Exit);
+		}
+		else if (ih.get_action(Action::Attack3)) {
+			float mod = playerTeam[active_player_pokemon_idx].getMove(3).getModifier(playerTeam[active_player_pokemon_idx].getMove(3).getType(), enemyTeam[enemyPokemon].getType1(), enemyTeam[enemyPokemon].getType2());
+			float damage = playerTeam[active_player_pokemon_idx].getLvl() * mod * 5.0f * playerTeam[active_player_pokemon_idx].getMove(3).getPower();
+			enemyTeam[enemyPokemon].reduceHP(damage);
+			battleLog.addText("\n" + playerTeam[active_player_pokemon_idx].getName() + " used " + playerTeam[active_player_pokemon_idx].getMove(3).getName() + " for " + std::to_string((int)damage) + " damage!");
+			currentTurn = Turn::ENEMY;
+			ih.add_action(Action::Exit);
+		}
+		else if (ih.get_action(Action::Attack4)) {
+			float mod = playerTeam[active_player_pokemon_idx].getMove(3).getModifier(playerTeam[active_player_pokemon_idx].getMove(4).getType(), enemyTeam[enemyPokemon].getType1(), enemyTeam[enemyPokemon].getType2());
+			float damage = playerTeam[active_player_pokemon_idx].getLvl() * mod * 5.0f * playerTeam[active_player_pokemon_idx].getMove(4).getPower();
+			enemyTeam[enemyPokemon].reduceHP(damage);
+			battleLog.addText("\n" + playerTeam[active_player_pokemon_idx].getName() + " used " + playerTeam[active_player_pokemon_idx].getMove(4).getName() + " for " + std::to_string((int)damage) + " damage!");
+			currentTurn = Turn::ENEMY;
+			ih.add_action(Action::Exit);
+		}
+		else if (ih.get_action(Action::Pokemon1)) {
+			if (active_player_pokemon_idx != 0)
+			{
+				if (playerTeam[0].getHP() > 0)
+				{
+					battleLog.addText("\nCome back, " + playerTeam[active_player_pokemon_idx].getName() + "!");
+					playerTeam[active_player_pokemon_idx].setActive(false);
+					active_player_pokemon_idx = 0;
+					playerTeam[active_player_pokemon_idx].setActive(true);
+					battleLog.addText("\n" + playerTeam[active_player_pokemon_idx].getName() + ", I choose you!");
+					currentTurn = Turn::ENEMY;
+					ih.add_action(Action::Exit);
+				}
+				else
+				{
+					battleLog.addText("\n" + playerTeam[0].getName() + " is unconscious!");
+				}
 			}
-			else {
-				// Show Nie mo¿esz tego zrobiæ!
-				battleLog.addText("\nYou can't do that!");
+			else 
+			{
+				battleLog.addText("\nYou cannot do that!");
 			}
 		}
-		if (ih.get_action(Action::Run)) {
+		else if (ih.get_action(Action::Pokemon2)) {
+			if (active_player_pokemon_idx != 1)
+			{
+				if (playerTeam[0].getHP() > 0)
+				{
+					battleLog.addText("\nCome back, " + playerTeam[active_player_pokemon_idx].getName() + "!");
+					playerTeam[active_player_pokemon_idx].setActive(false);
+					active_player_pokemon_idx = 1;
+					playerTeam[active_player_pokemon_idx].setActive(true);
+					battleLog.addText("\n" + playerTeam[active_player_pokemon_idx].getName() + ", I choose you!");
+					currentTurn = Turn::ENEMY;
+					ih.add_action(Action::Exit);
+				}
+				else
+				{
+					battleLog.addText("\n" + playerTeam[1].getName() + " is unconscious!");
+				}
+			}
+			else
+			{
+				battleLog.addText("\nYou cannot do that!");
+			}
+		}
+		else if (ih.get_action(Action::Pokemon3)) {
+			if (active_player_pokemon_idx != 2)
+			{
+				if (playerTeam[0].getHP() > 0)
+				{
+					battleLog.addText("\nCome back, " + playerTeam[active_player_pokemon_idx].getName() + "!");
+					playerTeam[active_player_pokemon_idx].setActive(false);
+					active_player_pokemon_idx = 2;
+					playerTeam[active_player_pokemon_idx].setActive(true);
+					battleLog.addText("\n" + playerTeam[active_player_pokemon_idx].getName() + ", I choose you!");
+					currentTurn = Turn::ENEMY;
+					ih.add_action(Action::Exit);
+				}
+				else
+				{
+					battleLog.addText("\n" + playerTeam[2].getName() + " is unconscious!");
+				}
+			}
+			else
+			{
+				battleLog.addText("\nYou cannot do that!");
+			}
+		}
+		else if (ih.get_action(Action::Pokemon4)) {
+			if (active_player_pokemon_idx != 3)
+			{
+				if (playerTeam[0].getHP() > 0)
+				{
+					battleLog.addText("\nCome back, " + playerTeam[active_player_pokemon_idx].getName() + "!");
+					playerTeam[active_player_pokemon_idx].setActive(false);
+					active_player_pokemon_idx = 3;
+					playerTeam[active_player_pokemon_idx].setActive(true);
+					battleLog.addText("\n" + playerTeam[active_player_pokemon_idx].getName() + ", I choose you!");
+					currentTurn = Turn::ENEMY;
+					ih.add_action(Action::Exit);
+				}
+				else
+				{
+					battleLog.addText("\n" + playerTeam[3].getName() + " is unconscious!");
+				}
+			}
+			else
+			{
+				battleLog.addText("\nYou cannot do that!");
+			}
+		}
+		else if (ih.get_action(Action::Pokemon5)) {
+			if (active_player_pokemon_idx != 4)
+			{
+				if (playerTeam[0].getHP() > 0)
+				{
+					battleLog.addText("\nCome back, " + playerTeam[active_player_pokemon_idx].getName() + "!");
+					playerTeam[active_player_pokemon_idx].setActive(false);
+					active_player_pokemon_idx = 4;
+					playerTeam[active_player_pokemon_idx].setActive(true);
+					battleLog.addText("\n" + playerTeam[active_player_pokemon_idx].getName() + ", I choose you!");
+					currentTurn = Turn::ENEMY;
+					ih.add_action(Action::Exit);
+				}
+				else
+				{
+					battleLog.addText("\n" + playerTeam[4].getName() + " is unconscious!");
+				}
+			}
+			else
+			{
+				battleLog.addText("\nYou cannot do that!");
+			}
+		}
+		else if (ih.get_action(Action::Pokemon6)) {
+			if (active_player_pokemon_idx != 5)
+			{
+				if (playerTeam[0].getHP() > 0)
+				{
+					battleLog.addText("\nCome back, " + playerTeam[active_player_pokemon_idx].getName() + "!");
+					playerTeam[active_player_pokemon_idx].setActive(false);
+					active_player_pokemon_idx = 5;
+					playerTeam[active_player_pokemon_idx].setActive(true);
+					battleLog.addText("\n" + playerTeam[active_player_pokemon_idx].getName() + ", I choose you!");
+					currentTurn = Turn::ENEMY;
+					ih.add_action(Action::Exit);
+				}
+				else
+				{
+					battleLog.addText("\n" + playerTeam[5].getName() + " is unconscious!");
+				}
+			}
+			else
+			{
+				battleLog.addText("\nYou cannot do that!");
+			}
+		}
+		else if (ih.get_action(Action::Catch)) {
+			if (isCatchable) {
+				// TODO: percent chance with hp and lvl variables
+
+				bool success = false;
+				for (int i = 0; i < 6; i++) {
+					if (playerTeam[i].getName() == "NULL" && !success) {
+						playerTeam[i] = enemyTeam[0];
+						playerTeam[i].setActive(false);
+						battleLog.addText("\nYou successfully catched a " + enemyTeam[0].getName() + "!");
+						success = true;
+						ih.add_action(Action::ChangeSceneToGame);
+					}
+				}
+				if(!success) battleLog.addText("\nYour catch attempt failed!");
+				currentTurn = Turn::ENEMY;
+			}
+			else {
+				// Show Nie moÂ¿esz tego zrobiÃ¦!
+				battleLog.addText("\nYou cannot do that!");
+			}
+		}
+		else if (ih.get_action(Action::Run)) {
 			//TODO: percent chance with visibility in battlelog
+			battleLog.addText("\nYou escaped from battle!");
 			ih.add_action(Action::ChangeSceneToGame);
+			for (int i = 0; i < 6; i++)
+			{
+				playerTeam[i].setHPToMax();
+			}
 			save_player_team();
 		}
 	}
 	else
 	{
-		// Enemy mechanic
+		// Enemy turn
+		int enemyPokemon = 0;
+		for (enemyPokemon; enemyPokemon < 6; enemyPokemon++) if (enemyTeam[enemyPokemon].isActive()) break;\
+		int attack = ih.randomizer(1, 4);
+		float mod = enemyTeam[enemyPokemon].getMove(attack).getModifier(enemyTeam[enemyPokemon].getMove(attack).getType(), playerTeam[active_player_pokemon_idx].getType1(), playerTeam[active_player_pokemon_idx].getType2());
+		float damage = enemyTeam[enemyPokemon].getLvl() * mod * 5.0f * enemyTeam[enemyPokemon].getMove(attack).getPower();
+		playerTeam[active_player_pokemon_idx].reduceHP(damage);
+		battleLog.addText("\n" + enemyTeam[enemyPokemon].getName() + " used " + enemyTeam[enemyPokemon].getMove(attack).getName() + " for " + std::to_string((int)damage) + " damage!");
+		currentTurn = Turn::PLAYER;
 	}
-		if (ih.get_action(Action::PokemonMenu)) {
-			menu = BattleMenu::POKEMON;
-			buttonRange[0] = 8;
-			buttonRange[1] = 14;
-			for (int i = buttonRange[0]; i < buttonRange[1]; i++) {
-				ui._buttons.at(i) = std::make_shared<ImageButton>(
-					ImageButton{
-						ui._buttons.at(i)->click(), 
-						ui._buttons.at(i)->position, 
-						playerTeam[i-buttonRange[0]].front.file
-					}
-				);
-			}
+	if (ih.get_action(Action::PokemonMenu)) {
+		menu = BattleMenu::POKEMON;
+		buttonRange[0] = 8;
+		buttonRange[1] = 14;
+		for (int i = buttonRange[0]; i < buttonRange[1]; i++) {
+			ui._buttons.at(i) = std::make_shared<ImageButton>(
+				ImageButton{
+					ui._buttons.at(i)->click(), 
+					ui._buttons.at(i)->position, 
+					playerTeam[i-buttonRange[0]].front.file
+				}
+			);
 		}
-		else if (ih.get_action(Action::AttackMenu)) {
-			menu = BattleMenu::MOVES;
-			buttonRange[0] = 4;
-			buttonRange[1] = 8;
-			for (int i = buttonRange[0]; i < buttonRange[1]; i++) {
-				auto move_data = playerTeam[active_player_pokemon_idx].getMoveData((i - buttonRange[0])+1);
-				ui._buttons.at(i) = std::make_shared<Text3Button>(
-					Text3Button{
-						move_data.at(0), move_data.at(1), move_data.at(2),
-						ui._buttons.at(i)->click(), ui._buttons.at(i)->position
-					}
-				);
-			}
+	}
+	else if (ih.get_action(Action::AttackMenu)) {
+		menu = BattleMenu::MOVES;
+		buttonRange[0] = 4;
+		buttonRange[1] = 8;
+		for (int i = buttonRange[0]; i < buttonRange[1]; i++) {
+			auto move_data = playerTeam[active_player_pokemon_idx].getMoveData((i - buttonRange[0])+1);
+			ui._buttons.at(i) = std::make_shared<Text3Button>(
+				Text3Button{
+					move_data.at(0), move_data.at(1), move_data.at(2),
+					ui._buttons.at(i)->click(), ui._buttons.at(i)->position
+				}
+			);
 		}
+	}
 	else
 	{
 		if (ih.get_action(Action::Exit)) {
 			menu = BattleMenu::MAIN;
 			buttonRange[0] = 0;
 			buttonRange[1] = 4;
-			ui.resetSelectButton();
+			ui.resetSelectButton(buttonRange[0]);
 		}
+	}
+	
+	// WYJSCIE Z WALKI
+	int p = 0, e = 0, pc = 0, ec = 0;
+	for (int i = 0; i < 6; i++) {
+		if (playerTeam[i].getHP() < 0 && playerTeam[i].getName() != "NULL") p++;
+		if (enemyTeam[i].getHP() < 0 && enemyTeam[i].getName() != "NULL") e++;
+		if (playerTeam[i].getName() != "NULL") pc++;
+		if (enemyTeam[i].getName() != "NULL") ec++;
+	}
+	if (p == pc || e == ec) {
+		// All pokemon of one side is not able to fight
+		ih.add_action(Action::ChangeSceneToGame);
+		for (int i = 0; i < 6; i++)
+		{
+			playerTeam[i].setHPToMax();
+		}
+		save_player_team();
 	}
 }
 
@@ -242,7 +459,7 @@ void BattleScene::setMenuType(InputHandler& ih)
 			menu = BattleMenu::MAIN;
 			buttonRange[0] = 0;
 			buttonRange[1] = 4;
-			ui.resetSelectButton();
+			ui.resetSelectButton(buttonRange[0]);
 		}
 	}
 }

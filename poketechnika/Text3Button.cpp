@@ -15,3 +15,9 @@ Text3Button::Text3Button(
 	text3.setFillColor(sf::Color{ 0, 0, 0 });
 }
 
+void Text3Button::setText(std::string t1, std::string t2, std::string t3)
+{
+	text.setString(t1);
+	text2.setString(t2);
+	text3.setString(t3);
+}
