@@ -40,6 +40,7 @@ public:
     void setHPToMax();
     std::string getName();
     std::vector<std::string> getMoveData(int move_idx);
+    int getMaxHp();
     Move getMove(int id);
     PokemonType getType1();
     PokemonType getType2();

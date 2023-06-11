@@ -119,11 +119,26 @@ void Renderer::draw(Pokemon& pokemon, Side side)
 {
 	if (side == Side::front) {
 		draw(pokemon.front, 6.0);
+		Bar hp_bar{ 
+			pokemon.getMaxHp(), pokemon.getHP(), 
+			sf::Vector2f{
+				pokemon.front.position.x,
+				pokemon.front.position.y + 375
+			}
+		};
+		draw(hp_bar);
 	}
 	else {
 		draw(pokemon.back, 6.0);
+		Bar hp_bar{ 
+			pokemon.getMaxHp(), pokemon.getHP(), 
+			sf::Vector2f{
+				pokemon.back.position.x, 
+				pokemon.back.position.y + 100
+		}
+		};
+		draw(hp_bar);
 	}
-	//TODO UI hp bar
 }
 
 void Renderer::draw(TextArea& textArea)
@@ -136,6 +151,23 @@ void Renderer::draw(TextArea& textArea)
 	textArea.text.setScale(scale, scale);
 	textArea.text.setPosition(textArea.textPos);
 	window.draw(textArea.text);
+}
+
+void Renderer::draw(Bar& bar, float scale_rate) {
+	bar.sprite.setScale(scale, scale);
+	bar.sprite.setPosition(bar.position * scale);
+	window.draw(bar.sprite);
+
+	bar.progress.sprite.setScale(scale, scale);
+	bar.progress.sprite.setPosition(bar.position * scale);
+	window.draw(bar.progress.sprite);
+
+	bar.text.setScale(scale, scale);
+	bar.text.setPosition(
+		(bar.position.x + bar.sprite.getTextureRect().width + 10) * scale,
+		bar.position.y * scale
+	);
+	window.draw(bar.text);
 }
 
 void Renderer::setScale()

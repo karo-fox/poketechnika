@@ -108,8 +108,14 @@
     <ClCompile Include="Text3Button.cpp">
       <Filter>Pliki źródłowe\UI</Filter>
     </ClCompile>
+    <ClCompile Include="TextArea.cpp">
+      <Filter>Pliki źródłowe\UI</Filter>
+    </ClCompile>
     <ClCompile Include="Pokemon.cpp">
-      <Filter>Pliki źródłowe</Filter>
+      <Filter>Pliki źródłowe\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Bar.cpp">
+      <Filter>Pliki źródłowe\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -192,6 +198,12 @@
       <Filter>Pliki nagłówkowe\UI</Filter>
     </ClInclude>
     <ClInclude Include="Text3Button.h">
+      <Filter>Pliki nagłówkowe\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="TextArea.h">
+      <Filter>Pliki nagłówkowe\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Bar.h">
       <Filter>Pliki nagłówkowe\UI</Filter>
     </ClInclude>
   </ItemGroup>
