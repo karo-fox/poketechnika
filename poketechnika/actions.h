@@ -12,10 +12,11 @@ enum class Action {
 	Close, 
 	// BUTTON
 	NextItem, PreviousItem, ClickButton,
-	// BATTLE MENU
-	Exit, AttackMenu, PokemonMenu, Catch, Run,
 	// BATTLE
-	RandomPokemon,
+	Exit, RandomPokemon,
+	AttackMenu, PokemonMenu, Catch, Run,
+	Attack1, Attack2, Attack3, Attack4, 
+	Pokemon1, Pokemon2, Pokemon3, Pokemon4, Pokemon5, Pokemon6,
 };
 
 // Actions that change scenes

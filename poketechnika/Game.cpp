@@ -5,6 +5,7 @@
 #include "BattleScene.h"
 #include "BossScene.h"
 #include "Button.h"
+#include "TextArea.h"
 
 Game::Game(int width, int height, bool fullscreen) 
     : window{ sf::VideoMode(width, height), "Poketechnika" }, sm{ window }, 
@@ -20,6 +21,7 @@ Game::Game(int width, int height, bool fullscreen)
     Camera::setCameraSize(width, height);
     sm.set_renderer_scale();
     Button::load_font();
+    TextArea::load_font();
 
     // Create all scenes used in game
     MenuScene menu_scene{};

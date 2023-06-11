@@ -6,6 +6,7 @@
 #include "Button.h"
 #include "Pokemon.h"
 #include "PokemonTypes.h"
+#include "TextArea.h"
 
 class Renderer
 {
@@ -23,5 +24,6 @@ public:
 	void draw(Drawable& drawable, sf::Vector2f offset);
 	void draw(Map& map, const Camera& cam);
 	void draw(Button& button);
+	void draw(TextArea& textArea);
 	void draw(Pokemon& pokemon, Side side);
 };

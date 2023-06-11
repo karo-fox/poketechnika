@@ -11,7 +11,8 @@ const char* PLAYER_TEAM_FILE_PATH = "data/player_team.xml";
 BattleScene::BattleScene()
 	: Scene{},
 	background{ "assets/textures/background_battle.png", sf::Vector2f{0, 0}, true },
-	menu(BattleMenu::MAIN), buttonRange{ 0,4 }, pokemonTemplate{}
+	menu(BattleMenu::MAIN), buttonRange{ 0,4 }, pokemonTemplate{}, currentTurn(Turn::PLAYER),
+	battleLog("Log walki", sf::Vector2f(0,0))
 {
 	// UI
 	std::vector<Button> buttons{
@@ -56,6 +57,7 @@ void BattleScene::setRandomEnemy(InputHandler& ih)
 {
 	enemyTeam[0] = pokemonTemplate[ih.randomizer(1, pokemonTemplate.size()-1)];
 	enemyTeam[0].setActive(true);
+	isCatchable = true;
 }
 
 void BattleScene::load_pokemon()
@@ -120,7 +122,55 @@ void BattleScene::save_player_team() {
 }
 
 void BattleScene::update(float time_elapsed, InputHandler& ih) {
-	// Change menu type
+	setMenuType(ih); // Change menu type
+	ui.update(time_elapsed, ih, buttonRange[0], buttonRange[1] - 1); // Update ui (button switching, click)
+	
+	if (currentTurn == Turn::PLAYER)
+	{
+		if (ih.get_action(Action::Catch)) {
+			if (isCatchable) {
+				// TODO: percent chance with hp and lvl variables
+				battleLog.addText("\nNie udalo sie!");
+			}
+			else {
+				// Show Nie mo¿esz tego zrobiæ!
+				battleLog.addText("\nNie mozesz tego zrobic!");
+			}
+		}
+		if (ih.get_action(Action::Run)) {
+			//TODO: percent chance with visibility in battlelog
+			ih.add_action(Action::ChangeSceneToGame);
+			save_player_team();
+		}
+	}
+	else
+	{
+		// Enemy mechanic
+	}
+}
+
+void BattleScene::render(Renderer& renderer) {
+	// Background
+	renderer.draw(background);
+	
+	// Buttons
+	int k = 0;
+	for (auto& button : ui._buttons) {
+		if(k < buttonRange[1] && k >= buttonRange[0]) renderer.draw(button);
+		k++;
+	}
+
+	// TODO: healthbars, Pokemon names, (or animations xD)
+	for (int i = 0; i < 6; i++)
+	{
+		if (playerTeam[i].isActive()) renderer.draw(playerTeam[i], Side::back);
+		if (enemyTeam[i].isActive()) renderer.draw(enemyTeam[i], Side::front);
+	}
+	renderer.draw(battleLog);
+}
+
+void BattleScene::setMenuType(InputHandler& ih)
+{
 	if (menu == BattleMenu::MAIN)
 	{
 		if (ih.get_action(Action::PokemonMenu)) {
@@ -142,32 +192,5 @@ void BattleScene::update(float time_elapsed, InputHandler& ih) {
 			buttonRange[1] = 4;
 			ui.resetSelectButton();
 		}
-	}
-	// Update ui (button switching, click)
-	ui.update(time_elapsed, ih, buttonRange[0], buttonRange[1] - 1);
-	// Running from battle
-	if (ih.get_action(Action::Run)) {
-		//TODO: percent chance with visibility in battlelog
-		ih.add_action(Action::ChangeSceneToGame);
-		save_player_team();
-	}
-}
-
-void BattleScene::render(Renderer& renderer) {
-	// Background
-	renderer.draw(background);
-	
-	// Buttons
-	int i = 0;
-	for (auto& button : ui._buttons) {
-		if(i < buttonRange[1] && i >= buttonRange[0]) renderer.draw(button);
-		i++;
-	}
-
-	// TODO: Pokemons, healthbars, Pokemon names, BattleLog (or animations xD)
-	for (int i = 0; i < 6; i++)
-	{
-		if (playerTeam[i].isActive()) renderer.draw(playerTeam[i], Side::back);
-		if (enemyTeam[i].isActive()) renderer.draw(enemyTeam[i], Side::front);
 	}
 }
