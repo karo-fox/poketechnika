@@ -3,6 +3,7 @@
 #include "MenuScene.h"
 #include "GameScene.h"
 #include "BattleScene.h"
+#include "BossScene.h"
 #include "Button.h"
 
 Game::Game(int width, int height, bool fullscreen) 
@@ -24,10 +25,12 @@ Game::Game(int width, int height, bool fullscreen)
     MenuScene menu_scene{};
     GameScene game_scene{};
     BattleScene battle_scene{};
+    BossScene boss_scene{};
     scenes = {
         {State::MAINMENU, std::make_shared<MenuScene>(menu_scene)},
         {State::GAME, std::make_shared<GameScene>(game_scene)},
         {State::BATTLE, std::make_shared<BattleScene>(battle_scene)},
+        {State::BOSS, std::make_shared<BossScene>(boss_scene)},
     };
     // TODO: Create all scenes (battle, error)
 

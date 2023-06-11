@@ -14,6 +14,11 @@ const std::map<State, ActionsMap> events{
 	{ sf::Keyboard::Left, Action::PreviousItem },
 	{ sf::Keyboard::Enter, Action::ClickButton },
 	{ sf::Keyboard::Escape, Action::Exit },
+}},
+{State::BOSS, {
+	{ sf::Keyboard::Right, Action::NextItem },
+	{ sf::Keyboard::Left, Action::PreviousItem },
+	{ sf::Keyboard::Enter, Action::ClickButton },
 }}
 };
 
@@ -26,6 +31,7 @@ const std::map<State, ActionsMap> real_time{
 	{ sf::Keyboard::A, Action::MoveLeft }
 }},
 { State::BATTLE, {} },
+{ State::BOSS, {} },
 };
 
 InputHandler::InputHandler(State& state)

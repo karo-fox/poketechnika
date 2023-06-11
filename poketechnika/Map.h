@@ -18,7 +18,7 @@ public:
 	Map& operator= (const Map& other);
 
 	bool isPassable(sf::Vector2f pos) const;
-	bool isBush(sf::Vector2f pos) const;
+	bool isTileType(sf::Vector2f pos, tileTypes type) const;
 	sf::Vector2f getMapSize();
 	
 	friend Map map_from_xml(pugi::xml_node& map_node);

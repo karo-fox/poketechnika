@@ -7,7 +7,7 @@ enum class Action {
 	// GAME
 	MoveRight, MoveLeft, MoveUp, MoveDown,
 	// CHANGE SCENE
-	ChangeSceneToGame, ChangeSceneToMenu, ChangeSceneToBattle, 
+	ChangeSceneToGame, ChangeSceneToMenu, ChangeSceneToBattle, ChangeSceneToBoss,
 	// WINDOW
 	Close, 
 	// BUTTON
@@ -23,4 +23,5 @@ static std::map<Action, State> change_scene{
 	{ Action::ChangeSceneToMenu, State::MAINMENU },
 	{ Action::ChangeSceneToGame, State::GAME },
 	{ Action::ChangeSceneToBattle, State::BATTLE },
+	{ Action::ChangeSceneToBoss, State::BOSS },
 };
