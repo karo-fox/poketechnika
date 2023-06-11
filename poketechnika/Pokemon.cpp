@@ -135,3 +135,11 @@ int Pokemon::getLvl()
 void Pokemon::setHPToMax() {
 	hp = maxhp;
 }
+
+int Pokemon::getHp() {
+	return hp;
+}
+
+int Pokemon::getMaxHp() {
+	return maxhp;
+}

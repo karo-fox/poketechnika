@@ -5,6 +5,7 @@
 #include "BattleScene.h"
 #include "BossScene.h"
 #include "Button.h"
+#include "Bar.h"
 #include "TextArea.h"
 
 Game::Game(int width, int height, bool fullscreen) 
@@ -22,6 +23,7 @@ Game::Game(int width, int height, bool fullscreen)
     sm.set_renderer_scale();
     Button::load_font();
     TextArea::load_font();
+    Bar::load_font();
 
     // Create all scenes used in game
     MenuScene menu_scene{};
