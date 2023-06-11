@@ -6,9 +6,9 @@
 class Drawable {
 protected:
 	sf::Texture texture;
-	std::string file;
 	bool scalable;
 public:
+	std::string file;
 	sf::Sprite sprite;
 	sf::Vector2f position;
 

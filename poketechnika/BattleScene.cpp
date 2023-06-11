@@ -14,7 +14,7 @@ BattleScene::BattleScene()
 	: Scene{},
 	background{ "assets/textures/background_battle.png", sf::Vector2f{0, 0}, true },
 	menu(BattleMenu::MAIN), buttonRange{ 0,4 }, pokemonTemplate{}, currentTurn(Turn::PLAYER),
-	battleLog("Log walki", sf::Vector2f(0,0))
+	battleLog("Log walki", sf::Vector2f(0,0)), active_player_pokemon_idx{}
 {
 	// UI
 	std::vector<std::shared_ptr<Button>> buttons{
@@ -149,6 +149,53 @@ void BattleScene::update(float time_elapsed, InputHandler& ih) {
 	else
 	{
 		// Enemy mechanic
+	}
+}
+		if (ih.get_action(Action::PokemonMenu)) {
+			menu = BattleMenu::POKEMON;
+			buttonRange[0] = 8;
+			buttonRange[1] = 14;
+			for (int i = buttonRange[0]; i < buttonRange[1]; i++) {
+				ui._buttons.at(i) = std::make_shared<ImageButton>(
+					ImageButton{
+						ui._buttons.at(i)->click(), 
+						ui._buttons.at(i)->position, 
+						playerTeam[i-buttonRange[0]].front.file
+					}
+				);
+			}
+		}
+		else if (ih.get_action(Action::AttackMenu)) {
+			menu = BattleMenu::MOVES;
+			buttonRange[0] = 4;
+			buttonRange[1] = 8;
+			for (int i = buttonRange[0]; i < buttonRange[1]; i++) {
+				auto move_data = playerTeam[active_player_pokemon_idx].getMoveData((i - buttonRange[0])+1);
+				ui._buttons.at(i) = std::make_shared<Text3Button>(
+					Text3Button{
+						move_data.at(0), move_data.at(1), move_data.at(2),
+						ui._buttons.at(i)->click(), ui._buttons.at(i)->position
+					}
+				);
+			}
+		}
+	}
+	else
+	{
+		if (ih.get_action(Action::Exit)) {
+			menu = BattleMenu::MAIN;
+			buttonRange[0] = 0;
+			buttonRange[1] = 4;
+			ui.resetSelectButton();
+		}
+	}
+	// Update ui (button switching, click)
+	ui.update(time_elapsed, ih, buttonRange[0], buttonRange[1] - 1);
+	// Running from battle
+	if (ih.get_action(Action::Run)) {
+		//TODO: percent chance with visibility in battlelog
+		ih.add_action(Action::ChangeSceneToGame);
+		save_player_team();
 	}
 }
 

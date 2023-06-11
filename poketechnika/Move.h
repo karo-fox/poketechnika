@@ -1,6 +1,6 @@
 #pragma once
-#include <iostream>
 #include <pugixml.hpp>
+#include <vector>
 #include "PokemonTypes.h"
 class Move
 {
@@ -13,6 +13,7 @@ public:
 	Move();
 	Move(std::string name_, PokemonType type_, float power_);
 	void save(pugi::xml_node& node);
+	std::vector<std::string> data();
 
 	friend Move load_move(pugi::xml_node& node);
 };

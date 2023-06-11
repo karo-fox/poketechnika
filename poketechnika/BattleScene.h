@@ -23,6 +23,7 @@ private:
 	TextArea battleLog;
 	Pokemon playerTeam[6];
 	Pokemon enemyTeam[6];
+	int active_player_pokemon_idx;
 	std::map<int, Pokemon> pokemonTemplate;
 	void load_pokemon();
 	void load_player_team();

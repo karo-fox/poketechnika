@@ -89,18 +89,18 @@ void Renderer::draw(Text3Button& button, float scale_rate)
 		button.sprite.setPosition(button.position * scale);
 		button.text.setScale(scale, scale);
 		button.text.setPosition(
-			button.position.x * scale + 3 * scale_rate,
-			button.position.y * scale + 3 * scale_rate
+			button.position.x * scale + 3 * scale,
+			button.position.y * scale + 3 * scale
 		);
 		button.text2.setScale(scale, scale);
 		button.text2.setPosition(
-			button.position.x * scale + 3 * scale_rate,
-			button.position.y * scale + 3 * scale_rate + 24
+			button.position.x * scale + 3 * scale,
+			button.position.y * scale + (3 + 24) * scale
 		);
 		button.text3.setScale(scale, scale);
 		button.text3.setPosition(
-			button.position.x * scale + 3 * scale_rate,
-			button.position.y * scale + 3 * scale_rate + 48
+			button.position.x * scale + 3 * scale,
+			button.position.y * scale + (3 + 48) * scale
 		);
 	}
 	else {
