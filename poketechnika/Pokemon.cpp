@@ -139,3 +139,30 @@ void Pokemon::setHPToMax() {
 int Pokemon::getMaxHp() {
 	return maxhp;
 }
+
+void Pokemon::setLvl(int lvl_) {
+	lvl = lvl_;
+	maxhp = 10 + (lvl_ * 5);
+	hp = maxhp;
+	xp = lvl*10;
+}
+
+void Pokemon::addXP(int xp_) {
+	xp += xp_;
+}
+
+int Pokemon::getXP()
+{
+	return xp;
+}
+
+bool Pokemon::checkForLvlUp() {
+	if (xp > lvl * 20) {
+		xp -= (lvl * 20);
+		lvl++;
+		maxhp = 10 + (lvl * 5);
+		hp = maxhp;
+		return true;
+	}
+	return false;
+}

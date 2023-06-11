@@ -17,6 +17,8 @@ enum class Action {
 	AttackMenu, PokemonMenu, Catch, Run,
 	Attack1, Attack2, Attack3, Attack4, 
 	Pokemon1, Pokemon2, Pokemon3, Pokemon4, Pokemon5, Pokemon6,
+	// BOSS
+	InitBossFight, WINGAME
 };
 
 // Actions that change scenes

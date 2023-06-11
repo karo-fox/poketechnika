@@ -7,6 +7,7 @@
 #include "Button.h"
 #include "Bar.h"
 #include "TextArea.h"
+#include <iostream>
 
 Game::Game(int width, int height, bool fullscreen) 
     : window{ sf::VideoMode(width, height), "Poketechnika" }, sm{ window }, 
@@ -51,6 +52,16 @@ void Game::process_input() {
     if (ih.get_action(Action::RandomPokemon)) {
         auto& scene = dynamic_cast<BattleScene&>(*scenes.at(State::BATTLE));
         scene.setRandomEnemy(ih);
+    }
+    if (ih.get_action(Action::InitBossFight)) {
+        auto& scene = dynamic_cast<BattleScene&>(*scenes.at(State::BATTLE));
+        ih.add_action(Action::ChangeSceneToBattle);
+        scene.setBossFight(ih);
+    }
+    if (ih.get_action(Action::WINGAME)) {
+        window.close();
+        system("cls");
+        std::cout << "Congratulations, you won!" << std::endl;
     }
 
     for (auto& elem : change_scene) {

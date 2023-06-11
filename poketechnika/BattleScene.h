@@ -34,4 +34,5 @@ public:
 	void render(Renderer& renderer);
 	void save_player_team();
 	void setRandomEnemy(InputHandler& ih);
+	void setBossFight(InputHandler& ih);
 };

@@ -4,7 +4,7 @@ BossScene::BossScene() : background{ "assets/textures/background_boss.png", sf::
 {
 	std::vector<std::shared_ptr<Button>> buttons{
 		std::make_shared<Button>(Button{"Return", Action::ChangeSceneToGame, sf::Vector2f{440, 430 }}),
-		std::make_shared<Button>(Button{"Fight", Action::ChangeSceneToBattle, sf::Vector2f{740, 430}})
+		std::make_shared<Button>(Button{"Fight", Action::InitBossFight, sf::Vector2f{740, 430}})
 	};
 	ui = UI{ buttons };
 }

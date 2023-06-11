@@ -36,8 +36,12 @@ public:
 
     void reduceHP(float red);
     float getHP();
+    int getXP();
     int getLvl();
     void setHPToMax();
+    bool checkForLvlUp();
+    void setLvl(int lvl_);
+    void addXP(int xp_);
     std::string getName();
     std::vector<std::string> getMoveData(int move_idx);
     int getMaxHp();
