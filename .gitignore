@@ -2,6 +2,7 @@ x64
 Debug
 .vs
 poketechnika/Debug
+poketechnika/Release
 poketechnika/x64
 poketechnika/sfml-audio-2.dll
 poketechnika/sfml-audio-d-2.dll
