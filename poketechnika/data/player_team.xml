@@ -28,82 +28,82 @@
 			<type>15</type>
 			<power>0.649999976</power>
 		</move4>
-		<active>true</active>
+		<active>false</active>
 		<front>assets/textures/pokemon/Charmander_front.png</front>
 		<back>assets/textures/pokemon/Charmander_back.png</back>
 	</pokemon>
 	<pokemon>
-		<name>Squirtle</name>
+		<name>NULL</name>
 		<lvl>2</lvl>
-		<xp>20</xp>
-		<type1>3</type1>
-		<type2>0</type2>
-		<hp>20</hp>
-		<maxhp>20</maxhp>
-		<move1>
-			<name>Tackle</name>
-			<type>1</type>
-			<power>0.400000006</power>
-		</move1>
-		<move2>
-			<name>Water Gun</name>
-			<type>3</type>
-			<power>0.400000006</power>
-		</move2>
-		<move3>
-			<name>Rapid Spin</name>
-			<type>1</type>
-			<power>0.5</power>
-		</move3>
-		<move4>
-			<name>Bite</name>
-			<type>16</type>
-			<power>0.600000024</power>
-		</move4>
-		<active>false</active>
-		<front>assets/textures/pokemon/Squirtle_front.png</front>
-		<back>assets/textures/pokemon/Squirtle_back.png</back>
-	</pokemon>
-	<pokemon>
-		<name>Squirtle</name>
-		<lvl>1</lvl>
 		<xp>10</xp>
-		<type1>3</type1>
+		<type1>12</type1>
 		<type2>0</type2>
-		<hp>15</hp>
-		<maxhp>15</maxhp>
+		<hp>10</hp>
+		<maxhp>10</maxhp>
 		<move1>
 			<name>Tackle</name>
 			<type>1</type>
 			<power>0.400000006</power>
 		</move1>
 		<move2>
-			<name>Water Gun</name>
-			<type>3</type>
+			<name>Bug bite</name>
+			<type>12</type>
+			<power>0.600000024</power>
+		</move2>
+		<move3>
+			<name>Tackle</name>
+			<type>1</type>
+			<power>0.400000006</power>
+		</move3>
+		<move4>
+			<name>Bug bite</name>
+			<type>12</type>
+			<power>0.600000024</power>
+		</move4>
+		<active>true</active>
+		<front>assets/textures/pokemon/Caterpie_front.png</front>
+		<back>assets/textures/pokemon/Caterpie_back.png</back>
+	</pokemon>
+	<pokemon>
+		<name>NULL</name>
+		<lvl>1</lvl>
+		<xp>0</xp>
+		<type1>4</type1>
+		<type2>0</type2>
+		<hp>10</hp>
+		<maxhp>10</maxhp>
+		<move1>
+			<name>Nuzzle</name>
+			<type>4</type>
+			<power>0.200000003</power>
+		</move1>
+		<move2>
+			<name>Quick Attack</name>
+			<type>1</type>
 			<power>0.400000006</power>
 		</move2>
 		<move3>
-			<name>Rapid Spin</name>
-			<type>1</type>
-			<power>0.5</power>
+			<name>Thunder Shock</name>
+			<type>4</type>
+			<power>0.400000006</power>
 		</move3>
 		<move4>
-			<name>Bite</name>
-			<type>16</type>
-			<power>0.600000024</power>
+			<name>Spark</name>
+			<type>4</type>
+			<power>0.649999976</power>
 		</move4>
 		<active>false</active>
-		<front>assets/textures/pokemon/Squirtle_front.png</front>
-		<back>assets/textures/pokemon/Squirtle_back.png</back>
+		<front>assets/textures/pokemon/Pikachu_front.png</front>
+		<back>assets/textures/pokemon/Pikachu_back.png</back>
 	</pokemon>
 	<pokemon>
-		<name>Pidgey</name>
-		<lvl>2</lvl>
-		<xp>20</xp>
+		<name>NULL</name>
+		<lvl>1</lvl>
+		<xp>0</xp>
 		<type1>1</type1>
 		<type2>10</type2>
-		<hp>20</hp>
-		<maxhp>20</maxhp>
+		<hp>10</hp>
+		<maxhp>10</maxhp>
 		<move1>
 			<name>Tackle</name>
 			<type>1</type>
@@ -129,67 +129,67 @@
 		<back>assets/textures/pokemon/Pidgey_back.png</back>
 	</pokemon>
 	<pokemon>
-		<name>Magikarp</name>
+		<name>NULL</name>
 		<lvl>1</lvl>
-		<xp>10</xp>
-		<type1>3</type1>
-		<type2>0</type2>
-		<hp>15</hp>
-		<maxhp>15</maxhp>
+		<xp>0</xp>
+		<type1>8</type1>
+		<type2>12</type2>
+		<hp>10</hp>
+		<maxhp>10</maxhp>
 		<move1>
-			<name>Tackle</name>
-			<type>1</type>
-			<power>0.400000006</power>
+			<name>Poison Sting</name>
+			<type>8</type>
+			<power>0.150000006</power>
 		</move1>
 		<move2>
-			<name>Tackle</name>
-			<type>1</type>
-			<power>0.400000006</power>
+			<name>Bug Bite</name>
+			<type>12</type>
+			<power>0.600000024</power>
 		</move2>
 		<move3>
-			<name>Tackle</name>
-			<type>1</type>
-			<power>0.400000006</power>
+			<name>Poison Sting</name>
+			<type>8</type>
+			<power>0.150000006</power>
 		</move3>
 		<move4>
-			<name>Tackle</name>
-			<type>1</type>
-			<power>0.400000006</power>
+			<name>Bug Bite</name>
+			<type>12</type>
+			<power>0.600000024</power>
 		</move4>
 		<active>false</active>
-		<front>assets/textures/pokemon/Magikarp_front.png</front>
-		<back>assets/textures/pokemon/Magikarp_back.png</back>
+		<front>assets/textures/pokemon/Weedle_front.png</front>
+		<back>assets/textures/pokemon/Weedle_back.png</back>
 	</pokemon>
 	<pokemon>
-		<name>Bulbasaur</name>
-		<lvl>3</lvl>
+		<name>NULL</name>
+		<lvl>2</lvl>
 		<xp>30</xp>
-		<type1>5</type1>
-		<type2>8</type2>
-		<hp>25</hp>
-		<maxhp>25</maxhp>
+		<type1>1</type1>
+		<type2>10</type2>
+		<hp>10</hp>
+		<maxhp>10</maxhp>
 		<move1>
 			<name>Tackle</name>
 			<type>1</type>
 			<power>0.400000006</power>
 		</move1>
 		<move2>
-			<name>Vine Whip</name>
-			<type>5</type>
-			<power>0.449999988</power>
+			<name>Gust</name>
+			<type>10</type>
+			<power>0.400000006</power>
 		</move2>
 		<move3>
-			<name>Razor Leaf</name>
-			<type>5</type>
-			<power>0</power>
+			<name>Quick Attack</name>
+			<type>1</type>
+			<power>0.400000006</power>
 		</move3>
 		<move4>
-			<name>Seed Bomb</name>
-			<type>5</type>
-			<power>0.800000012</power>
+			<name>Twister</name>
+			<type>15</type>
+			<power>0.400000006</power>
 		</move4>
 		<active>false</active>
-		<front>assets/textures/pokemon/Bulbasaur_front.png</front>
-		<back>assets/textures/pokemon/Bulbasaur_back.png</back>
+		<front>assets/textures/pokemon/Pidgey_front.png</front>
+		<back>assets/textures/pokemon/Pidgey_back.png</back>
 	</pokemon>
 </player_team>
