@@ -156,6 +156,9 @@ void BattleScene::update(float time_elapsed, InputHandler& ih) {
 			float damage = playerTeam[active_player_pokemon_idx].getLvl()* mod * 5.0f * playerTeam[active_player_pokemon_idx].getMove(1).getPower();
 			enemyTeam[enemyPokemon].reduceHP((int)damage);
 			battleLog.addText("\n"+playerTeam[active_player_pokemon_idx].getName()+" used "+ playerTeam[active_player_pokemon_idx].getMove(1).getName() + " for "+ std::to_string((int)damage) + " damage!");
+			if (mod == 2.0f) battleLog.addText("\nIt's supper effective!");
+			else if (mod == 0.5f) battleLog.addText("\nIt's not very effective...");
+			else if (mod == 0.0f) battleLog.addText("\nThis had no effect!");
 			currentTurn = Turn::ENEMY;
 			ih.add_action(Action::Exit);
 		}
@@ -164,6 +167,9 @@ void BattleScene::update(float time_elapsed, InputHandler& ih) {
 			float damage = playerTeam[active_player_pokemon_idx].getLvl() * mod * 5.0f * playerTeam[active_player_pokemon_idx].getMove(2).getPower();
 			enemyTeam[enemyPokemon].reduceHP((int)damage);
 			battleLog.addText("\n" + playerTeam[active_player_pokemon_idx].getName() + " used " + playerTeam[active_player_pokemon_idx].getMove(2).getName() + " for " + std::to_string((int)damage) + " damage!");
+			if (mod == 2.0f) battleLog.addText("\nIt's supper effective!");
+			else if (mod == 0.5f) battleLog.addText("\nIt's not very effective...");
+			else if (mod == 0.0f) battleLog.addText("\nThis had no effect!");
 			currentTurn = Turn::ENEMY;
 			ih.add_action(Action::Exit);
 		}
@@ -172,6 +178,9 @@ void BattleScene::update(float time_elapsed, InputHandler& ih) {
 			float damage = playerTeam[active_player_pokemon_idx].getLvl() * mod * 5.0f * playerTeam[active_player_pokemon_idx].getMove(3).getPower();
 			enemyTeam[enemyPokemon].reduceHP((int)damage);
 			battleLog.addText("\n" + playerTeam[active_player_pokemon_idx].getName() + " used " + playerTeam[active_player_pokemon_idx].getMove(3).getName() + " for " + std::to_string((int)damage) + " damage!");
+			if (mod == 2.0f) battleLog.addText("\nIt's supper effective!");
+			else if (mod == 0.5f) battleLog.addText("\nIt's not very effective...");
+			else if (mod == 0.0f) battleLog.addText("\nThis had no effect!");
 			currentTurn = Turn::ENEMY;
 			ih.add_action(Action::Exit);
 		}
@@ -180,6 +189,9 @@ void BattleScene::update(float time_elapsed, InputHandler& ih) {
 			float damage = playerTeam[active_player_pokemon_idx].getLvl() * mod * 5.0f * playerTeam[active_player_pokemon_idx].getMove(4).getPower();
 			enemyTeam[enemyPokemon].reduceHP((int)damage);
 			battleLog.addText("\n" + playerTeam[active_player_pokemon_idx].getName() + " used " + playerTeam[active_player_pokemon_idx].getMove(4).getName() + " for " + std::to_string((int)damage) + " damage!");
+			if (mod == 2.0f) battleLog.addText("\nIt's supper effective!");
+			else if (mod == 0.5f) battleLog.addText("\nIt's not very effective...");
+			else if (mod == 0.0f) battleLog.addText("\nThis had no effect!");
 			currentTurn = Turn::ENEMY;
 			ih.add_action(Action::Exit);
 		}
@@ -368,6 +380,9 @@ void BattleScene::update(float time_elapsed, InputHandler& ih) {
 		float damage = enemyTeam[enemyPokemon].getLvl() * mod * 5.0f * enemyTeam[enemyPokemon].getMove(attack).getPower();
 		playerTeam[active_player_pokemon_idx].reduceHP((int)damage);
 		battleLog.addText("\n" + enemyTeam[enemyPokemon].getName() + " used " + enemyTeam[enemyPokemon].getMove(attack).getName() + " for " + std::to_string((int)damage) + " damage!");
+		if (mod == 2.0f) battleLog.addText("\nIt's supper effective!");
+		else if (mod == 0.5f) battleLog.addText("\nIt's not very effective...");
+		else if (mod == 0.0f) battleLog.addText("\nThis had no effect!");
 		currentTurn = Turn::PLAYER;
 	}
 	// Check if fainted
