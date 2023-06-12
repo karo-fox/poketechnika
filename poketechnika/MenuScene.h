@@ -7,11 +7,9 @@
 class MenuScene : public Scene
 {
 private:
-	//InputHandler ih;
 	Drawable background;
 public:
 	MenuScene();
 	void update(float time_elapsed, InputHandler& ih);
-	//void process_input(sf::RenderWindow& window);
 	void render(Renderer& renderer);
 };

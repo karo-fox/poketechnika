@@ -26,8 +26,10 @@ public:
 		const std::string& texture_file = "assets/textures/button.png"
 	);
 	virtual ~Button() = default;
+	// Returns action
 	Action click() const;
 
+	// loads the font from file
 	static void load_font(const std::string& font_file = "assets/Roboto-Bold.ttf");
 };
  

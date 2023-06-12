@@ -18,6 +18,6 @@ public:
 	Drawable(const Drawable& other);
 	Drawable& operator= (const Drawable& other);
 
+	// Checks if Drawable is scalable
 	bool isScalable();
-	void setDrawable();
 };

@@ -9,7 +9,8 @@ class Scene {
 public:
 	UI ui;
 	virtual ~Scene() = default;
+	// updates the scene accoriding to user input
 	virtual void update(float time_elapsed, InputHandler& ih) = 0;
-	//virtual void process_input(sf::RenderWindow& window) = 0;
+	// renders all elements of the scene
 	virtual void render(Renderer& renderer) = 0;
 };

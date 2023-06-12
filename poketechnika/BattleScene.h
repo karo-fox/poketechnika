@@ -32,7 +32,10 @@ public:
 	BattleScene();
 	void update(float time_elapsed, InputHandler& ih);
 	void render(Renderer& renderer);
+	// saves player team
 	void save_player_team();
+	// sets wild pokemon
 	void setRandomEnemy(InputHandler& ih);
+	// sets enemy team on boss fight
 	void setBossFight(InputHandler& ih);
 };

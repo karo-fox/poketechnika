@@ -17,8 +17,10 @@ private:
 	InputHandler ih;
 	State state;
 
+	// processes user input
 	void process_input();
 public:
 	Game(int width, int height, bool fullscreen);
+	// Runs the main game loop
 	void run();
 };

@@ -13,7 +13,10 @@ private:
 	Renderer renderer;
 public:
 	SceneManager(sf::RenderWindow& window, std::shared_ptr<Scene>&& scene = {});
+	// sets new scene as active
 	void set_scene(std::shared_ptr<Scene> &&scene);
+	// updates the Scene according to the user input and renders all it's scene
 	void run_scene(float time_elapsed, InputHandler& ih);
+	// sets renderer scene
 	void set_renderer_scale();
 };

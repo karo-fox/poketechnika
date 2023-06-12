@@ -20,13 +20,13 @@ class GameScene : public Scene
 private:
 	GOContainer game_objects;
 	Map map;
-	//InputHandler ih;
 	void load_map();
 public:
 	GameScene();
 	void update(float time_elapsed, InputHandler& ih);
-	//void process_input(sf::RenderWindow& window);
 	void render(Renderer& render);
+	// saves GameObjects in GameScene to xml file
 	void save_gos();
+	// loads GameObjects in GameScene from xml file
 	void load_gos();
 };

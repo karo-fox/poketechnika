@@ -25,11 +25,15 @@ private:
 	int animDur;
 public:
 	Player(const Map& m);
+
+	// Returns the player position
 	sf::Vector2f getPosition();
 
 	void update(float elapsedTime, InputHandler& ih) override;
+	// Changes player position according to user input and specifies map interactions
 	void movementLogic(float elapsedTime, InputHandler& ih);
 	void save(pugi::xml_node& node);
 	void load(pugi::xml_node& node);
+	// Specifies player animation
 	void updateSprite();
 };

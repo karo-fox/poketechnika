@@ -11,5 +11,6 @@ public:
 		const Action& action, const sf::Vector2f& position,
 		const std::string& texture_file = "assets/textures/button.png"
 	);
+	// set's new text
 	void setText(std::string t1, std::string t2, std::string t3);
 };

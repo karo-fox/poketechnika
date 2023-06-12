@@ -34,18 +34,32 @@ public:
     void save(pugi::xml_node& node);
     void load(pugi::xml_node& node);
 
+    // Reduces Pokemon health points
     void reduceHP(float red);
+    // Returns Pokemon health points
     float getHP();
+    // Returns Pokemon experience points
     int getXP();
+    // Returns Pokemon level
     int getLvl();
+    // Cures Pokemon
     void setHPToMax();
+    // Sets the new level and set's new maximal health points if the conditions are met
     bool checkForLvlUp();
+    // Sets new level
     void setLvl(int lvl_);
+    // Adds experience points
     void addXP(int xp_);
+    // Returns Pokemon's name
     std::string getName();
+    // Returns pokemon movement data
     std::vector<std::string> getMoveData(int move_idx);
+    // Returns maximal health points
     int getMaxHp();
+    // Returns move according to given number
     Move getMove(int id);
+    // Returns first type
     PokemonType getType1();
+    // Returns second type
     PokemonType getType2();
 };
